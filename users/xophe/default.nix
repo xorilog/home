@@ -24,5 +24,5 @@
   # To use nixos config in home-manager configuration, use the nixosConfig attr.
   # This make it possible to import the whole configuration, and let each module
   # load their own.
-  home-manager.users.xophe = import ./home.nix;
+  #home-manager.users.xophe = import ./home.nix;
 }

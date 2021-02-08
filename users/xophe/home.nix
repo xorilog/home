@@ -87,7 +87,7 @@
 
     # Gnupg
     #gnupg
-    #pinentry # dialog
+    pinentry # dialog
 
     # System information
     inxi

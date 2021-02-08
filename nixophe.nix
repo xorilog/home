@@ -1,1 +1,0 @@
-/home/xophe/src/github.com/home/systems/hosts/nixophe.nix

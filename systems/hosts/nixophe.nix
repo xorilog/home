@@ -99,6 +99,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    git
     wget
     vim
     mkpasswd
@@ -162,10 +163,13 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    enableExtraSocket = true;
+    # defaultCacheTtlSsh = 7200;
+    # pinEntryFlavor = "gtk2";
+  };
 
   # List services that you want to enable:
 
