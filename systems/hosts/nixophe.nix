@@ -3,7 +3,19 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
+with lib;
+ let
+   hostname = "nixophe";
+   secretPath = ../../secrets/machines.nix;
+   secretCondition = (builtins.pathExists secretPath);
 
+   ip = strings.optionalString secretCondition (import secretPath).wireguard.ips."${hostname}";
+   ips = lists.optionals secretCondition ([ "${ip}/24" ]);
+   endpointIP = strings.optionalString secretCondition (import secretPath).wg.endpointIP;
+   endpointPort = if secretCondition then (import secretPath).wg.listenPort else 0;
+   # Some replace-secret-host-here stuff to do FIX ME !;
+   endpointPublicKey = strings.optionalString secretCondition (import secretPath).wireguard.replace-secret-host-here.publicKey;
+in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -49,8 +61,72 @@
 
   # Yubikey End
 
-  networking.hostName = "nixophe"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking = {
+    hostName = hostname; # Define your hostname.
+
+    # The global useDHCP flag is deprecated, therefore explicitly set to false here.
+    # Per-interface useDHCP will be mandatory in the future, so this generated config
+    # replicates the default behaviour.
+    useDHCP = false;
+
+    # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    # networking.interfaces.enp0s13f0u3u3.useDHCP = false;
+    interfaces.wlp0s20f3.useDHCP = true;
+
+    # Configure network proxy if necessary
+    # networking.proxy.default = "http://user:password@proxy:port/";
+    # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  };
+
+  services.hardware.bolt.enable = true;
+
+  profiles = {
+    desktop.i3.enable = true;
+    laptop.enable = true;
+    home = true;
+    dev.enable = true;
+    yubikey.enable = { enable = true; u2f = false; autoLock = false; };
+    virtualization = { enable = false; nested = true; };
+    docker.enable = true;
+  };
+  environment.systemPackages = with pkgs; [
+    virtmanager
+  ];
+
+  services = {
+    wireguard = {
+      enable = false;
+      ips = ips;
+      endpoint = endpointIP;
+      endpointPort = endpointPort;
+      endpointPublicKey = endpointPublicKey;
+    };
+  };
+
+  systemd.services.buildkitd.wantedBy = lib.mkForce [ ];
+  systemd.services.containerd.wantedBy = lib.mkForce [ ];
+  systemd.services.docker.wantedBy = lib.mkForce [ ];
+  systemd.services.docker.requires = [ "containerd.socket" ];
+
+  virtualisation.podman.enable = true;
+  virtualisation.containers = {
+    enable = true;
+    registries = {
+      search = [ "docker.io" "quay.io" "docker.pkg.github.com" "ghcr.io" ];
+    };
+    policy = {
+      default = [{ type = "insecureAcceptAnything"; }];
+      transports = {
+        docker-daemon = {
+          "" = [{ type = "insecureAcceptAnything"; }];
+        };
+      };
+    };
+  };
+
+
+
+
 
   # Set default EDITOR system wide
   environment.variables.EDITOR = "vim";
@@ -58,16 +134,6 @@
   # Set your time zone.
   time.timeZone = "Europe/Paris";
 
-  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-  # Per-interface useDHCP will be mandatory in the future, so this generated config
-  # replicates the default behaviour.
-  networking.useDHCP = false;
-  # networking.interfaces.enp0s13f0u3u3.useDHCP = false;
-  networking.interfaces.wlp0s20f3.useDHCP = true;
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
   # i18n.defaultLocale = "en_US.UTF-8";
