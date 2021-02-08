@@ -7,6 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
+      <home-manager/nixos>
       ../hardware/dell-xps-13-9310.nix
       ../../users/xophe
     ];
@@ -105,6 +106,7 @@
     pkgs.chromium
     gnupg
     yubikey-personalization
+    home-manager
   ];
 
   # Configure keymap in X11
