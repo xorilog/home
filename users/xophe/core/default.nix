@@ -1,98 +1,102 @@
 { config, pkgs, ... }:
 
 {
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  home = {
+    stateVersion = "21.03";
+    packages = with pkgs; [
+      zoom-us
+      # Common tools
+      htop
+      iftop
+      tmux
+      jq
+      wget
+      direnv
 
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
-  home.username = "xophe";
-  home.homeDirectory = "/home/xophe";
+      # 1password
+      _1password
 
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
-  home.stateVersion = "21.03";
+      pass
 
-  nixpkgs.config.allowUnfree = true;
+      # Infrastructure
+      aws-vault
+      awscli2
+      # Authenticator is in version 0.4.0 and we need to use version 0.5 at least
+      #aws-iam-authenticator
+      kubectl
+      docker-compose
+      terragrunt
+      terraform_0_13
 
-  home.packages = with pkgs; [
-    zoom-us
-    # Common tools
-    htop
-    iftop
-    tmux
-    jq
-    wget
-    direnv
+      # Communication
+      slack
+      discord
+      mattermost-desktop
 
-    # 1password
-    _1password
+      # Editor / Code / Dev
+      rust-analyzer
+      yaml-language-server
+      solargraph # ruby language server
+      nodePackages.bash-language-server
+      nodePackages.dockerfile-language-server-nodejs
+      nodePackages.typescript-language-server
+      nodejs
+      ctags
 
-    pass
+      # Real editor
+      vscode
+      yed
 
-    # Infrastructure
-    aws-vault
-    awscli2
-    # Authenticator is in version 0.4.0 and we need to use version 0.5 at least
-    #aws-iam-authenticator
-    kubectl
-    docker-compose
-    terragrunt
-    terraform_0_13
+      # languages
+      #python3
 
-    # Communication
-    slack
-    discord
-    mattermost-desktop
+      # Go
+      gcc
+      gopls
+      jetbrains.goland
 
-    # Editor / Code / Dev
-    rust-analyzer
-    yaml-language-server
-    solargraph # ruby language server
-    nodePackages.bash-language-server
-    nodePackages.dockerfile-language-server-nodejs
-    nodePackages.typescript-language-server
-    nodejs
-    ctags
+      # Graphical
+      xclip
+      shutter
 
-    # Real editor
-    vscode
-    yed
+      # Build
+      #neovim-unwrapped # uses an overlay to build from master (i want neovim 0.5.0 version)
+      # GPG Yubikey etc
+      yubico-piv-tool
+      yubikey-personalization
+      yubioath-desktop
+      yubikey-manager
 
-    # languages
-    #python3
+      # Gnupg
+      #gnupg
+      pinentry # dialog
 
-    # Go
-    gcc
-    gopls
-    jetbrains.goland
+      # System information
+      inxi
+    ];
+  };
 
-    # Graphical
-    xclip
-    shutter
-
-    # Build
-    #neovim-unwrapped # uses an overlay to build from master (i want neovim 0.5.0 version)
-    # GPG Yubikey etc
-    yubico-piv-tool
-    yubikey-personalization
-    yubioath-desktop
-    yubikey-manager
-
-    # Gnupg
-    #gnupg
-    pinentry # dialog
-
-    # System information
-    inxi
-  ];
-  #programs.gnupg.agent.enable = true;
+  xdg.configFile."nixpkgs/config.nix".text = ''
+    {
+      allowUnfree = true;
+      packageOverrides = pkgs: {
+        nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+          inherit pkgs;
+        };
+      };
+    }
+  '';
+  xdg.configFile."nr/default" = {
+    text = builtins.toJSON [
+      { cmd = "ncdu"; }
+      { cmd = "sshfs"; }
+      { cmd = "lspci"; pkg = "pciutils"; }
+      { cmd = "lsusb"; pkg = "usbutils"; }
+      { cmd = "9"; pkg = "plan9port"; }
+      { cmd = "wakeonlan"; pkg = "python36Packages.wakeonlan"; }
+    ];
+    onChange = "${pkgs.my.nr}/bin/nr default";
+  };
 
   programs.tmux = {
     enable = true;
