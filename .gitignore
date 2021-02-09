@@ -1,0 +1,15 @@
+*~
+result*
+hostname
+*.retry
+assets/machines.nix
+docs/sitemap.org
+qemu
+accounts.nix
+assets/*
+private/*
+secrets/*
+networking.nix
+.secrets
+hardware-configuration.nix
+/key.bin
