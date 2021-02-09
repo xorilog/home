@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 with lib;
  let
    hostname = "nixophe";
@@ -19,9 +19,11 @@ in
 {
   imports =
     [ # Include the results of the hardware scan.
-      <home-manager/nixos>
       ../hardware/dell-xps-13-9310.nix
-      ../../users/xophe
+      (import ../../nix).home-manager
+      ../modules
+      (import ../../users).xophe
+      (import ../../users).root
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -85,7 +87,7 @@ in
     laptop.enable = true;
     home = true;
     dev.enable = true;
-    yubikey.enable = { enable = true; u2f = false; autoLock = false; };
+    yubikey = { enable = true; u2f = false; autoLock = false; };
     virtualization = { enable = false; nested = true; };
     docker.enable = true;
   };
@@ -164,17 +166,17 @@ in
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    git
-    wget
-    vim
-    mkpasswd
-    pkgs.firefoxWrapper
-    pkgs.chromium
-    gnupg
-    yubikey-personalization
-    home-manager
-  ];
+  #environment.systemPackages = with pkgs; [
+  #  git
+  #  wget
+  #  vim
+  #  mkpasswd
+  #  pkgs.firefoxWrapper
+  #  pkgs.chromium
+  #  gnupg
+  #  yubikey-personalization
+  #  home-manager
+  #];
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
@@ -183,35 +185,35 @@ in
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.layout = "us";
-  # services.xserver.xkbOptions = "eurosign:e";
-
-  services.xserver.displayManager = {
-    gdm.enable = true;
-    gdm.wayland = false;
-  };
-  services.xserver.desktopManager = {
-    gnome3.enable = true;
-    # default = "gnome3";
-  };
-
-  services.dbus.packages = [ pkgs.gnome3.dconf ];
-  services.udev.packages = with pkgs; [
-    gnome3.gnome-settings-daemon
-    yubikey-personalization
-  ];
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
-
-  # Enable pcscd for yubikey
-  services.pcscd.enable = true;
+#  # Enable sound.
+#  sound.enable = true;
+#  hardware.pulseaudio.enable = true;
+#
+#  # Enable the X11 windowing system.
+#  services.xserver.enable = true;
+#  services.xserver.layout = "us";
+#  # services.xserver.xkbOptions = "eurosign:e";
+#
+#  services.xserver.displayManager = {
+#    gdm.enable = true;
+#    gdm.wayland = false;
+#  };
+#  services.xserver.desktopManager = {
+#    gnome3.enable = true;
+#    # default = "gnome3";
+#  };
+#
+#  services.dbus.packages = [ pkgs.gnome3.dconf ];
+#  services.udev.packages = with pkgs; [
+#    gnome3.gnome-settings-daemon
+#    yubikey-personalization
+#  ];
+#
+#  # Enable touchpad support (enabled default in most desktopManager).
+#  services.xserver.libinput.enable = true;
+#
+#  # Enable pcscd for yubikey
+#  services.pcscd.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   # users.users.jane = {

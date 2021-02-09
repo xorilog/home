@@ -15,7 +15,7 @@ in
     };
   };
   config = mkIf cfg.enable {
-    console.keyMap = "us-intl";
+    console.keyMap = "us";
     console.font = "Lat2-Terminus16";
     i18n = {
       defaultLocale = "en_US.UTF-8";

@@ -1,4 +1,9 @@
 { config, lib, pkgs, ... }:
+with lib;
+let
+  hasConfigVirtualizationContainers = builtins.hasAttr "containers" config.virtualisation;
+  isContainersEnabled = if hasConfigVirtualizationContainers then config.virtualisation.containers.enable else false;
+in
 {
   users.users.xophe = {
     createHome = true;
@@ -47,10 +52,10 @@
         (import ./core)
         # (import ./mails { hostname = config.networking.hostName; pkgs = pkgs; })
       ]
-      ++ optionals config.profiles.dev.enable [ (import ./dev) ]
-      ++ optionals config.profiles.desktop.enable [ (import ./desktop) ]
-      ++ optionals config.profiles.desktop.gnome.enable [ (import ./desktop/gnome.nix) ]
-      ++ optionals config.profiles.desktop.i3.enable [ (import ./desktop/i3.nix) ]
+      #++ optionals config.profiles.dev.enable [ (import ./dev) ]
+      #++ optionals config.profiles.desktop.enable [ (import ./desktop) ]
+      #++ optionals config.profiles.desktop.gnome.enable [ (import ./desktop/gnome.nix) ]
+      #++ optionals config.profiles.desktop.i3.enable [ (import ./desktop/i3.nix) ]
       ++ optionals (config.profiles.laptop.enable && config.profiles.desktop.enable) [
         {
           # FIXME move this in its own file
@@ -65,7 +70,7 @@
       ++ optionals (config.profiles.yubikey.enable && config.profiles.yubikey.u2f) [{
         home.file.".config/Yubico/u2f_keys".source = pkgs.mkSecret ../../secrets/u2f_keys;
       }]
-      ++ optionals (isContainersEnabled && config.profiles.dev.enable) [ (import ./containers) ]
-      ++ optionals config.profiles.kubernetes.enable [ (import ./containers/kubernetes.nix) ];
-    };
+      #++ optionals (isContainersEnabled && config.profiles.dev.enable) [ (import ./containers) ]
+      #++ optionals config.profiles.kubernetes.enable [ (import ./containers/kubernetes.nix) ]
+    );
 }

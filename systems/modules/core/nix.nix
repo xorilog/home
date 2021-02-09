@@ -92,6 +92,7 @@ in
         (import ../../../nix/overlays/mkSecret.nix)
         (import ../../../nix/overlays/sbr.nix)
         (import ../../../nix/overlays/unstable.nix)
+        (import ../../../nix/overlays/neovim-overlay.nix)
       ];
       config = {
         allowUnfree = true;

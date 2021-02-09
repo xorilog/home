@@ -37,7 +37,6 @@ in
         tmux
         tree
         vim
-        vrsync
         wget
         gnumake
       ];
