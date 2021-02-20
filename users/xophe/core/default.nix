@@ -5,6 +5,7 @@
     stateVersion = "21.03";
     packages = with pkgs; [
       zoom-us
+      google-chrome
       # Common tools
       htop
       iftop
@@ -250,7 +251,7 @@
 
     signing = {
       #gpgPath = "/usr/bin/gpg";
-      gpgPath = "/home/xophe/.nix-profile/bin/gpg";
+      #gpgPath = "/home/xophe/.nix-profile/bin/gpg";
       key = "B151572DE8FADB71";
       signByDefault = true;
     };

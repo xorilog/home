@@ -22,7 +22,7 @@ in
         displayManager = {
           defaultSession = "none+i3";
           lightdm.enable = true;
-          lightdm.greeters.pantheon.enable = true;
+          lightdm.greeters.pantheon.enable = false;
         };
         windowManager.i3.enable = true;
       };
