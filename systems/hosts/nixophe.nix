@@ -84,6 +84,7 @@ in
 
   profiles = {
     desktop.i3.enable = true;
+    #desktop.gnome.enable = true;
     laptop.enable = true;
     home = true;
     dev.enable = true;

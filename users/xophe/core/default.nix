@@ -1,6 +1,16 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./core-vdemeester/bash.nix
+    ./core-vdemeester/direnv.nix
+    ./core-vdemeester/fzf.nix
+    ./core-vdemeester/htop.nix
+    ./core-vdemeester/tmux.nix
+    ./core-vdemeester/xdg.nix
+    ./core-vdemeester/zsh.nix
+  ];
+
   home = {
     stateVersion = "21.03";
     packages = with pkgs; [
@@ -70,7 +80,7 @@
 
       # Gnupg
       #gnupg
-      pinentry # dialog
+      #pinentry # dialog
 
       # System information
       inxi
@@ -97,14 +107,6 @@
       { cmd = "wakeonlan"; pkg = "python36Packages.wakeonlan"; }
     ];
     onChange = "${pkgs.my.nr}/bin/nr default";
-  };
-
-  programs.tmux = {
-    enable = true;
-    escapeTime = 10;
-    historyLimit = 10000;
-    terminal = "tmux-256color";
-    secureSocket = true;
   };
 
   programs.neovim = {
@@ -236,10 +238,6 @@
     };
     editor = "nvim";
     gitProtocol = "ssh";
-  };
-
-  programs.fzf = {
-    enable = true;
   };
 
   programs.git = {
