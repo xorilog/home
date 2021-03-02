@@ -17,8 +17,9 @@ in
     # Inputs
     "org/gnome/desktop/input-sources" = {
       "current" = "uint32 0";
-      "sources" = [ (mkTuple [ "xkb" "fr+bepo" ]) (mkTuple [ "xkb" "us" ]) ];
-      "xkb-options" = [ "lv3:ralt_switch" "caps:ctrl_modifier" ];
+      "sources" = [ (mkTuple [ "xkb" "us" ]) (mkTuple [ "xkb" "us+intl" ]) ];
+      # xophe
+      #"xkb-options" = [ "lv3:ralt_switch" "caps:ctrl_modifier" ];
     };
     # Window manager
     "org/gnome/desktop/wm/keybindings" = {
@@ -40,10 +41,10 @@ in
     };
     # Background and screensaver
     "org/gnome/desktop/background" = {
-      "picture-uri" = "file:///home/vincent/desktop/pictures/wallpapers/dynamics/firewatch/firewatch.xml";
+      "picture-uri" = "file:///home/xophe/desktop/pictures/wallpapers/dynamics/firewatch/firewatch.xml";
     };
     "org/gnome/desktop/screensaver" = {
-      "picture-uri" = "file:///home/vincent/desktop/pictures/wallpapers/dynamics/firewatch/firewatch.xml";
+      "picture-uri" = "file:///home/xophe/desktop/pictures/wallpapers/dynamics/firewatch/firewatch.xml";
     };
     # settings
     "org/gnome/settings-daemon/plugins/color" = {

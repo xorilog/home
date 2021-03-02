@@ -41,7 +41,7 @@ in
       fpath+="$HOME/${config.programs.zsh.dotDir}/functions"
       for func ($HOME/${config.programs.zsh.dotDir}/functions) autoload -U $func/*(x:t)
       autoload -Uz select-word-style; select-word-style bash
-      if [ -e /home/vincent/.nix-profile/etc/profile.d/nix.sh ]; then . /home/vincent/.nix-profile/etc/profile.d/nix.sh; fi
+      if [ -e /home/xophe/.nix-profile/etc/profile.d/nix.sh ]; then . /home/xophe/.nix-profile/etc/profile.d/nix.sh; fi
       #if [ -n "$INSIDE_EMACS" ]; then
       #  chpwd() { print -P "\033AnSiTc %d" }
       #  print -P "\033AnSiTu %n"
@@ -81,7 +81,7 @@ in
       export GOPATH=${config.home.homeDirectory}
     '';
     profileExtra = ''
-      if [ -e /home/vincent/.nix-profile/etc/profile.d/nix.sh ]; then . /home/vincent/.nix-profile/etc/profile.d/nix.sh; fi
+      if [ -e /home/xophe/.nix-profile/etc/profile.d/nix.sh ]; then . /home/xophe/.nix-profile/etc/profile.d/nix.sh; fi
     '';
     localVariables = {
       EMOJI_CLI_KEYBIND = "^n";

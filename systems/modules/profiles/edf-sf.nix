@@ -18,9 +18,9 @@ in
       libnotify
     ];
     # NetworkManager
-    # environment.etc."NetworkManager/system-connections/1-EDF-SF-VPN.ovpn" = {
-    #   source = pkgs.mkSecret ../../../secrets/etc/NetworkManager/system-connections/1-EDF-SF-VPN.ovpn;
-    #   mode = "0600";
-    # };
+    environment.etc."NetworkManager/system-connections/1-EDF-SF-VPN.ovpn" = {
+      source = pkgs.mkSecret ../../../secrets/etc/NetworkManager/system-connections/1-EDF-SF-VPN.ovpn;
+      mode = "0600";
+    };
   };
 }
