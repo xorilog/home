@@ -21,8 +21,10 @@ in
       xserver = {
         displayManager = {
           defaultSession = "none+i3";
-          lightdm.enable = true;
-          lightdm.greeters.pantheon.enable = false;
+          gdm.enable = true;
+          # xophe
+          # lightdm.enable = true;
+          # lightdm.greeters.pantheon.enable = false;
         };
         windowManager.i3.enable = true;
       };

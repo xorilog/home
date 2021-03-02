@@ -42,6 +42,7 @@ in
     pinentry-gnome
     # tilix
 
+    gnome3.nautilus
     aspell
     aspellDicts.en
     aspellDicts.fr

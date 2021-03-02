@@ -22,7 +22,8 @@ in
     enableCompletion = true;
     autocd = true;
     dotDir = ".config/zsh";
-    defaultKeymap = "emacs";
+    # xophe
+    #defaultKeymap = "emacs";
     history = {
       expireDuplicatesFirst = true;
       extended = true;
