@@ -5,6 +5,7 @@
     ./desktop.nix
     ./dev.nix
     ./docker.nix
+    ./edf-sf.nix
     ./gaming.nix
     ./git.nix
     ./gnome.nix

@@ -72,5 +72,6 @@ in
       }]
       #++ optionals (isContainersEnabled && config.profiles.dev.enable) [ (import ./containers) ]
       #++ optionals config.profiles.kubernetes.enable [ (import ./containers/kubernetes.nix) ]
+      ++ optionals config.profiles.edf-sf.enable [ (import ./edf-sf) ]
     );
 }

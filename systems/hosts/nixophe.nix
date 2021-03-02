@@ -73,7 +73,7 @@ in
 
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
     # networking.interfaces.enp0s13f0u3u3.useDHCP = false;
-    interfaces.wlp0s20f3.useDHCP = true;
+    #interfaces.wlp0s20f3.useDHCP = true;
 
     # Configure network proxy if necessary
     # networking.proxy.default = "http://user:password@proxy:port/";
@@ -85,6 +85,7 @@ in
   profiles = {
     desktop.i3.enable = true;
     #desktop.gnome.enable = true;
+    edf-sf.enable = true;
     laptop.enable = true;
     home = true;
     dev.enable = true;
