@@ -28,6 +28,7 @@ in
     alacritty
     arandr
     # TODO switch to betterlockscreen
+    betterlockscreen
     i3lock-color
     libnotify
     maim
@@ -236,11 +237,11 @@ in
         "Mod4+Shift+111" = "focus output up";    #Mod4+Shift+Up
         "Mod4+Shift+114" = "focus output right"; #Mod4+Shift+Right
         # Custom keybinding
-        "Mod4+Shift+32" = "exec ${lockCommand}"; #Mod4+shiftS+o
+        "Mod4+Shift+32" = "exec ${lockCommand}"; #Mod4+Shift+o
         # "Mod4+Shift+39" = "exec ~/.screenlayout/home-work.sh && systemctl --user start random-background.service";
-        "Mod4+24" = "border toggle"; #Mod4+q
+        # "Mod4+24" = "border toggle"; #Mod4+q commented xophe (cannot do bindsym and bindcode on same keys)#
         # TODO transform this into mode with multiple "capture" target
-        "Mod4+32" = "exec capture"; #Mod+o
+        # "Mod4+32" = "exec capture"; #Mod+o  commented xophe (cannot do bindsym and bindcode on same keys)#
       };
       modes = { };
       bars = [
@@ -314,9 +315,10 @@ in
       # reload the configuration file
       bindsym $mod+Shift+x reload
       # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-      bindsym $mod+Shift+o restart
+      # bindsym $mod+Shift+o restart ## xophe (cannot do bindsym and bindcode on same keys)
       # exit i3 (logs you out of your X session)
-      bindsym $mod+Shift+p exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
+      # xophe (cannot do bindsym and bindcode on same keys): rofi also using -> $mod+Shift+p
+      #bindsym $mod+Shift+p exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
       # powermenu
       bindsym $mod+F12 exec ${powermenu}
       bindsym $mod+F10 exec ${pkgs.my.scripts}/bin/shot %d
