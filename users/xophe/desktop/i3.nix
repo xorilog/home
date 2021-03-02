@@ -190,57 +190,57 @@ in
       #  outer = 0;
       #};
       keycodebindings = {
-        "Mod4+Shift+24" = "kill";
-        "Mod4+33" = "exec \"rofi -show drun -modi 'drun,run,window,ssh' -kb-row-select 'Tab' -kb-row-tab '' -location 2 -hide-scrollbar -separator-style solid -font 'Ubuntu Mono 14'";
-        "Mod4+Shift+33" = "exec \"rofi -show combi -modi 'drun,run,window,ssh,combi' -kb-row-select 'Tab' -kb-row-tab '' -location 2 -hide-scrollbar -separator-style solid -font 'Ubuntu Mono 14'";
-        "Mod4+Control+33" = "exec \"rofi -show emoji -modi emoji -location 2 -hide-scrollbar -separator-style solid -font 'Ubuntu Mono 14'|pbcopy";
+        "Mod4+Shift+24" = "kill"; #Mod4+Shift+q
+        "Mod4+33" = "exec \"rofi -show drun -modi 'drun,run,window,ssh' -kb-row-select 'Tab' -kb-row-tab '' -location 2 -hide-scrollbar -separator-style solid -font 'Ubuntu Mono 14'"; #Mod+p
+        "Mod4+Shift+33" = "exec \"rofi -show combi -modi 'drun,run,window,ssh,combi' -kb-row-select 'Tab' -kb-row-tab '' -location 2 -hide-scrollbar -separator-style solid -font 'Ubuntu Mono 14'"; #Mod+P
+        "Mod4+Control+33" = "exec \"rofi -show emoji -modi emoji -location 2 -hide-scrollbar -separator-style solid -font 'Ubuntu Mono 14'|pbcopy"; #Mod+Control+P
         # "Mod4+space" = "";
         # focus window
-        "Mod4+44" = "focus left";
-        "Mod4+45" = "focus down";
-        "Mod4+46" = "focus up";
-        "Mod4+47" = "focus right";
-        "Mod4+38" = "focus parent";
+        "Mod4+44" = "focus left";   #Mod4+j
+        "Mod4+45" = "focus down";   #Mod4+k
+        "Mod4+46" = "focus up";     #Mod4+l
+        "Mod4+47" = "focus right";  #Mod4+;
+        "Mod4+38" = "focus parent"; #Mod4+a
         # move focused window
-        "Mod4+Shift+44" = "move left";
-        "Mod4+Shift+45" = "move down";
-        "Mod4+Shift+46" = "move up";
-        "Mod4+Shift+47" = "move right";
+        "Mod4+Shift+44" = "move left";  #Mod4+Shift+j
+        "Mod4+Shift+45" = "move down";  #Mod4+Shift+k
+        "Mod4+Shift+46" = "move up";    #Mod4+Shift+l
+        "Mod4+Shift+47" = "move right"; #Mod4+Shift+;
         # resize
-        "Mod4+Control+44" = "resize shrink width 5px or 5ppt";
-        "Mod4+Control+45" = "resize grow width 5px or 5ppt";
-        "Mod4+Control+46" = "resize shrink height 5px or 5ppt";
-        "Mod4+Control+47" = "resize grow height 5px or 5ppt";
+        "Mod4+Control+44" = "resize shrink width 5px or 5ppt";  #Mod4+Control+j
+        "Mod4+Control+45" = "resize grow width 5px or 5ppt";    #Mod4+Control+k
+        "Mod4+Control+46" = "resize shrink height 5px or 5ppt"; #Mod4+Control+l
+        "Mod4+Control+47" = "resize grow height 5px or 5ppt";   #Mod4+Control+;
         # gaps
-        "Mod4+Mod1+44" = "gaps inner current plus 5";
-        "Mod4+Mod1+45" = "gaps inner current minus 5";
-        "Mod4+Mod1+46" = "gaps outer current plus 5";
-        "Mod4+Mod1+47" = "gaps outer current minus 5";
+        "Mod4+Mod1+44" = "gaps inner current plus 5";   #Mod4+Alt+j
+        "Mod4+Mod1+45" = "gaps inner current minus 5";  #Mod4+Alt+k
+        "Mod4+Mod1+46" = "gaps outer current plus 5";   #Mod4+Alt+l
+        "Mod4+Mod1+47" = "gaps outer current minus 5";  #Mod4+Alt+;
         # Fullscreen
-        "Mod4+41" = "fullscreen toggle";
+        "Mod4+41" = "fullscreen toggle"; #Mod4+f
         # Change container layout
-        "Mod4+39" = "layout stacking";
-        "Mod4+25" = "layout tabbed";
-        "Mod4+26" = "layout toggle split";
+        "Mod4+39" = "layout stacking";     #Mod4+s
+        "Mod4+25" = "layout tabbed";       #Mod4+w
+        "Mod4+26" = "layout toggle split"; #Mod4+e
         # Manage floating
-        "Mod4+Shift+61" = "floating toggle";
-        "Mod4+61" = "focus mode_toggle";
+        "Mod4+Shift+61" = "floating toggle";  #Mod4+Shift+/
+        "Mod4+61" = "focus mode_toggle";      #Mod4+/
         # manage workspace
-        "Mod4+113" = "workspace prev_on_output";
-        "Mod4+112" = "workspace prev_on_output";
-        "Mod4+114" = "workspace next_on_output";
-        "Mod4+117" = "workspace next_on_output";
+        "Mod4+113" = "workspace prev_on_output"; #Mod4+left
+        "Mod4+112" = "workspace prev_on_output"; #Mod4+Prior (Page Up)
+        "Mod4+114" = "workspace next_on_output"; #Mod4+right
+        "Mod4+117" = "workspace next_on_output"; #Mod4+Next (Page Down)
         # manage output
-        "Mod4+Shift+113" = "focus output left";
-        "Mod4+Shift+116" = "focus output down";
-        "Mod4+Shift+111" = "focus output up";
-        "Mod4+Shift+114" = "focus output right";
+        "Mod4+Shift+113" = "focus output left";  #Mod4+Shift+left
+        "Mod4+Shift+116" = "focus output down";  #Mod4+Shift+Down
+        "Mod4+Shift+111" = "focus output up";    #Mod4+Shift+Up
+        "Mod4+Shift+114" = "focus output right"; #Mod4+Shift+Right
         # Custom keybinding
-        "Mod4+Shift+32" = "exec ${lockCommand}";
+        "Mod4+Shift+32" = "exec ${lockCommand}"; #Mod4+shiftS+o
         # "Mod4+Shift+39" = "exec ~/.screenlayout/home-work.sh && systemctl --user start random-background.service";
-        "Mod4+24" = "border toggle";
+        "Mod4+24" = "border toggle"; #Mod4+q
         # TODO transform this into mode with multiple "capture" target
-        "Mod4+32" = "exec capture";
+        "Mod4+32" = "exec capture"; #Mod+o
       };
       modes = { };
       bars = [
@@ -379,18 +379,18 @@ in
       for_window [instance="metask"] move scratchpad; [instance="metask"] scratchpad show; move position center; move scratchpad
       bindcode $mod+49 [instance="metask"] scratchpad show
 
-      ## pomodoro
-      # bepo s = 45
-      # bepo p = 26
-      set $pomodoro "pomodoro: [s]tart s[t]op [p]ause-resume"
-      mode $pomodoro {
-        bindcode 45 exec "${pkgs.gnome3.pomodoro}/bin/gnome-pomodoro --no-default-window --start"; mode "default"
-        bindcode 44 exec "${pkgs.gnome3.pomodoro}/bin/gnome-pomodoro --no-default-window --stop"; mode "default"
-        bindcode 26 exec "${pkgs.gnome3.pomodoro}/bin/gnome-pomodoro --no-default-window --pause-resume"; mode "default"
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-      }
-      bindcode $mod+43 mode $pomodoro
+      ### pomodoro
+      ## bepo s = 45
+      ## bepo p = 26
+      #set $pomodoro "pomodoro: [s]tart s[t]op [p]ause-resume"
+      #mode $pomodoro {
+      #  bindcode 45 exec "${pkgs.gnome3.pomodoro}/bin/gnome-pomodoro --no-default-window --start"; mode "default"
+      #  bindcode 44 exec "${pkgs.gnome3.pomodoro}/bin/gnome-pomodoro --no-default-window --stop"; mode "default"
+      #  bindcode 26 exec "${pkgs.gnome3.pomodoro}/bin/gnome-pomodoro --no-default-window --pause-resume"; mode "default"
+      #  bindsym Return mode "default"
+      #  bindsym Escape mode "default"
+      #}
+      #bindcode $mod+43 mode $pomodoro
 
       ## scratchpad
       set $scratchpad "scratchpad: [$]terminal [p]avucontrol"
