@@ -185,10 +185,10 @@ in
       keybindings = {
         "Mod4+Return" = "exec alacritty";
       };
-      gaps = {
-        inner = 0;
-        outer = 0;
-      };
+      #gaps = {
+      #  inner = 0;
+      #  outer = 0;
+      #};
       keycodebindings = {
         "Mod4+Shift+24" = "kill";
         "Mod4+33" = "exec \"rofi -show drun -modi 'drun,run,window,ssh' -kb-row-select 'Tab' -kb-row-tab '' -location 2 -hide-scrollbar -separator-style solid -font 'Ubuntu Mono 14'";

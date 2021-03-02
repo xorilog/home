@@ -154,15 +154,15 @@ in
     #  enableAdobeFlash = false;
     #};
 
-    chromium = {
-      enablePepperFlash = false;
-    };
+    #chromium = {
+    #  enablePepperFlash = false;
+    #};
 
-    packageOverrides = pkgs: with pkgs; rec {
-      firefox-bin-wrapper = wrapFirefox {
-        browser = firefox-bin;
-      };
-    };
+    #packageOverrides = pkgs: with pkgs; rec {
+    #  firefox-bin-wrapper = wrapFirefox {
+    #    browser = firefox-bin;
+    #  };
+    #};
   };
 
   # List packages installed in system profile. To search, run:
