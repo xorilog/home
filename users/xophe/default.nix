@@ -51,6 +51,7 @@ in
       [
         (import ./core)
         # (import ./mails { hostname = config.networking.hostName; pkgs = pkgs; })
+        (import ../modules/iaas/aws)
       ]
       ++ optionals config.profiles.dev.enable [ (import ./dev) ]
       ++ optionals config.profiles.desktop.enable [ (import ./desktop) ]

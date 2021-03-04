@@ -2,13 +2,13 @@
 
 {
   imports = [
-    ./core-vdemeester/bash.nix
-    ./core-vdemeester/direnv.nix
-    ./core-vdemeester/fzf.nix
-    ./core-vdemeester/htop.nix
-    ./core-vdemeester/tmux.nix
-    ./core-vdemeester/xdg.nix
-    ./core-vdemeester/zsh.nix
+    ../../modules/shells/bash.nix
+    ../../modules/shells/zsh.nix
+    ../../modules/tools/direnv.nix
+    ../../modules/tools/fzf.nix
+    ../../modules/tools/htop.nix
+    ../../modules/tools/tmux.nix
+    ../../modules/tools/xdg.nix
   ];
 
   home = {
@@ -29,8 +29,8 @@
       pass
 
       # Infrastructure
-      aws-vault
-      awscli2
+      #aws-vault
+      #awscli2
       # Authenticator is in version 0.4.0 and we need to use version 0.5 at least
       #aws-iam-authenticator
       kubectl
