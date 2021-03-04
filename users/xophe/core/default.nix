@@ -22,7 +22,6 @@
       tmux
       jq
       wget
-      direnv
 
       # 1password
       _1password
@@ -62,9 +61,9 @@
       #python3
 
       # Go
-      gcc
-      gopls
-      jetbrains.goland
+      #gcc
+      #gopls
+      #jetbrains.goland
 
       # Graphical
       xclip
@@ -458,15 +457,16 @@
 
     includes = [
       {
-        path = "${config.xdg.configHome}/.gituser-edf-sf";
+        path = "${config.xdg.configHome}/git/config.d/edf-sf.gitconfig";
         condition = "gitdir:${config.home.homeDirectory}/src/gitlab.edf-sf.com/";
       }
       {
-        path = "${config.xdg.configHome}/.gituser-edf-sf";
+        path = "${config.xdg.configHome}/git/config.d/edf-sf.gitconfig";
         condition = "gitdir:${config.home.homeDirectory}/go/src/gitlab.edf-sf.com/";
       }
     ];
   };
+  xdg.configFile."git/config.d/edf-sf.gitconfig".source = ./git/edf-sf.gitconfig;
 
   programs.vim = {
     enable = true;
@@ -474,5 +474,7 @@
 
   #programs.bash.enable = true;
 
-  programs.go.enable = true;
+  #programs.go.enable = true;
+  # Always set GOROOT
+  #config.environment.variables = { GOROOT = [ "${pkgs.go.out}/share/go" ]; };
 }

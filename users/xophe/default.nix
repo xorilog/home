@@ -52,7 +52,7 @@ in
         (import ./core)
         # (import ./mails { hostname = config.networking.hostName; pkgs = pkgs; })
       ]
-      #++ optionals config.profiles.dev.enable [ (import ./dev) ]
+      ++ optionals config.profiles.dev.enable [ (import ./dev) ]
       ++ optionals config.profiles.desktop.enable [ (import ./desktop) ]
       ++ optionals config.profiles.desktop.gnome.enable [ (import ./desktop/gnome.nix) ]
       ++ optionals config.profiles.desktop.i3.enable [ (import ./desktop/i3.nix) ]
