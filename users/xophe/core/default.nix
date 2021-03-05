@@ -6,6 +6,7 @@
     ../../modules/shells/zsh.nix
     ../../modules/tools/direnv.nix
     ../../modules/tools/fzf.nix
+    ../../modules/tools/gopass.nix
     ../../modules/tools/htop.nix
     ../../modules/tools/tmux.nix
     ../../modules/tools/xdg.nix
@@ -26,7 +27,8 @@
       # 1password
       _1password
 
-      pass
+      # trying gopass
+      # pass
 
       # Infrastructure
       #aws-vault

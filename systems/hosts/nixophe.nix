@@ -105,6 +105,9 @@ in
       endpointPort = endpointPort;
       endpointPublicKey = endpointPublicKey;
     };
+
+    # gvfs to browse samba shares with GTK-Based apps like nautilus
+    gvfs.enable = true;
   };
 
   systemd.services.buildkitd.wantedBy = lib.mkForce [ ];
@@ -251,6 +254,9 @@ in
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+  networking.firewall.allowPing = true;
+  # Samba discovery of machines and shares https://wiki.archlinux.org/index.php/Samba#.22Browsing.22_network_fails_with_.22Failed_to_retrieve_share_list_from_server.22
+  networking.firewall.extraCommands = ''iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns'';
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
