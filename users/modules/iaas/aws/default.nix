@@ -26,7 +26,7 @@
   programs.zsh.sessionVariables = {
     AWS_VAULT_BACKEND = "pass";
     AWS_VAULT_PASS_PREFIX = "vault";
-    AWS_VAULT_PASS_PASSWORD_STORE_DIR = "$XDG_DATA_HOME/Sync/password-store";
+    AWS_VAULT_PASS_PASSWORD_STORE_DIR = ''''${HOME}/sync/password-store'';
   };
 
 }

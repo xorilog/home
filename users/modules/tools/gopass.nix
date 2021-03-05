@@ -5,9 +5,9 @@
   ];
 
   # doc https://github.com/gopasspw/gopass/blob/master/docs/features.md#initializing-a-password-store
-  # init with gopass init --path ~/Sync/password-store B151572DE8FADB71
+  # init with gopass init --path ~/sync/password-store B151572DE8FADB71
   programs.bash.sessionVariables = {
-    PASSWORD_STORE_DIR = "$XDG_DATA_HOME/Sync/password-store";
+    PASSWORD_STORE_DIR = ''''${HOME}/sync/password-store'';
   };
 
   programs.bash.shellAliases = {
