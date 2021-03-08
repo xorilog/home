@@ -12,6 +12,7 @@
     t = ''exa --tree --level=2'';
     wget = ''wget -c'';
     map = ''xargs -n1'';
+    ip = ''ip -c'';
   };
 
   env = ''

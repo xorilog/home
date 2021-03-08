@@ -92,6 +92,7 @@ in
     yubikey = { enable = true; u2f = false; autoLock = false; };
     virtualization = { enable = false; nested = true; };
     docker.enable = true;
+    tailscale.enable = true;
   };
   environment.systemPackages = with pkgs; [
     virtmanager

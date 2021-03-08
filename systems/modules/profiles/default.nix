@@ -22,6 +22,7 @@
     ./scanning.nix
     ./ssh.nix
     ./syncthing.nix
+    ./tailscale.nix
     ./virtualization.nix
     ./wireguard.server.nix
     ./yubikey.nix
