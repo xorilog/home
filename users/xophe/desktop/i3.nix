@@ -437,6 +437,9 @@ in
       interval = 2
     }
 
+    order += "ipv6"
+    order += "wireless _first_"
+    order += "ethernet _first_"
     order += "path_exists 🔑"
     order += "battery 0"
     order += "load"
@@ -458,7 +461,8 @@ in
     }
 
     path_exists 🔑 {
-      path = "/proc/sys/net/ipv4/conf/wg0"
+      # check for tun0 config (classic openvpn)
+      path = "/proc/sys/net/ipv4/conf/tun0"
     }
 
     tztime local {
@@ -476,6 +480,22 @@ in
 
     disk "/" {
       format = "%avail"
+    }
+
+    wireless _first_ {
+        format_up = "W: (%quality at %essid, %bitrate) %ip"
+        format_down = "W: down"
+    }
+
+    ethernet _first_ {
+        format_up = "E: %ip (%speed)"
+        format_down = "E: down"
+    }
+
+    memory {
+        format = "%used"
+        threshold_degraded = "10%"
+        format_degraded = "MEMORY: %free"
     }
   '';
 }
