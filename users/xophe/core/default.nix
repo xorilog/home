@@ -39,6 +39,7 @@
       docker-compose
       terragrunt
       terraform_0_14
+      terraform-docs
 
       # Communication
       slack
