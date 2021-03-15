@@ -60,6 +60,9 @@
       vscode
       yed
 
+      # Dev tools (to move elsewhere)
+      hub
+
       # languages
       #python3
 
