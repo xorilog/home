@@ -94,3 +94,6 @@ $(SYNCDIR):
 
 setup-gpg:
 	gpg --import module/gnupg/gpg-0xB151572DE8FADB71-2021-02-08.txt
+
+setup-lockscreen:
+	betterlockscreen -u desktop/pictures/walls --blur 1
