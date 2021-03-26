@@ -27,7 +27,7 @@ in
       home = {
         fingerprint = {
           eDP-1 = dell_xps_9310;
-          DP-1-2 = iiyama_ProLite_B2712HDS;
+          DP-1 = iiyama_ProLite_B2712HDS;
         };
         config = {
           eDP-1 = {
@@ -35,7 +35,7 @@ in
             position = "1920x0";
             mode = "1920x1200";
           };
-          DP-1-2 = {
+          DP-1 = {
             enable = true;
             primary = true;
             mode = "1920x1080";
@@ -47,6 +47,7 @@ in
         fingerprint = {
           eDP-1 = dell_xps_9310;
           DP-1 = iiyama_ProLite_B2712HDS;
+          DP-3 = edfsf_samsung;
         };
         config = {
           DP-3 = {
