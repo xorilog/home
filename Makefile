@@ -91,3 +91,6 @@ $(SRCHOME):
 
 $(SYNCDIR):
 	$(error $(SYNCDIR) is not present, you need to configure syncthing before running this command)
+
+setup-gpg:
+	gpg --import module/gnupg/gpg-0xB151572DE8FADB71-2021-02-08.txt
