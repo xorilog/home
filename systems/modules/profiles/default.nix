@@ -13,6 +13,7 @@
     ./i18n.nix
     ./i3.nix
     ./ipfs.nix
+    ./keybase.nix
     ./laptop.nix
     ./mail.nix
     ./nix-auto-update.nix

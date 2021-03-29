@@ -87,6 +87,7 @@ in
     #desktop.gnome.enable = true;
     edf-sf.enable = true;
     laptop.enable = true;
+    keybase.enable = true;
     home = true;
     dev.enable = true;
     yubikey = { enable = true; u2f = false; autoLock = false; };

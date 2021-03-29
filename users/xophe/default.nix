@@ -71,7 +71,7 @@ in
       ++ optionals (config.profiles.yubikey.enable && config.profiles.yubikey.u2f) [{
         home.file.".config/Yubico/u2f_keys".source = pkgs.mkSecret ../../secrets/u2f_keys;
       }]
-      #++ optionals (isContainersEnabled && config.profiles.dev.enable) [ (import ./containers) ]
+      ++ optionals (isContainersEnabled && config.profiles.dev.enable) [ (import ./containers) ]
       #++ optionals config.profiles.kubernetes.enable [ (import ./containers/kubernetes.nix) ]
       ++ optionals config.profiles.edf-sf.enable [ (import ./edf-sf) ]
     );
