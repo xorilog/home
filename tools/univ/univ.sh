@@ -30,8 +30,11 @@ update() {
     else
         merges_filter=""
         hub api "/repos/$owner/$repo/compare/${old_rev}...${new_rev}" \
-            | jq -r '.commits[] '"$merges_filter"' | "* [`\(.sha[0:8])`](\(.html_url)) \(.commit.message | split("\n") | first)"' \
+            | jq -r '.commits[] '"$merges_filter"' | "* `\(.sha[0:8])`: \(.commit.message | split("\n") | first)"' \
             | sed "s~\(#[0-9]\+\)~$owner/$repo\1~g"
+        # hub api "/repos/$owner/$repo/compare/${old_rev}...${new_rev}" \
+        #     | jq -r '.commits[] '"$merges_filter"' | "* [`\(.sha[0:8])`](\(.html_url)) \(.commit.message | split("\n") | first)"' \
+        #     | sed "s~\(#[0-9]\+\)~$owner/$repo\1~g"
     fi
 }
 
