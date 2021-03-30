@@ -33,14 +33,14 @@ in
         config = {
           eDP-1 = {
             enable = true;
-            position = "1920x0";
+            mode = "1920x1200";
             position = "0x0";
           };
           DP-1 = {
             enable = true;
             primary = true;
             mode = "1920x1080";
-            mode = "1920x1200";
+            position = "1920x0";
           };
         };
       };
