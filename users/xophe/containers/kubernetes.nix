@@ -18,6 +18,7 @@ in
     kubectx
     kind
     minikube
+    kubernetes-helm
     # our own scripts
     # knd
     # bekind
