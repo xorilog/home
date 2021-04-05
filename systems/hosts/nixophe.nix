@@ -91,7 +91,7 @@ in
     home = true;
     dev.enable = true;
     yubikey = { enable = true; u2f = false; autoLock = false; };
-    virtualization = { enable = false; nested = true; };
+    virtualization = { enable = true; nested = true; };
     docker.enable = true;
     tailscale.enable = true;
   };

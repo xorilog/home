@@ -94,6 +94,8 @@ $(SYNCDIR):
 
 setup-gpg:
 	gpg --import module/gnupg/gpg-0xB151572DE8FADB71-2021-02-08.txt
+	@echo -e "\nNow trust the imported key using:\ngpg -K\ngpg --edit-key 0xB151572DE8FADB71\ngpg> trust\ngpg> quit"
+
 
 setup-lockscreen:
 	betterlockscreen -u desktop/pictures/walls --blur 1

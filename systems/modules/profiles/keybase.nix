@@ -14,7 +14,7 @@ in
     services.keybase.enable = true;
     services.kbfs = {
       enable = true;
-      enableRedirector = true;
+      #enableRedirector = true;
     };
     environment.systemPackages = with pkgs; [ keybase kbfs keybase-gui ];
   };
