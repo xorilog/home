@@ -1,20 +1,6 @@
 { pkgs, nixosConfig, ... }:
 
 {
-  imports = [
-    # autorandr
-    # xophe ./finances.nix
-    # xophe ./next.nix
-    # xophe ./keyboard.nix
-    # xophe ./spotify.nix
-    #./firefox.nix
-    #./gtk.nix
-    #./mpv.nix
-    # ./i3.nix
-    # ./mpd.nix
-    # ./redshift.nix
-    # ./xsession.nix
-  ];
   home.packages = with pkgs; [
     aws-vault
     aws-iam-authenticator
@@ -28,5 +14,4 @@
     AWS_VAULT_PASS_PREFIX = "vault";
     AWS_VAULT_PASS_PASSWORD_STORE_DIR = ''''${HOME}/sync/password-store'';
   };
-
 }

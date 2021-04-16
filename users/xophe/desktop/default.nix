@@ -2,7 +2,6 @@
 
 {
   imports = [
-    # autorandr
     # xophe ./finances.nix
     # xophe ./next.nix
     # xophe ./keyboard.nix

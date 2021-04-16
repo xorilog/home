@@ -98,4 +98,4 @@ setup-gpg:
 
 
 setup-lockscreen:
-	betterlockscreen -u desktop/pictures/walls --blur 1
+	betterlockscreen -u $(HOME)/desktop/pictures/walls --blur 1
