@@ -97,6 +97,8 @@ in
   };
   environment.systemPackages = with pkgs; [
     virtmanager
+    # force xbacklight to work
+    acpilight
   ];
 
   services = {
@@ -110,6 +112,12 @@ in
 
     # gvfs to browse samba shares with GTK-Based apps like nautilus
     gvfs.enable = true;
+    udev.extraRules = ''
+      # Rule for screen Backlight https://gitlab.com/wavexx/acpilight
+      SUBSYSTEM=="backlight", ACTION=="add", RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/backlight/%k/brightness", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/backlight/%k/brightness"
+      # Rule for keyboard backlight
+      SUBSYSTEM=="leds", ACTION=="add", KERNEL=="*::kbd_backlight", RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/leds/%k/brightness", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/leds/%k/brightness"
+  '';
   };
 
   # systemd.services.buildkitd.wantedBy = lib.mkForce [ ];
