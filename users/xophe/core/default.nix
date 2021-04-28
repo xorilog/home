@@ -454,12 +454,23 @@
         smudge = "git lfs smudge %f";
         required = true;
       };
-
-      "url \"git@github.com:\"".insteadOf = "git://github.com/";
-      #"url \"git@github.com:\"".insteadOf = "https://github.com/";
-      "url \"ssh://git@github.com/\"".insteadOf = "https://github.com/";
-      "url \"ssh://git@gitlab.com/\"".insteadOf = "https://gitlab.com/";
-      "url \"ssh://git@gitlab.edf-sf.com/\"".insteadOf = "https://gitlab.edf-sf.com/";
+      url = {
+        "git@github.com:" = {
+          insteadOf = "git://github.com/";
+          "insteadOf " = "http://github.com/";
+          "insteadOf  " = "https://github.com/";
+        };
+        "git@gitlab.com:" = {
+          insteadOf = "git://gitlab.com/";
+          "insteadOf " = "http://gitlab.com/";
+          "insteadOf  " = "https://gitlab.com/";
+        };
+        "git@gitlab.edf-sf.com:" = {
+          insteadOf = "git://gitlab.edf-sf.com/";
+          "insteadOf " = "http://gitlab.edf-sf.com/";
+          "insteadOf  " = "https://gitlab.edf-sf.com/";
+        };
+      };
     };
 
     includes = [
