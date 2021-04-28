@@ -14,9 +14,9 @@ let
     - type is weither we want to use nixos (stable) or nixos-unstable
 
     Example:
-      hokkaido = { arch = "x86_64-linux"; };
-      honshu = { arch = "x86_64-linux"; type = "unstable"; };
-    */
+    hokkaido = { arch = "x86_64-linux"; };
+    honshu = { arch = "x86_64-linux"; type = "unstable"; };
+  */
   mkNixOS = name: cfg:
     let
       configuration = ./systems + "/hosts/${name}.nix";

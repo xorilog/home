@@ -58,7 +58,8 @@ pre-commit: README.md fmt
 
 .PHONY: fmt
 fmt:
-	-nixpkgs-fmt *.nix nix lib overlays pkgs systems tools users
+	-nixpkgs-fmt *.nix nix systems tools users
+#-nixpkgs-fmt *.nix nix lib overlays pkgs systems tools users
 
 # Cleaning
 .PHONY: clean

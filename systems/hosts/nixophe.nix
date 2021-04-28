@@ -4,21 +4,22 @@
 
 { config, pkgs, lib, ... }:
 with lib;
- let
-   hostname = "nixophe";
-   secretPath = ../../secrets/machines.nix;
-   secretCondition = (builtins.pathExists secretPath);
+let
+  hostname = "nixophe";
+  secretPath = ../../secrets/machines.nix;
+  secretCondition = (builtins.pathExists secretPath);
 
-   ip = strings.optionalString secretCondition (import secretPath).wireguard.ips."${hostname}";
-   ips = lists.optionals secretCondition ([ "${ip}/24" ]);
-   endpointIP = strings.optionalString secretCondition (import secretPath).wg.endpointIP;
-   endpointPort = if secretCondition then (import secretPath).wg.listenPort else 0;
-   # Some replace-secret-host-here stuff to do FIX ME !;
-   endpointPublicKey = strings.optionalString secretCondition (import secretPath).wireguard.replace-secret-host-here.publicKey;
+  ip = strings.optionalString secretCondition (import secretPath).wireguard.ips."${hostname}";
+  ips = lists.optionals secretCondition ([ "${ip}/24" ]);
+  endpointIP = strings.optionalString secretCondition (import secretPath).wg.endpointIP;
+  endpointPort = if secretCondition then (import secretPath).wg.listenPort else 0;
+  # Some replace-secret-host-here stuff to do FIX ME !;
+  endpointPublicKey = strings.optionalString secretCondition (import secretPath).wireguard.replace-secret-host-here.publicKey;
 in
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ../hardware/dell-xps-13-9310.nix
       (import ../../nix).home-manager
       ../modules
@@ -117,7 +118,7 @@ in
       SUBSYSTEM=="backlight", ACTION=="add", RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/backlight/%k/brightness", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/backlight/%k/brightness"
       # Rule for keyboard backlight
       SUBSYSTEM=="leds", ACTION=="add", KERNEL=="*::kbd_backlight", RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/leds/%k/brightness", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/leds/%k/brightness"
-  '';
+    '';
   };
 
   # systemd.services.buildkitd.wantedBy = lib.mkForce [ ];
@@ -201,35 +202,35 @@ in
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-#  # Enable sound.
-#  sound.enable = true;
-#  hardware.pulseaudio.enable = true;
-#
-#  # Enable the X11 windowing system.
-#  services.xserver.enable = true;
-#  services.xserver.layout = "us";
-#  # services.xserver.xkbOptions = "eurosign:e";
-#
-#  services.xserver.displayManager = {
-#    gdm.enable = true;
-#    gdm.wayland = false;
-#  };
-#  services.xserver.desktopManager = {
-#    gnome3.enable = true;
-#    # default = "gnome3";
-#  };
-#
-#  services.dbus.packages = [ pkgs.gnome3.dconf ];
-#  services.udev.packages = with pkgs; [
-#    gnome3.gnome-settings-daemon
-#    yubikey-personalization
-#  ];
-#
-#  # Enable touchpad support (enabled default in most desktopManager).
-#  services.xserver.libinput.enable = true;
-#
-#  # Enable pcscd for yubikey
-#  services.pcscd.enable = true;
+  #  # Enable sound.
+  #  sound.enable = true;
+  #  hardware.pulseaudio.enable = true;
+  #
+  #  # Enable the X11 windowing system.
+  #  services.xserver.enable = true;
+  #  services.xserver.layout = "us";
+  #  # services.xserver.xkbOptions = "eurosign:e";
+  #
+  #  services.xserver.displayManager = {
+  #    gdm.enable = true;
+  #    gdm.wayland = false;
+  #  };
+  #  services.xserver.desktopManager = {
+  #    gnome3.enable = true;
+  #    # default = "gnome3";
+  #  };
+  #
+  #  services.dbus.packages = [ pkgs.gnome3.dconf ];
+  #  services.udev.packages = with pkgs; [
+  #    gnome3.gnome-settings-daemon
+  #    yubikey-personalization
+  #  ];
+  #
+  #  # Enable touchpad support (enabled default in most desktopManager).
+  #  services.xserver.libinput.enable = true;
+  #
+  #  # Enable pcscd for yubikey
+  #  services.pcscd.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   # users.users.jane = {

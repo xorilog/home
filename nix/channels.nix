@@ -32,6 +32,7 @@ mapAttrs
   (v:
     import
       (builtins.fetchTarball
-        "https://nixos.org/channels/nixos-${v}/nixexprs.tar.xz") { }
+        "https://nixos.org/channels/nixos-${v}/nixexprs.tar.xz")
+      { }
   )
   channels

@@ -363,7 +363,7 @@
     enable = true;
     package = pkgs.gitAndTools.gitFull;
 
-    userName  = "christophe.boucharlat";
+    userName = "christophe.boucharlat";
     userEmail = "christophe.boucharlat@gmail.com";
 
     signing = {

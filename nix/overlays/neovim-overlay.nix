@@ -1,5 +1,5 @@
 self: super: {
-  tree-sitter-updated = super.tree-sitter.overrideAttrs(oldAttrs: {
+  tree-sitter-updated = super.tree-sitter.overrideAttrs (oldAttrs: {
 
     version = "0.17.3";
     sha256 = "sha256-uQs80r9cPX8Q46irJYv2FfvuppwonSS5HVClFujaP+U=";
