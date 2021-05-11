@@ -5,6 +5,7 @@
     ./go.nix
     ./nix.nix
     ./python.nix
+    ./pre-commit.nix
   ];
 
   home.extraOutputsToInstall = [ "doc" "info" "devdoc" ];
