@@ -2,17 +2,14 @@
 
 {
   imports = [
-    # xophe ./finances.nix
-    # xophe ./next.nix
-    # xophe ./keyboard.nix
-    # xophe ./spotify.nix
     ./firefox.nix
     ./gtk.nix
     ./mpv.nix
     # ./i3.nix
     # ./mpd.nix
-    # ./redshift.nix
+    ./redshift.nix
     # ./xsession.nix
+    ./communication-tools.nix
   ];
   home.sessionVariables = { WEBKIT_DISABLE_COMPOSITING_MODE = 1; };
   home.packages = with pkgs; [
@@ -32,7 +29,6 @@
     # TODO make this an option
     obs-studio
     # FIXME move this elsewhere
-    signal-desktop
     keybase
     # pass
     profile-sync-daemon
