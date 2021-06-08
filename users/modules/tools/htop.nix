@@ -1,10 +1,10 @@
 {
   programs.htop = {
     enable = true;
-    delay = 10;
-    meters = {
-      left = [ "AllCPUs2" "Memory" "Swap" ];
-      right = [ "Clock" "Hostname" "Tasks" "LoadAverage" "Uptime" "Battery" ];
+    settings = {
+      delay = 10;
+      left_meters = [ "AllCPUs2" "Memory" "Swap" ];
+      right_meters = [ "Clock" "Hostname" "Tasks" "LoadAverage" "Uptime" "Battery" ];
     };
   };
 }

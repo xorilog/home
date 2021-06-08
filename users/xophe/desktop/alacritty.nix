@@ -46,7 +46,17 @@
           yellow = "0xFFB454";
         };
       };
-      mouse.url.modifiers = "Control";
+      hints.enabled = [
+        {
+          regex = "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\\u0000-\\u001F\\u007F-\\u009F<>\"\\\\s{-}\\\\^⟨⟩`]+";
+          command = "xdg-open";
+          post_processing = true;
+          mouse = {
+            enabled = true;
+            mods = "Control";
+          };
+        }
+      ];
       shell.program = "${pkgs.zsh}/bin/zsh";
       key_bindings = [
         {

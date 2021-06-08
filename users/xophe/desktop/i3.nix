@@ -26,7 +26,6 @@ in
   home.sessionVariables = { WEBKIT_DISABLE_COMPOSITING_MODE = 1; };
   home.packages = with pkgs; [
     gthumb
-    alacritty
     arandr
     # TODO switch to betterlockscreen
     betterlockscreen
@@ -176,7 +175,10 @@ in
     package = pkgs.i3-gaps;
     enable = true;
     config = {
-      fonts = [ "Ubuntu Mono 10" ];
+      fonts = {
+        names = [ "Ubuntu Mono" ];
+        size = 10.0;
+      };
       focus = {
         followMouse = true;
       };
@@ -252,7 +254,10 @@ in
           position = "bottom";
           trayOutput = "primary";
           statusCommand = "${pkgs.i3status}/bin/i3status";
-          fonts = [ "Fira Code 12" ];
+          fonts = {
+            names = [ "Fira Code" ];
+            size = 12.0;
+          };
         }
       ];
     };
