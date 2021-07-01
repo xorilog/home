@@ -27,6 +27,12 @@ in
       (import ../../users).root
     ];
 
+  # Add required elements to play with zfs.
+  boot.supportedFilesystems = [ "zfs" ];
+
+  # Add hostID (from: head -c4 /dev/urandom | od -A none -t x4) needed by zfs https://discourse.nixos.org/t/feedback-on-a-user-guide-i-created-on-installing-nixos-with-zfs/5986/4?u=srgom
+  networking.hostId = "c8d9352c";
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
