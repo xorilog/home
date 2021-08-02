@@ -7,7 +7,7 @@ rec {
     inherit (self) stdenv;
   };
   vde-thinkpad = import ../packages/my/vde-thinkpad {
-    inherit (self) stdenv lib;
+    inherit (self) stdenv;
   };
   bekind = super.callPackage ../../tools/bekind { };
 
