@@ -21,7 +21,7 @@
     enable = true;
     vimAlias = true;
     withPython3 = true;
-    extraPython3Packages = (ps: with ps; [ python-language-server ]);
+    extraPython3Packages = (ps: with ps; [ pkgs.python37Packages.python-language-server ]);
     extraPackages = with pkgs; [ git ];
     plugins = with pkgs.vimPlugins; [
       coc-nvim
