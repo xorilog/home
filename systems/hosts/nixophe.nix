@@ -15,6 +15,9 @@ let
   endpointPort = if secretCondition then (import secretPath).wg.listenPort else 0;
   # Some replace-secret-host-here stuff to do FIX ME !;
   endpointPublicKey = strings.optionalString secretCondition (import secretPath).wireguard.replace-secret-host-here.publicKey;
+  persistentKeepalive = strings.optionalString secretCondition (import secretPath).wg.persistentKeepalive;
+  allowedIPs = lists.optionals secretCondition ([ (import secretPath).wg.allowedIPs ]);
+  wireguardDNS = strings.optionalString secretCondition (import secretPath).wg.wireguardDNS;
 in
 {
   imports =
@@ -108,13 +111,18 @@ in
     acpilight
   ];
 
+  # Temp
+  # networking.firewall.trustedInterfaces = [ "wg0" ];
   services = {
     wireguard = {
       enable = false;
       ips = ips;
       endpoint = endpointIP;
+      #wireguardDNS = wireguardDNS;
       endpointPort = endpointPort;
       endpointPublicKey = endpointPublicKey;
+      #allowedIPs = allowedIPs;
+      #persistentKeepalive = persistentKeepalive;
     };
 
     # gvfs to browse samba shares with GTK-Based apps like nautilus
