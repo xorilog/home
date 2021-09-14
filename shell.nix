@@ -9,14 +9,12 @@ pkgs.mkShell
   name = "nix-config";
   buildInputs = with pkgs; [
     cachix
-    # morph
+    morph
     niv
+    nixos-generators
     nixpkgs-fmt
   ];
   shellHook = ''
     export NIX_PATH="nixpkgs=${pkgs.path}:nixos=${nixos.path}:nixos-unstable=${nixos-unstable.path}"
   '';
 }
-# (import (fetchTarball https://github.com/edolstra/flake-compat/archive/master.tar.gz) {
-#  src = builtins.fetchGit ./.;
-#}).shellNix

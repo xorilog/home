@@ -9,7 +9,7 @@
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "usbhid" "sd_mod" "rtsx_pci_sdmmc" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "usbhid" "sd_mod" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelPackages = lib.mkIf (lib.versionOlder pkgs.linux.version "5.6") pkgs.linuxPackages_latest;
   boot.kernelModules = [ "kvm-intel" ];
@@ -17,18 +17,18 @@
 
   fileSystems."/" =
     {
-      device = "/dev/disk/by-uuid/bd4cd6d3-6c0f-47ec-b193-9c0726a6dac2";
+      device = "/dev/disk/by-uuid/141245d9-0df4-4627-bd29-e6a941150033";
       fsType = "btrfs";
     };
 
   fileSystems."/boot" =
     {
-      device = "/dev/disk/by-uuid/2880-4D5F";
+      device = "/dev/disk/by-uuid/0695-EB46";
       fsType = "vfat";
     };
 
   swapDevices =
-    [{ device = "/dev/disk/by-uuid/91b946f0-6a60-4467-8e85-c4304ed8df69"; }];
+    [{ device = "/dev/disk/by-uuid/13f5f86e-b62d-4fa8-a945-9fc4682eb020"; }];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }

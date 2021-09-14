@@ -56,7 +56,7 @@ in
   # Configuration to use your Luks device
   boot.initrd.luks.devices = {
     crypted = {
-      device = "/dev/disk/by-uuid/d0ebb43c-3915-44c2-a43a-646ce1b44561";
+      device = "/dev/disk/by-uuid/abbdad3e-93b4-4b6e-989f-8fb8dda493b1";
       preLVM = true; # You may want to set this to false if you need to start a network service first
       yubikey = {
         slot = 2;
