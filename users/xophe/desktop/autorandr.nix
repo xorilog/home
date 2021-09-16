@@ -57,50 +57,6 @@ in
         fingerprint = {
           eDP-1 = dell_xps_9310;
           DP-1 = iiyama_ProLite_B2712HDS;
-        };
-        config = {
-          eDP-1 = {
-            enable = true;
-            position = "1920x0";
-            mode = "1920x1200";
-          };
-          DP-1 = {
-            enable = true;
-            primary = true;
-            mode = "1920x1080";
-            position = "0x0";
-          };
-        };
-      };
-      home-3 = {
-        fingerprint = {
-          eDP-1 = dell_xps_9310;
-          DP-3 = iiyama_ProLite_B2712HDS;
-          DP-1 = home_edfsf_samsung;
-        };
-        config = {
-          DP-1 = {
-            enable = true;
-            mode = "1920x1080";
-            position = "0x0";
-          };
-          DP-3 = {
-            enable = true;
-            primary = true;
-            mode = "1920x1080";
-            position = "1920x0";
-          };
-          eDP-1 = {
-            enable = true;
-            mode = "1920x1200";
-            position = "3840x0";
-          };
-        };
-      };
-      home-on-arms = {
-        fingerprint = {
-          eDP-1 = dell_xps_9310;
-          DP-1 = iiyama_ProLite_B2712HDS;
           DP-3 = asus_TUF_VG27AQ;
         };
         config = {
