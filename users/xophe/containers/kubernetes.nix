@@ -10,15 +10,25 @@ in
 {
   home.packages = with pkgs; [
     #cri-tools
-    k3s
-    kail
+    # base
     kubectl
+
+    # run localy
+    k3s
     kube3d
-    kustomize
-    kubectx
     kind
     minikube
+
+    # Operate / Dev
+    kustomize
+    kail
+    kubectx
     kubernetes-helm
+    helmfile
+
+    # visualization
+    k9s
+    lens
     # our own scripts
     # knd
     # bekind

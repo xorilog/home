@@ -7,6 +7,8 @@
     ../../modules/tools/direnv.nix
     ../../modules/tools/fzf.nix
     ../../modules/tools/gopass.nix
+    ../../modules/tools/sops.nix
+    ../../modules/tools/age.nix
     ../../modules/tools/htop.nix
     ../../modules/tools/tmux.nix
     ../../modules/tools/xdg.nix

@@ -7,5 +7,6 @@
     signal-desktop
     slack
     discord
+    teams
   ];
 }
