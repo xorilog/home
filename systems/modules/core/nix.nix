@@ -62,14 +62,13 @@ in
       #daemonNiceLevel = 10;
 
       # if hydra is down, don't wait forever
-      # package = pkgs.nixFlakes;
       extraOptions = ''
         connect-timeout = 20
         build-cores = 0
         keep-outputs = true
         keep-derivations = true
         builders-use-substitutes = true
-        #experimental-features = flakes nix-command
+        experimental-features = flakes nix-command
       '';
       gc = {
         automatic = true;

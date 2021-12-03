@@ -3,6 +3,7 @@ let
   pkgs = sources.nixpkgs { };
   nixos-unstable = sources.pkgs-unstable { };
   nixos = sources.pkgs { };
+# sops-nix = sources.sops.nix;
 in
 pkgs.mkShell
 {
