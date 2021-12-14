@@ -94,7 +94,7 @@ $(SYNCDIR):
 	$(error $(SYNCDIR) is not present, you need to configure syncthing before running this command)
 
 setup-gpg:
-	gpg --import module/gnupg/gpg-0xB151572DE8FADB71-2021-02-08.txt
+	gpg --import module/gnupg/gpg-0xB151572DE8FADB71-2021-12-14.asc
 	gpg --card-status
 	@echo -e "\nNow trust the imported key using:\ngpg -K\ngpg --edit-key 0xB151572DE8FADB71\ngpg> trust\ngpg> quit\nCheck ssb card status\ngpg --card-status"
 
