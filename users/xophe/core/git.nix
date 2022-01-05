@@ -7,11 +7,13 @@
 
   programs.gh = {
     enable = true;
-    aliases = {
-      co = "pr checkout";
+    settings = {
+      git_protocol = "ssh";
+      editor = "nvim";
+      aliases = {
+        co = "pr checkout";
+      };
     };
-    editor = "nvim";
-    gitProtocol = "ssh";
   };
 
   programs.git = {
