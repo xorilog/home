@@ -5,12 +5,13 @@ let
   isContainersEnabled = if hasConfigVirtualizationContainers then config.virtualisation.containers.enable else false;
 in
 {
+  warnings = if (versionAtLeast config.system.nixos.release "21.11") then [ ] else [ "NixOS release: ${config.system.nixos.release}" ];
   users.users.xophe = {
     createHome = true;
     uid = 1000;
     description = "Christophe Boucharlat";
     extraGroups = [ "wheel" "input" ]
-      ++ optionals config.profiles.desktop.enable [ "audio" "video" "networkmanager" ]
+      ++ optionals config.profiles.desktop.enable [ "audio" "video" ]
       ++ optionals config.profiles.scanning.enable [ "lp" "scanner" ]
       ++ optionals config.networking.networkmanager.enable [ "networkmanager" ]
       ++ optionals config.virtualisation.docker.enable [ "docker" ]
@@ -45,7 +46,6 @@ in
   # To use nixos config in home-manager configuration, use the nixosConfig attr.
   # This make it possible to import the whole configuration, and let each module
   # load their own.
-  #home-manager.users.xophe = import ./home.nix;
   home-manager.users.xophe = lib.mkMerge
     (
       [
@@ -53,7 +53,9 @@ in
         # (import ./mails { hostname = config.networking.hostName; pkgs = pkgs; })
         (import ../modules/iaas/aws)
       ]
-      ++ optionals config.profiles.dev.enable [ (import ./dev) ]
+      ++ optionals config.profiles.dev.enable [
+        (import ./dev)
+      ]
       ++ optionals config.profiles.desktop.enable [ (import ./desktop) ]
       ++ optionals config.profiles.desktop.gnome.enable [ (import ./desktop/gnome.nix) ]
       ++ optionals config.profiles.desktop.i3.enable [ (import ./desktop/i3.nix) ]
@@ -73,6 +75,12 @@ in
       }]
       ++ optionals (isContainersEnabled && config.profiles.dev.enable) [ (import ./containers) ]
       #++ optionals config.profiles.kubernetes.enable [ (import ./containers/kubernetes.nix) ]
-      ++ optionals config.profiles.edf-sf.enable [ (import ./edf-sf) ]
+      ++ optionals config.profiles.edf-sf.enable [
+        (import ./edf-sf)
+      ]
+      ++ optionals (versionOlder config.system.nixos.release "21.11") [{
+        # manpages are broken on 21.05 and home-manager (for some reason..)
+        manual.manpages.enable = false;
+      }]
     );
 }

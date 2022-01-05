@@ -27,7 +27,7 @@ rec {
   ko = pkgs.callPackage ./ko { };
   kss = pkgs.callPackage ./kss { };
   batzconverter = pkgs.callPackage ./batzconverter { };
-  kubernix = pkgs.callPackage ./kubernix { };
+  #kubernix = pkgs.callPackage ./kubernix { };
   krew = pkgs.callPackage ./krew { };
   prm = pkgs.callPackage ./prm { };
   #protobuild = pkgs.callPackage ./protobuild { };

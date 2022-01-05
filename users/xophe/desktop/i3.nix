@@ -20,7 +20,7 @@ in
   imports = [
     ./alacritty.nix
     ./autorandr.nix
-    ./dconf.nix
+    # ./dconf.nix
     ./xsession.nix
   ];
   home.sessionVariables = { WEBKIT_DISABLE_COMPOSITING_MODE = 1; };
@@ -34,8 +34,7 @@ in
     maim
     slop
     # Gnome3 relica
-    gnome3.dconf-editor
-    gnome3.pomodoro
+#     gnome3.dconf-editor
     # FIXME move this elsewhere
     pop-gtk-theme
     pop-icon-theme
@@ -101,6 +100,14 @@ in
       background-color: #2e343f;
     }
   '';
+  programs.kitty = {
+    enable = true;
+    settings = {
+      term = "xterm-256color";
+      close_on_child_death = "yes";
+      font_family = "Ubuntu Mono";
+    };
+  };
   programs.rofi = {
     enable = true;
     package = pkgs.rofi.override { plugins = [ pkgs.rofi-emoji pkgs.rofi-menugen pkgs.rofi-mpd ]; };
@@ -157,16 +164,20 @@ in
     };
     udiskie.enable = true;
     network-manager-applet.enable = true;
+    /*
     screen-locker = {
       enable = true;
       lockCmd = lockCommand;
       inactiveInterval = 60;
-      # xautolockExtraOptions = [
-      #   "Xautolock.killer: systemctl suspend"
-      # ];
+      xautolock = {
+        enable = true;
+        detectSleep = true;
+      };
     };
+    */
     random-background = {
       enable = true;
+      enableXinerama = true;
       imageDirectory = "${config.home.homeDirectory}/desktop/pictures/walls";
       interval = "5h";
     };
@@ -191,8 +202,8 @@ in
         "Mod4+Return" = "exec alacritty";
       };
       gaps = {
-        inner = 0;
-        outer = 0;
+        inner = 2;
+        outer = 2;
       };
       keycodebindings = {
         "Mod4+Shift+24" = "kill"; #Mod4+Shift+q
@@ -388,28 +399,6 @@ in
       for_window [instance="metask"] move scratchpad; [instance="metask"] scratchpad show; move position center; move scratchpad
       bindcode $mod+49 [instance="metask"] scratchpad show
 
-      ### pomodoro
-      ## bepo s = 45
-      ## bepo p = 26
-      #set $pomodoro "pomodoro: [s]tart s[t]op [p]ause-resume"
-      #mode $pomodoro {
-      #  bindcode 45 exec "${pkgs.gnome3.pomodoro}/bin/gnome-pomodoro --no-default-window --start"; mode "default"
-      #  bindcode 44 exec "${pkgs.gnome3.pomodoro}/bin/gnome-pomodoro --no-default-window --stop"; mode "default"
-      #  bindcode 26 exec "${pkgs.gnome3.pomodoro}/bin/gnome-pomodoro --no-default-window --pause-resume"; mode "default"
-      #  bindsym Return mode "default"
-      #  bindsym Escape mode "default"
-      #}
-      #bindcode $mod+43 mode $pomodoro
-
-      ## scratchpad
-      set $scratchpad "scratchpad: [$]terminal [p]avucontrol"
-      mode $scratchpad {
-           bindcode 49 [instance="metask"] scratchpad show; mode "default"
-           bindcode 33 [class="(?i)pavucontrol"] scratchpad show; mode "default"
-           bindsym Return mode "default"
-           bindsym Escape mode "default"
-      }
-      # bindcode $mod+49 mode $scratchpad
       # System menu
       set $sysmenu "system:  [s]uspend [l]ock [r]estart [b]lank-screen [p]oweroff reload-[c]onf e[x]it"
       bindsym $mod+q mode $sysmenu
