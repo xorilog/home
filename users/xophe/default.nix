@@ -46,6 +46,9 @@ in
   # To use nixos config in home-manager configuration, use the nixosConfig attr.
   # This make it possible to import the whole configuration, and let each module
   # load their own.
+  # FIXME(vdemeester) using nixosConfig, we can get the NixOS configuration from
+  # the home-manager configuration. This should help play around the conditions
+  # inside each "home-manager" modules instead of here.
   home-manager.users.xophe = lib.mkMerge
     (
       [
@@ -58,13 +61,7 @@ in
       ]
       ++ optionals config.profiles.desktop.enable [ (import ./desktop) ]
       ++ optionals config.profiles.desktop.gnome.enable [ (import ./desktop/gnome.nix) ]
-      ++ optionals config.profiles.desktop.i3.enable [ (import ./desktop/i3.nix) ]
-      ++ optionals (config.profiles.laptop.enable && config.profiles.desktop.enable) [
-        {
-          # FIXME move this in its own file
-          programs.autorandr.enable = true;
-        }
-      ]
+      # ++ optionals config.profiles.desktop.i3.enable [ (import ./desktop/i3.nix) ]
       ++ optionals config.profiles.docker.enable [
         {
           home.packages = with pkgs; [ docker docker-compose ];
@@ -78,9 +75,5 @@ in
       ++ optionals config.profiles.edf-sf.enable [
         (import ./edf-sf)
       ]
-      ++ optionals (versionOlder config.system.nixos.release "21.11") [{
-        # manpages are broken on 21.05 and home-manager (for some reason..)
-        manual.manpages.enable = false;
-      }]
     );
 }

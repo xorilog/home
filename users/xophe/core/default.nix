@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
+{ lib, config, pkgs, nixosConfig, ... }:
 
+let
+  inherit (lib) versionOlder;
+in
 {
   imports = [
     ../../modules/shells/bash.nix
@@ -74,6 +77,10 @@
       inxi
     ];
   };
+
+  # manpages are broken on 21.05 and home-manager (for some reason..)
+  # (versionOlder nixosConfig.system.nixos.release "21.11");
+  manual.manpages.enable = true;
 
   xdg.configFile."nixpkgs/config.nix".text = ''
     {
