@@ -32,5 +32,6 @@ in
     # our own scripts
     # knd
     # bekind
+    stern
   ];
 }
