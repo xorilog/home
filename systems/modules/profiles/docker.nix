@@ -43,6 +43,9 @@ in
     environment.etc."docker/daemon.json".text = ''
       {"features":{"buildkit": true}}
     '';
+    environment.systemPackages = with pkgs; [
+      my.buildx
+    ];
     networking.firewall.trustedInterfaces = [ "docker0" ];
   };
 }
