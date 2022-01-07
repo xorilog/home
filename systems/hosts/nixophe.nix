@@ -110,6 +110,7 @@ in
     virtmanager
     # force xbacklight to work
     acpilight
+    docker-client
   ];
 
   # Temp
@@ -135,12 +136,6 @@ in
       SUBSYSTEM=="leds", ACTION=="add", KERNEL=="*::kbd_backlight", RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/leds/%k/brightness", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/leds/%k/brightness"
     '';
   };
-
-  # systemd.services.buildkitd.wantedBy = lib.mkForce [ ];
-  # systemd.services.containerd.wantedBy = lib.mkForce [ ];
-  # systemd.services.docker.wantedBy = lib.mkForce [ ];
-  # # removed as containerd hit upstream
-  # systemd.services.docker.requires = [ "containerd.socket" ];
 
   virtualisation.podman.enable = true;
   virtualisation.containers = {
