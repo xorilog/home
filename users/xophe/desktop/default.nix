@@ -7,7 +7,8 @@
     ./mpv.nix
     ./redshift.nix
     ./communication-tools.nix
-  ] ++ lib.optionals nixosConfig.profiles.desktop.i3.enable [ ./i3.nix ];
+  ] ++ lib.optionals nixosConfig.profiles.desktop.i3.enable [ ./i3.nix ]
+  ++ lib.optionals nixosConfig.profiles.desktop.sway.enable [ ./sway.nix ];
 
   home.sessionVariables = { WEBKIT_DISABLE_COMPOSITING_MODE = 1; };
   home.packages = with pkgs; [

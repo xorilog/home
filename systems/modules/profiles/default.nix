@@ -23,6 +23,7 @@
     ./scanning.nix
     ./ssh.nix
     ./syncthing.nix
+    ./sway.nix
     ./tailscale.nix
     ./virtualization.nix
     ./wireguard.server.nix
