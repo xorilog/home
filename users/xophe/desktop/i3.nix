@@ -25,6 +25,8 @@ in
   ];
   home.sessionVariables = { WEBKIT_DISABLE_COMPOSITING_MODE = 1; };
   home.packages = with pkgs; [
+    alacritty
+    kitty
     gthumb
     arandr
     # TODO switch to betterlockscreen
@@ -112,7 +114,7 @@ in
     enable = true;
     package = pkgs.rofi.override { plugins = [ pkgs.rofi-emoji pkgs.rofi-menugen pkgs.rofi-mpd ]; };
     font = "Ubuntu Mono 14";
-    terminal = "${pkgs.alacritty}/bin/alacritty";
+    terminal = "${pkgs.kitty}/bin/kitty";
     theme = "slate";
   };
   services = {
@@ -199,7 +201,7 @@ in
         hideEdgeBorders = "both";
       };
       keybindings = {
-        "Mod4+Return" = "exec alacritty";
+        "Mod4+Return" = "exec kitty";
       };
       gaps = {
         inner = 2;
@@ -394,7 +396,7 @@ in
 
       bindsym $mod+o mode "resize"
       ## quick terminal (tmux)
-      exec --no-startup-id alacritty --title metask --class metask --command tmux
+      exec --no-startup-id kitty --title metask --class metask tmux
       for_window [instance="metask"] floating enable;
       for_window [instance="metask"] move scratchpad; [instance="metask"] scratchpad show; move position center; move scratchpad
       bindcode $mod+49 [instance="metask"] scratchpad show
