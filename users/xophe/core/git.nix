@@ -2,6 +2,11 @@
 
 {
   home.packages = with pkgs; [
+    gist
+    git-lfs
+    git-review
+
+    my.prm
     hub
   ];
 
