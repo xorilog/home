@@ -110,7 +110,6 @@ in
         layout = "us";
         xkbVariant = "intl";
         xkbOptions = "";
-        videoDrivers = [ "displaylink" "modesetting" ];
       };
 
     };

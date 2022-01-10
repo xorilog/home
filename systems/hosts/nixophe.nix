@@ -106,6 +106,7 @@ in
     docker.enable = true;
     tailscale.enable = true;
   };
+  services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
   environment.systemPackages = with pkgs; [
     virtmanager
     # force xbacklight to work
