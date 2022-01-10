@@ -1,7 +1,6 @@
 # Makefile for home
 # Variables
 
-DOTGNUS = ~/.config/gnus
 ETCNIXOS = /etc/nixos
 SYNCDIR = /home/xophe/sync/nixos
 SRCHOME = ~/src/github.com/xorilog/home
@@ -80,11 +79,7 @@ doctor:
 	@readlink $(DOTNIXPKGS) || $(error $(DOTNIXPKGS) is not correctly linked, you may need to run setup)
 
 .PHONY: setup
-setup: $(DOTGNUS) $(SYNCDIR) $(SRCHOME)
-
-$(DOTGNUS):
-	@echo "Link $(DOTGNUs) to $(CURDIR)/tools/gnus"
-	@ln -s $(CURDIR)/tools/gnus $(DOTGNUS)
+setup: $(SYNCDIR) $(SRCHOME)
 
 $(SRCHOME):
 	@echo "Make sure $(SRCHOME) exists"
