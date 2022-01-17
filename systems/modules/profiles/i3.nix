@@ -25,6 +25,10 @@ in
           # xophe
           lightdm.enable = true;
           lightdm.greeters.pantheon.enable = false;
+          # Might break sway
+          sessionCommands = ''
+            ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 1 0
+          '';
         };
         windowManager.i3.enable = true;
       };
