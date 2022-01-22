@@ -27,6 +27,7 @@ in
           yubico-piv-tool
           yubikey-personalization
           yubioath-desktop
+          yubikey-personalization-gui
           yubikey-manager
         ];
       };
