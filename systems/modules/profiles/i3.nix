@@ -19,17 +19,16 @@ in
       blueman.enable = true;
       autorandr.enable = true;
       xserver = {
-        displayManager = {
-          defaultSession = "none+i3";
-          # gdm.enable = true;
-          # xophe
-          lightdm.enable = true;
-          lightdm.greeters.pantheon.enable = false;
-          # Might break sway
-          sessionCommands = ''
-            ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 1 0
-          '';
-        };
+        enable = true;
+        displayManager.defaultSession = "none+i3";
+        displayManager.sddm.enable = true;
+        # Might break sway
+        displayManager.sessionCommands = ''
+          ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 1 0
+        '';
+        layout = "us";
+        libinput.enable = true;
+        xkbVariant = "intl";
         windowManager.i3.enable = true;
       };
       dbus = {
