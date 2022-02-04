@@ -38,11 +38,17 @@ in
         liveRestore = false;
         storageDriver = "overlay2";
         extraOptions = "--experimental --add-runtime docker-runc=${cfg.runcPackage}/bin/runc --default-runtime=docker-runc --containerd=/run/containerd/containerd.sock";
+        # https://github.com/NixOS/nixpkgs/pull/141549
+        daemon.settings = {
+          features = {
+            buildkit = true;
+          };
+        };
       };
     };
-    environment.etc."docker/daemon.json".text = ''
-      {"features":{"buildkit": true}}
-    '';
+    #environment.etc."docker/daemon.json".text = ''
+    #  {"features":{"buildkit": true}}
+    #'';
     environment.systemPackages = with pkgs; [
       my.buildx
     ];
