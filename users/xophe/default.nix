@@ -25,7 +25,7 @@ in
   };
 
   nix = {
-    trustedUsers = [ "xophe" ];
+    settings.trusted-users = [ "xophe" ];
   };
 
   security = {

@@ -231,7 +231,7 @@ in
   #    # default = "gnome3";
   #  };
   #
-  #  services.dbus.packages = [ pkgs.gnome3.dconf ];
+  #  services.dbus.packages = [ pkgs.dconf ];
   #  services.udev.packages = with pkgs; [
   #    gnome3.gnome-settings-daemon
   #    yubikey-personalization

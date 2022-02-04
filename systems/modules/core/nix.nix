@@ -22,7 +22,7 @@ in
         description = "Number of day to keep when garbage collect";
         type = types.str;
       };
-      buildCores = mkOption {
+      settings.cores = mkOption {
         type = types.int;
         default = 2;
         example = 4;
@@ -40,18 +40,18 @@ in
   config = mkIf cfg.enable {
     environment.systemPackages = [ pkgs.git ];
     nix = {
-      allowedUsers = [ "@wheel" ];
-      binaryCaches = cfg.localCaches ++ [
+      settings.allowed-users= [ "@wheel" ];
+      settings.substituters = cfg.localCaches ++ [
         "https://cache.nixos.org/"
         "https://r-ryantm.cachix.org"
         "https://shortbrain.cachix.org"
       ];
-      binaryCachePublicKeys = [
+      settings.trusted-public-keys = [
         "r-ryantm.cachix.org-1:gkUbLkouDAyvBdpBX0JOdIiD2/DP1ldF3Z3Y6Gqcc4c="
         "shortbrain.cachix.org-1:dqXcXzM0yXs3eo9ChmMfmob93eemwNyhTx7wCR4IjeQ="
         "mic92.cachix.org-1:gi8IhgiT3CYZnJsaW7fxznzTkMUOn1RY4GmXdT/nXYQ="
       ];
-      buildCores = cfg.buildCores;
+      settings.cores = cfg.settings.cores;
       # FIXME handle this depending on the version
       # 21.05 has the following
       # daemonIONiceLevel, daemonNiceLevel
@@ -86,8 +86,8 @@ in
       };
       nrBuildUsers = 32;
       #nrBuildUsers = config.nix.maxJobs * 2;
-      trustedUsers = [ "root" "@wheel" ];
-      useSandbox = true;
+      settings.trusted-users = [ "root" "@wheel" ];
+      settings.sandbox = true;
     };
 
     # `nix-daemon` will hit the stack limit when using `nixFlakes`.
