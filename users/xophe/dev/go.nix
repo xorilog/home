@@ -15,7 +15,7 @@
     go-outline
     go-symbols
     delve
-    goimports
+    gotools
     gotestsum
     jetbrains.goland
     # misc
