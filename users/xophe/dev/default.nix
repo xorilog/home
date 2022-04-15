@@ -19,6 +19,7 @@
     yq-go
     gron
     shfmt
+    httpie
   ];
 
   home.file.".ignore".text = ''
