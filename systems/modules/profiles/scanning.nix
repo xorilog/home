@@ -18,8 +18,7 @@ in
     ];
     hardware.sane = {
       enable = true;
-      # FIXME When i'll get a scanner / printer...
-      #extraConfig = { "pixma" = "bjnp://192.168.1.16"; };
+      extraConfig = { "maxify" = "bjnp://192.168.1.164"; };
     };
   };
 }
