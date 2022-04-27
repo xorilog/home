@@ -142,6 +142,14 @@
       }
       {
         path = "${config.xdg.configHome}/git/config.d/edf-sf.gitconfig";
+        condition = "gitdir:${config.home.homeDirectory}/src/github.com/christophe-edfsf/";
+      }
+      {
+        path = "${config.xdg.configHome}/git/config.d/edf-sf.gitconfig";
+        condition = "gitdir:${config.home.homeDirectory}/src/github.com/edf-sf/";
+      }
+      {
+        path = "${config.xdg.configHome}/git/config.d/edf-sf.gitconfig";
         condition = "gitdir:${config.home.homeDirectory}/go/src/gitlab.edf-sf.com/";
       }
     ];
