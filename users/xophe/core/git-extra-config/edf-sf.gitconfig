@@ -2,8 +2,3 @@
   name  = Christophe Boucharlat
   email = christophe.boucharlat@edf-sf.com
 
-[github]
-  user = christophe-edfsf
-
-[core]
-  sshCommand = "ssh -i ~/.ssh/id_ed25519_edf-sf"
