@@ -42,7 +42,9 @@ in
       kubectl
       docker-compose
       terragrunt
-      terraform_0_14
+      # terraform_0_14 <- deprecated
+      terraform
+      tfswitch
       terraform-docs
 
       # Real editor
