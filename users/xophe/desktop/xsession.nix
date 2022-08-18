@@ -7,9 +7,9 @@
     #initExtra = ''
     #  ${pkgs.xorg.xmodmap}/bin/xmodmap ${config.home.homeDirectory}.Xmodmap &
     #'';
-    pointerCursor = {
-      package = pkgs.vanilla-dmz;
-      name = "Vanilla-DMZ";
-    };
+    #pointerCursor = {
+    #  package = pkgs.vanilla-dmz;
+    #  name = "Vanilla-DMZ";
+    #};
   };
 }

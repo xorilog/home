@@ -278,6 +278,8 @@ in
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
   networking.firewall.allowPing = true;
+  # warning: Strict reverse path filtering breaks Tailscale exit node use and some subnet routing setups. Consider setting `networking.firewall.checkReversePath` = 'loose'
+  networking.firewall.checkReversePath = "loose";
   # Samba discovery of machines and shares https://wiki.archlinux.org/index.php/Samba#.22Browsing.22_network_fails_with_.22Failed_to_retrieve_share_list_from_server.22
   networking.firewall.extraCommands = ''iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns'';
 
@@ -287,7 +289,7 @@ in
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "21.03"; # Did you read the comment?
+  system.stateVersion = "22.05"; # Did you read the comment?
 
 }
 

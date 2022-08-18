@@ -98,6 +98,7 @@ in
         (import ../../../nix/overlays/mkSecret.nix)
         (import ../../../nix/overlays/sbr.nix)
         (import ../../../nix/overlays/unstable.nix)
+        #(import ../../../nix/overlays/neovim-overlay.nix)
       ];
       config = {
         allowUnfree = true;
@@ -109,7 +110,7 @@ in
         ln -sv ${../../../nix/overlays} $out/overlays
       '';
 
-      stateVersion = "21.03";
+      stateVersion = "22.05";
     };
   };
 }

@@ -59,7 +59,7 @@ in
         "interface-name:docker0"
         "interface-name:virbr*"
       ]; # FIXME: add unmanaged depending on profiles (wg0, docker0, …)
-      packages = with pkgs; [ networkmanager-openvpn ];
+      plugins = with pkgs; [ networkmanager-openvpn ];
     };
 
     services = {
