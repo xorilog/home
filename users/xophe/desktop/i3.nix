@@ -209,8 +209,8 @@ in
       };
       keycodebindings = {
         "Mod4+Shift+24" = "kill"; #Mod4+Shift+q
-        "Mod4+33" = "exec \"rofi -show drun -modi 'drun,run,window,ssh' -kb-row-select 'Tab' -kb-row-tab '' -location 2 -hide-scrollbar -separator-style solid -font 'Ubuntu Mono 14'"; #Mod+p
-        "Mod4+Shift+33" = "exec \"rofi -show combi -modi 'drun,run,window,ssh,combi' -kb-row-select 'Tab' -kb-row-tab '' -location 2 -hide-scrollbar -separator-style solid -font 'Ubuntu Mono 14'"; #Mod+P
+        "Mod4+33" = "exec \"rofi -show drun -modi 'drun,run,window,ssh' -kb-row-select 'Tab' -kb-element-next '' -location 2 -hide-scrollbar -separator-style solid -font 'Ubuntu Mono 14'"; #Mod+p
+        "Mod4+Shift+33" = "exec \"rofi -show combi -modi 'drun,run,window,ssh,combi' -kb-row-select 'Tab' -kb-element-next '' -location 2 -hide-scrollbar -separator-style solid -font 'Ubuntu Mono 14'"; #Mod+P
         "Mod4+Control+33" = "exec \"rofi -show emoji -modi emoji -location 2 -hide-scrollbar -separator-style solid -font 'Ubuntu Mono 14'|pbcopy"; #Mod+Control+P
         # "Mod4+space" = "";
         # focus window
