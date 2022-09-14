@@ -91,7 +91,7 @@
       " FZF shortcuts
       nmap <c-p> :Files<CR>
       nmap ; :Buffers<CR>
-      nmap <Leader>f :Ag<space><c-r>=expand("<cword>")<cr><CR>
+      nmap <Leader>f :Rg<space><c-r>=expand("<cword>")<cr><CR>
 
       " Misc
       nmap <Leader>w :FixWhitespace<CR>
