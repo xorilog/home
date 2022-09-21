@@ -61,6 +61,8 @@
       set number                  " add line numbers
       set relativenumber          " relative line numbers
       set wildmode=longest,list   " get bash-like tab completions
+      " https://github.com/nvim-lua/completion-nvim#changing-completion-confirm-key
+      " Tooltip selection section
       set cc=120                  " set an 120 column border for good coding style
       set laststatus=2
 
