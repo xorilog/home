@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitLab, glib, gettext, bash, nodePackages, gnome3, unzip }:
+{ stdenv, fetchFromGitLab, glib, gettext, bash, nodePackages, gnome, unzip }:
 
 stdenv.mkDerivation rec {
   pname = "nightthemeswitcher-gnome-shell-extension";
@@ -15,7 +15,7 @@ stdenv.mkDerivation rec {
     glib
     gettext
     nodePackages.typescript
-    gnome3.gnome-shell
+    gnome.gnome-shell
     unzip
   ];
 

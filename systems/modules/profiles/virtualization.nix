@@ -38,7 +38,7 @@ in
       '';
     })
     (mkIf config.profiles.desktop.enable {
-      environment.systemPackages = with pkgs; [ virtmanager ];
+      environment.systemPackages = with pkgs; [ virt-manager ];
     })
     (mkIf cfg.listenTCP {
       boot.kernel.sysctl = { "net.ipv4.ip_forward" = 1; };

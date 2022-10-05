@@ -27,7 +27,7 @@
     #wmctrl
     #xclip
     xdg-user-dirs
-    xdg_utils
+    xdg-utils
     xsel
     # TODO make this an option
     obs-studio

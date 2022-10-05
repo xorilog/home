@@ -16,7 +16,7 @@ in
       avahi.enable = true;
     };
     services = {
-      gnome3 = {
+      gnome = {
         chrome-gnome-shell.enable = true;
         core-shell.enable = true;
         core-os-services.enable = true;
@@ -24,7 +24,7 @@ in
       };
       xserver = {
         displayManager.gdm.enable = true;
-        desktopManager.gnome3.enable = true;
+        desktopManager.gnome.enable = true;
       };
     };
   };

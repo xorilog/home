@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, glib, gettext, bash, nodePackages, gnome3 }:
+{ stdenv, fetchFromGitHub, glib, gettext, bash, nodePackages, gnome }:
 
 stdenv.mkDerivation rec {
   pname = "gnome-shell-extension-shell-unstable";

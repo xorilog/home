@@ -35,15 +35,15 @@ in
     libnotify
     maim
     slop
-    # Gnome3 relica
-#     gnome3.dconf-editor
+    # gnome relica
+#     gnome.dconf-editor
     # FIXME move this elsewhere
     pop-gtk-theme
     pop-icon-theme
     pinentry-gnome
     # tilix
 
-    gnome3.nautilus
+    gnome.nautilus
     aspell
     aspellDicts.en
     aspellDicts.fr
@@ -54,7 +54,7 @@ in
     wmctrl
     xclip
     xdg-user-dirs
-    xdg_utils
+    xdg-utils
     xsel
   ];
   xdg.configFile."rofi/slate.rasi".text = ''

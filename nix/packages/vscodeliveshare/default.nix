@@ -2,7 +2,7 @@
 , vscode-utils
 , autoPatchelfHook
 , /*icu, curl, lttng-ust,*/ xorg
-, gnome3
+, gnome
 , utillinux
 , openssl
 , icu
@@ -87,6 +87,6 @@ in
       find . -iname '*.so' -ls -exec patchelf --set-rpath ${rpath} '{}' \;
     '';
 
-    propagatedBuildInputs = with gnome3; [ gnome-keyring ];
+    propagatedBuildInputs = with gnome; [ gnome-keyring ];
   }
 )

@@ -6,24 +6,24 @@
   ];
   home.sessionVariables = { WEBKIT_DISABLE_COMPOSITING_MODE = 1; };
   home.packages = with pkgs; [
-    gnome3.dconf-editor
-    gnome3.gnome-tweak-tool
-    gnome3.pomodoro
-    gnome3.gnome-boxes
+    gnome.dconf-editor
+    gnome.gnome-tweak-tool
+    gnome.pomodoro
+    gnome.gnome-boxes
 
-    #gnome3.gnome-documents
-    gnome3.gnome-nettool
-    gnome3.gnome-power-manager
-    gnome3.gnome-todo
-    gnome3.gnome-tweaks
-    gnome3.gnome-usage
+    #gnome.gnome-documents
+    gnome.gnome-nettool
+    gnome.gnome-power-manager
+    gnome.gnome-todo
+    gnome.gnome-tweaks
+    gnome.gnome-usage
 
     gnomeExtensions.sound-output-device-chooser
     my.gnome-shell-extension-shell
     my.gnome-bluetooth-quick-connect
     my.noannoyance
     my.nightthemeswitcher
-    gnome3.gnome-shell-extensions
+    gnome.gnome-shell-extensions
 
     pop-gtk-theme
     pop-icon-theme
@@ -40,7 +40,7 @@
     wmctrl
     xclip
     xdg-user-dirs
-    xdg_utils
+    xdg-utils
     xsel
     # FIXME move this elsewhere
     keybase

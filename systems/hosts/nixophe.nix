@@ -108,7 +108,7 @@ in
   };
   services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
   environment.systemPackages = with pkgs; [
-    virtmanager
+    virt-manager
     # force xbacklight to work
     acpilight
     docker-client
@@ -227,13 +227,13 @@ in
   #    gdm.wayland = false;
   #  };
   #  services.xserver.desktopManager = {
-  #    gnome3.enable = true;
-  #    # default = "gnome3";
+  #    gnome.enable = true;
+  #    # default = "gnome";
   #  };
   #
   #  services.dbus.packages = [ pkgs.dconf ];
   #  services.udev.packages = with pkgs; [
-  #    gnome3.gnome-settings-daemon
+  #    gnome.gnome-settings-daemon
   #    yubikey-personalization
   #  ];
   #
