@@ -117,6 +117,11 @@ in
   # Temp
   # networking.firewall.trustedInterfaces = [ "wg0" ];
   services = {
+    #dockerRegistry = {
+    #  enable = true;
+    #  listenAddress = "0.0.0.0";
+    #  enableGarbageCollect = true;
+    #};
     wireguard = {
       enable = false;
       ips = ips;
