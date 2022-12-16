@@ -68,7 +68,7 @@ in
       # GPG Yubikey etc
       yubico-piv-tool
       yubikey-personalization
-      yubioath-desktop
+      #yubioath-desktop # removed.
       yubikey-manager
 
       # Gnupg

@@ -51,11 +51,12 @@ in
         };
       };
     })
-    (mkIf cfg.config.desktop {
-      environment.systemPackages = with pkgs; [
-        yubioath-desktop
-      ];
-    })
+    #(mkIf cfg.config.desktop {
+    #  environment.systemPackages = with pkgs; [
+    #    yubioath-flutter # Not yet available.
+    #    #yubioath-desktop # Deprecated.
+    #  ];
+    #})
     (mkIf cfg.u2f {
       security.pam.u2f = {
         enable = true;
