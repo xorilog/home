@@ -31,7 +31,8 @@ in
         '';
       };
       localCaches = mkOption {
-        default = [ "http://nix.cache.home" ];
+        default = [ "" ];
+        #default = [ "http://nix.cache.home" ];
         description = "List of local nix caches";
         type = types.listOf types.str;
       };
