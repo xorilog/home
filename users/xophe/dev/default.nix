@@ -40,7 +40,7 @@
       { cmd = "lnav"; }
       { cmd = "miniserve"; }
       { cmd = "licensor"; }
-      { cmd = "yamllint"; pkg = "python37Packages.yamllint"; }
+      { cmd = "yamllint"; pkg = "python311Packages.yamllint"; }
       { cmd = "http"; pkg = "httpie"; }
     ];
     onChange = "${pkgs.my.nr}/bin/nr dev";
