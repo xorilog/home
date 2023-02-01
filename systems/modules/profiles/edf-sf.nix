@@ -13,7 +13,7 @@ in
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       (google-chrome.override {
-        commandLineArgs = "--auth-negotiate-delegate-whitelist='*.redhat.com'";
+        commandLineArgs = "--enable-features=UseOzonePlatform --enable-gpu --ozone-platform=wayland";
       })
       libnotify
     ];
