@@ -27,7 +27,7 @@ in
           yubico-piv-tool
           yubikey-personalization
           # yubioath-desktop # removed.
-          # yubioath-flutter # not yet available
+          yubioath-flutter # not yet available
           yubikey-personalization-gui
           yubikey-manager
         ];
