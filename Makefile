@@ -91,7 +91,7 @@ $(SYNCDIR):
 # refer to this procedure.
 # https://github.com/drduh/YubiKey-Guide#renewing-sub-keys
 setup-gpg:
-	gpg --import module/gnupg/gpg-0xB151572DE8FADB71-2023-03-10.asc
+	gpg --import module/gnupg/gpg-0xB151572DE8FADB71-2023-06-26.asc
 	gpg --card-status
 	@echo -e "\nNow trust the imported key using:\ngpg -K\ngpg --edit-key 0xB151572DE8FADB71\ngpg> trust\ngpg> quit\nCheck ssb card status\ngpg --card-status"
 
