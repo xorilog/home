@@ -150,7 +150,7 @@
       }
       {
         path = "${config.xdg.configHome}/git/config.d/edf-sf.gitconfig";
-        condition = "gitdir:${config.home.homeDirectory}/go/src/gitlab.edf-sf.com/";
+        condition = "gitdir:${config.home.homeDirectory}/src/gitlab.com/agregio_group/";
       }
     ];
   };
