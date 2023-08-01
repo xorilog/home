@@ -14,7 +14,7 @@ in
     kubectl
 
     # run localy
-    k3s
+    #k3s
     kube3d
     kind
     minikube
