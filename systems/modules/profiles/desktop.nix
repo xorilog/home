@@ -77,7 +77,7 @@ in
       # enableFontDir = true;
       fontDir.enable = true;
       enableGhostscriptFonts = true;
-      fonts = with pkgs; [
+      packages = with pkgs; [
         liberation_ttf
         corefonts
         dejavu_fonts
