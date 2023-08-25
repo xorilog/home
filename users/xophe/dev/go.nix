@@ -6,7 +6,7 @@
   };
   home.packages = with pkgs; [
     gcc
-    go_1_20
+    go_1_21
     godef
     golangci-lint
     golint
