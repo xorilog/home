@@ -143,17 +143,19 @@ in
     '';
   };
 
-  virtualisation.podman.enable = true;
-  virtualisation.containers = {
-    enable = true;
-    registries = {
-      search = [ "docker.io" "quay.io" "docker.pkg.github.com" "ghcr.io" ];
-    };
-    policy = {
-      default = [{ type = "insecureAcceptAnything"; }];
-      transports = {
-        docker-daemon = {
-          "" = [{ type = "insecureAcceptAnything"; }];
+  virtualisation = {
+    podman.enable = true;
+    containers = {
+      enable = true;
+      registries = {
+        search = [ "docker.io" "quay.io" "docker.pkg.github.com" "ghcr.io" ];
+      };
+      policy = {
+        default = [{ type = "insecureAcceptAnything"; }];
+        transports = {
+          docker-daemon = {
+            "" = [{ type = "insecureAcceptAnything"; }];
+          };
         };
       };
     };
@@ -180,86 +182,7 @@ in
 
   nixpkgs.config = {
     allowUnfree = true;
-
-    #firefox = {
-    #  enableGoogleTalkPlugin = true;
-    #  enableAdobeFlash = false;
-    #};
-
-    #chromium = {
-    #  enablePepperFlash = false;
-    #};
-
-    #packageOverrides = pkgs: with pkgs; rec {
-    #  firefox-bin-wrapper = wrapFirefox {
-    #    browser = firefox-bin;
-    #  };
-    #};
   };
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  #environment.systemPackages = with pkgs; [
-  #  git
-  #  wget
-  #  vim
-  #  mkpasswd
-  #  pkgs.firefoxWrapper
-  #  pkgs.chromium
-  #  gnupg
-  #  yubikey-personalization
-  #  home-manager
-  #];
-
-  # Configure keymap in X11
-  # services.xserver.layout = "us";
-  # services.xserver.xkbOptions = "eurosign:e";
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  #  # Enable sound.
-  #  sound.enable = true;
-  #  hardware.pulseaudio.enable = true;
-  #
-  #  # Enable the X11 windowing system.
-  #  services.xserver.enable = true;
-  #  services.xserver.layout = "us";
-  #  # services.xserver.xkbOptions = "eurosign:e";
-  #
-  #  services.xserver.displayManager = {
-  #    gdm.enable = true;
-  #    gdm.wayland = false;
-  #  };
-  #  services.xserver.desktopManager = {
-  #    gnome.enable = true;
-  #    # default = "gnome";
-  #  };
-  #
-  #  services.dbus.packages = [ pkgs.dconf ];
-  #  services.udev.packages = with pkgs; [
-  #    gnome.gnome-settings-daemon
-  #    yubikey-personalization
-  #  ];
-  #
-  #  # Enable touchpad support (enabled default in most desktopManager).
-  #  services.xserver.libinput.enable = true;
-  #
-  #  # Enable pcscd for yubikey
-  #  services.pcscd.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  # users.users.jane = {
-  #   isNormalUser = true;
-  #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-  # };
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  # environment.systemPackages = with pkgs; [
-  #   wget vim
-  #   firefox
-  # ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

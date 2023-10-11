@@ -4,7 +4,7 @@ let
 in
 {
   home.packages = [
-    pkgs.exa
+    pkgs.eza
   ];
   programs.bash = {
     enable = true;

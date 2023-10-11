@@ -19,7 +19,7 @@
     packages = with pkgs; [
       enchive
       entr
-      exa
+      eza
       fd
       htop
       mpw

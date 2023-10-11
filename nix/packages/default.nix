@@ -51,18 +51,6 @@ rec {
   # Upstream
   buildkit = pkgs.callPackage ./buildkit { };
   buildx = pkgs.callPackage ./buildx { };
-  inherit (pkgs.callPackage ./containerd { })
-    containerd_1_2
-    containerd_1_3
-    containerd_1_4
-    ;
-  containerd = containerd_1_3;
 
-  # If not useful go remove nix/packages/gnome/extensions/<extension name here>
-  # gnome-shell-extension-shell = pkgs.callPackage ./gnome/extensions/shell { };
-  # gnome-bluetooth-quick-connect = pkgs.callPackage ./gnome/extensions/bluetooth-quick-connect { };
-  # hidetopbar = pkgs.callPackage ./gnome/extensions/hide-top-bar { };
-  # noannoyance = pkgs.callPackage ./gnome/extensions/noannoyance { };
-  # nightthemeswitcher = pkgs.callPackage ./gnome/extensions/nightthemeswitcher { };
   adi1090x-plymouth = pkgs.callPackage ./adi1090x-plymouth { };
 }
