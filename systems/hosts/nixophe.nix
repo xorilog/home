@@ -45,6 +45,7 @@ in
   # Minimal list of modules to use the EFI system partition and the YubiKey
   # Addition of uas usbcore and usb_storage tu try the latest kernel
   boot.initrd.kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" "usbhid" "uas" "usbcore" "usb_storage" ];
+  boot.kernelParams = [ "cgroup_no_v1=all" "systemd.unified_cgroup_hierarchy=1" ];
   #boot.initrd.kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" "usbhid" ];
 
   # Crypto setup, set modules accordingly
