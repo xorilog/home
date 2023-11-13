@@ -36,7 +36,7 @@ in
     maim
     slop
     # gnome relica
-#     gnome.dconf-editor
+    #     gnome.dconf-editor
     # FIXME move this elsewhere
     pop-gtk-theme
     pop-icon-theme
@@ -167,7 +167,7 @@ in
     udiskie.enable = true;
     network-manager-applet.enable = true;
     /*
-    screen-locker = {
+      screen-locker = {
       enable = true;
       lockCmd = lockCommand;
       inactiveInterval = 60;
@@ -175,7 +175,7 @@ in
         enable = true;
         detectSleep = true;
       };
-    };
+      };
     */
     random-background = {
       enable = true;

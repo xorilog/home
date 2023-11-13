@@ -11,9 +11,9 @@
   ++ lib.optionals nixosConfig.profiles.desktop.sway.enable [ ./sway.nix ];
 
   home.pointerCursor = {
-      package = pkgs.vanilla-dmz;
-      name = "Vanilla-DMZ";
-    };
+    package = pkgs.vanilla-dmz;
+    name = "Vanilla-DMZ";
+  };
   home.sessionVariables = { WEBKIT_DISABLE_COMPOSITING_MODE = 1; };
   home.packages = with pkgs; [
     aspell

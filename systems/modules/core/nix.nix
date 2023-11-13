@@ -41,7 +41,7 @@ in
   config = mkIf cfg.enable {
     environment.systemPackages = [ pkgs.git ];
     nix = {
-      settings.allowed-users= [ "@wheel" ];
+      settings.allowed-users = [ "@wheel" ];
       settings.substituters = cfg.localCaches ++ [
         "https://cache.nixos.org/"
         "https://r-ryantm.cachix.org"

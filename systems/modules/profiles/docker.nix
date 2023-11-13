@@ -33,7 +33,7 @@ in
           };
           worker.containerd = {
             enabled = true;
-            platforms = [ "linux/amd64""linux/arm64" ];
+            platforms = [ "linux/amd64" "linux/arm64" ];
             namespace = "buildkit";
           };
           #registry = {

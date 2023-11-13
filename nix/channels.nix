@@ -30,9 +30,9 @@ let
 in
 mapAttrs
   (v:
-    import
-      (builtins.fetchTarball
-        "https://nixos.org/channels/nixos-${v}/nixexprs.tar.xz")
-      { }
+  import
+    (builtins.fetchTarball
+      "https://nixos.org/channels/nixos-${v}/nixexprs.tar.xz")
+  { }
   )
   channels

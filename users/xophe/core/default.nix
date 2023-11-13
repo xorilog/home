@@ -106,7 +106,7 @@ in
     onChange = "${pkgs.my.nr}/bin/nr default";
   };
 
-  
+
 
   # programs.gpg.enable = true;
 
