@@ -26,9 +26,11 @@ in
         displayManager.sessionCommands = ''
           ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 1 0
         '';
-        layout = "us";
         libinput.enable = true;
-        xkbVariant = "intl";
+        xkb = {
+          layout = "us";
+          variant = "intl";
+        };
         windowManager.i3.enable = true;
       };
       dbus = {

@@ -68,9 +68,11 @@ in
         enableTCP = false;
         libinput.enable = true;
         synaptics.enable = false;
-        layout = "us";
-        xkbVariant = "intl";
-        xkbOptions = "";
+        xkb = {
+          layout = "us";
+          options = "";
+          variant = "intl";
+        };
       };
     };
     fonts = {
