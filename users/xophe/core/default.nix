@@ -31,9 +31,6 @@ in
       jq
       wget
 
-      # 1password
-      _1password
-
       # Infrastructure
       #aws-vault
       #awscli2

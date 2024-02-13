@@ -196,6 +196,15 @@ in
     # pinEntryFlavor = "gtk2";
   };
 
+  # Cannot be handled by home-manager for now
+  programs._1password.enable = true;
+  programs._1password-gui = {
+    enable = true;
+    # Certain features, including CLI integration and system authentication support,
+    # require enabling PolKit integration on some desktop environments (e.g. Plasma).
+    polkitPolicyOwners = [ "xophe" ];
+  };
+
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
