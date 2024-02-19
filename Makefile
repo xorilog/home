@@ -91,10 +91,18 @@ $(SYNCDIR):
 # refer to this procedure.
 # https://github.com/drduh/YubiKey-Guide#renewing-sub-keys
 setup-gpg:
-	gpg --import module/gnupg/gpg-0xB151572DE8FADB71-2023-06-26.asc
+	gpg --import module/gnupg/gpg-0xB151572DE8FADB71-2024-02-19.asc
 	gpg --card-status
 	@echo -e "\nNow trust the imported key using:\ngpg -K\ngpg --edit-key 0xB151572DE8FADB71\ngpg> trust\ngpg> quit\nCheck ssb card status\ngpg --card-status"
 
+yubikey-renew:
+	module/gnupg/renew-subkeys.sh
+
+# gpgconf --kill gpg-agent
+yubikey-restart:
+	gpg-connect-agent killagent /bye
+	gpg-connect-agent "scd serialno" "learn --force" /bye
+	gpg --card-status
 
 setup-lockscreen:
 	betterlockscreen -u $(HOME)/desktop/pictures/walls --blur 1
