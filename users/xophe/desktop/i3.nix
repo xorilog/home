@@ -40,7 +40,7 @@ in
     # FIXME move this elsewhere
     pop-gtk-theme
     pop-icon-theme
-    pinentry-gnome
+    pinentry-gnome3
     # tilix
 
     gnome.nautilus
