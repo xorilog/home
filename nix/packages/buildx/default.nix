@@ -17,7 +17,7 @@ buildGoModule rec {
     repo = "buildx";
     sha256 = "sha256-5EV0Rw1+ufxQ1wmQ0EJXQ7HVtXVbB4do/tet0QFRi08=";
   };
-  vendorSha256 = null;
+  vendorHash = null;
   doCheck = false;
 
   meta = {
