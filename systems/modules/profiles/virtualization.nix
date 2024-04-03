@@ -25,6 +25,16 @@ in
       virtualisation.libvirtd = {
         enable = true;
       };
+      # virtualbox part
+      virtualisation.virtualbox = {
+        host = {
+          enable = true;
+          enableExtensionPack = true;
+        };
+        guest = {
+          enable = true;
+        };
+      };
       environment.systemPackages = with pkgs; [
         qemu
         vde2
@@ -53,6 +63,7 @@ in
         # extraOptions = [ "--listen" ];
       };
       networking.firewall.allowedTCPPorts = [ 16509 ];
+      networking.firewall.trustedInterfaces = [ "vboxnet0" ];
     })
   ]);
 }

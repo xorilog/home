@@ -16,7 +16,7 @@ in
       ++ optionals config.networking.networkmanager.enable [ "networkmanager" ]
       ++ optionals config.virtualisation.docker.enable [ "docker" ]
       ++ optionals config.virtualisation.buildkitd.enable [ "buildkit" ]
-      ++ optionals config.profiles.virtualization.enable [ "libvirtd" ];
+      ++ optionals config.profiles.virtualization.enable [ "libvirtd" "vboxusers" ];
     shell = mkIf config.programs.zsh.enable pkgs.zsh;
     isNormalUser = true;
     initialPassword = "changeMe";
