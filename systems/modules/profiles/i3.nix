@@ -18,10 +18,10 @@ in
     services = {
       blueman.enable = true;
       autorandr.enable = true;
+      displayManager.defaultSession = "none+i3";
+      displayManager.sddm.enable = true;
       xserver = {
         enable = true;
-        displayManager.defaultSession = "none+i3";
-        displayManager.sddm.enable = true;
         # Might break sway
         displayManager.sessionCommands = ''
           ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 1 0
