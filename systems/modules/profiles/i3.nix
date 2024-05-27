@@ -20,13 +20,13 @@ in
       autorandr.enable = true;
       displayManager.defaultSession = "none+i3";
       displayManager.sddm.enable = true;
+      libinput.enable = true;
       xserver = {
         enable = true;
         # Might break sway
         displayManager.sessionCommands = ''
           ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 1 0
         '';
-        libinput.enable = true;
         xkb = {
           layout = "us";
           variant = "intl";

@@ -63,10 +63,10 @@ in
     };
 
     services = {
+      libinput.enable = true;
       xserver = {
         enable = true;
         enableTCP = false;
-        libinput.enable = true;
         synaptics.enable = false;
         xkb = {
           layout = "us";

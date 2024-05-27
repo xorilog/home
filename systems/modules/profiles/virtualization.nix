@@ -26,15 +26,16 @@ in
         enable = true;
       };
       # virtualbox part
-      virtualisation.virtualbox = {
-        host = {
-          enable = true;
-          enableExtensionPack = true;
-        };
-        guest = {
-          enable = true;
-        };
-      };
+      # Commented out as i never use them...
+      # virtualisation.virtualbox = {
+      #   host = {
+      #     enable = true;
+      #     enableExtensionPack = true;
+      #   };
+      #   guest = {
+      #     enable = true;
+      #   };
+      # };
       environment.systemPackages = with pkgs; [
         qemu
         vde2

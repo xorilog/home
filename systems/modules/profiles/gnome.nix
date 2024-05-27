@@ -17,7 +17,7 @@ in
     };
     services = {
       gnome = {
-        chrome-gnome-shell.enable = true;
+        gnome-browser-connector.enable = true;
         core-shell.enable = true;
         core-os-services.enable = true;
         core-utilities.enable = true;

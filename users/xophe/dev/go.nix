@@ -18,6 +18,7 @@
     gotools
     gotestsum
     jetbrains.goland
+    jetbrains.jcef
     # misc
     protobuf
     my.ram
