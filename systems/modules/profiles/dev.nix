@@ -18,6 +18,7 @@ in
       grc
       ripgrep
       gnumake
+      glab
     ];
   };
 }
