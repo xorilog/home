@@ -72,6 +72,10 @@ clean-system:
 clean-results:
 	unlink results
 
+.PHONY: clean-build-dependencies
+clean-build-dependencies:
+	nix-collect-garbage -d
+
 # Setup and doctor
 .PHONY: doctor
 doctor:

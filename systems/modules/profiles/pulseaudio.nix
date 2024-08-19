@@ -34,7 +34,6 @@ in
         package = pkgs.pulseaudioFull;
       };
     };
-    sound.mediaKeys.enable = true;
 
     security.pam.loginLimits = [
       { domain = "@audio"; item = "memlock"; type = "-"; value = "unlimited"; }
