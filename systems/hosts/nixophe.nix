@@ -106,6 +106,7 @@ in
     virtualization = { enable = true; nested = true; };
     docker.enable = true;
     tailscale.enable = true;
+    openvpn3.enable = true;
   };
   services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
   environment.systemPackages = with pkgs; [

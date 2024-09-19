@@ -18,13 +18,14 @@
     ./mail.nix
     ./nix-auto-update.nix
     ./printing.nix
-    ./pulseaudio.nix
+    # ./pulseaudio.nix
     ./qemu.nix
     ./scanning.nix
     ./ssh.nix
     ./syncthing.nix
     ./sway.nix
     ./tailscale.nix
+    ./openvpn3.nix
     ./virtualization.nix
     ./wireguard.server.nix
     ./yubikey.nix

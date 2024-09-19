@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./audio.nix
     ./firefox.nix
     ./gtk.nix
     ./mpv.nix

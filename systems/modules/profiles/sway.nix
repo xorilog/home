@@ -17,7 +17,7 @@ in
     #};
     profiles.avahi.enable = true;
     profiles.printing.enable = true;
-    profiles.pulseaudio.enable = true;
+    # profiles.pulseaudio.enable = true;
     profiles.scanning.enable = true;
     profiles.syncthing.enable = true;
 

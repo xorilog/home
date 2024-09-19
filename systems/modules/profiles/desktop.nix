@@ -14,8 +14,13 @@ in
         type = types.bool;
       };
       pulseaudio = mkOption {
-        default = true;
+        default = false;
         description = "Enable pulseaudio with the desktop profile";
+        type = types.bool;
+      };
+      pipewire = mkOption {
+        default = true;
+        description = "Enable pipewire with the desktop profile";
         type = types.bool;
       };
       syncthing = mkOption {
@@ -43,7 +48,14 @@ in
   config = mkIf cfg.enable {
     profiles.avahi.enable = cfg.avahi;
     profiles.printing.enable = cfg.printing;
-    profiles.pulseaudio.enable = cfg.pulseaudio;
+    #### TODO: Xophe begining of a migration from profiles to modules.
+    #### This shall be completed later.
+    # profiles.pulseaudio.enable = cfg.pulseaudio;
+    modules.hardware.audio = {
+      enable = true;
+      pipewire.enable = cfg.pipewire;
+      pulseaudio.enable = cfg.pulseaudio;
+    };
     profiles.scanning.enable = cfg.scanning;
     profiles.syncthing.enable = cfg.syncthing;
 
