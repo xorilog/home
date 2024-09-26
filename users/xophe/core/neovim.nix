@@ -107,7 +107,7 @@
         require'lspconfig'.solargraph.setup{
           filetypes = { "ruby", "rb" }
         }
-        require'lspconfig'.tsserver.setup{}
+        require'lspconfig'.ts_ls.setup{}
         require'lspconfig'.yamlls.setup{
           filetypes = { "yaml", "yml" }
         }
