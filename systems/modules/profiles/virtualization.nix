@@ -24,7 +24,10 @@ in
     {
       virtualisation.libvirtd = {
         enable = true;
+        # Used for UEFI boot of Home Assistant OS guest image
+        qemu.ovmf.enable = true;
       };
+      security.polkit.enable = true; # 22.11: libvirtd requires poltkit to be enabled
       # virtualbox part
       # Commented out as i never use them...
       # virtualisation.virtualbox = {
@@ -42,14 +45,14 @@ in
         libosinfo
       ];
     }
+    (mkIf config.profiles.desktop.enable {
+      environment.systemPackages = with pkgs; [ virt-manager ];
+    })
     (mkIf cfg.nested {
       boot.kernelParams = [ "kvm_intel.nested=1" ];
       environment.etc."modprobe.d/kvm.conf".text = ''
         options kvm_intel nested=1
       '';
-    })
-    (mkIf config.profiles.desktop.enable {
-      environment.systemPackages = with pkgs; [ virt-manager ];
     })
     (mkIf cfg.listenTCP {
       boot.kernel.sysctl = { "net.ipv4.ip_forward" = 1; };
