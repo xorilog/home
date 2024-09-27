@@ -49,6 +49,30 @@ in
                 ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
               }
             '')
+            (pkgs.writeTextDir "share/wireplumber/main.lua.d/51-yeti.lua" ''
+              alsa_monitor.rules = {
+                {
+                  matches = {
+                    {
+                      { "node.name", "equals", "alsa_input.usb-Blue_Microphones_Yeti_X_2347SG001KC8_888-000316110306-00.analog-stereo" },
+                    },
+                  },
+                  apply_properties = {
+                    ["node.description"] = "Yeti X Mic"
+                  },
+                },
+                {
+                  matches = {
+                    {
+                      { "node.name", "equals", "alsa_output.usb-Blue_Microphones_Yeti_X_2347SG001KC8_888-000316110306-00.analog-stereo" },
+                    },
+                  },
+                  apply_properties = {
+                    ["node.description"] = "Yeti X Headphone Output"
+                  },
+                },
+              }
+            '')
           ];
         });
       } // (if stable then { } else {

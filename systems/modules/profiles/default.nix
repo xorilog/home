@@ -18,7 +18,6 @@
     ./mail.nix
     ./nix-auto-update.nix
     ./printing.nix
-    # ./pulseaudio.nix
     ./qemu.nix
     ./scanning.nix
     ./ssh.nix

@@ -35,6 +35,7 @@
     # FIXME move this elsewhere
     keybase
     # pass
+    playerctl
     profile-sync-daemon
   ];
 
