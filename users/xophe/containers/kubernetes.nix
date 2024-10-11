@@ -28,7 +28,7 @@ in
 
     # visualization
     k9s
-    lens
+    # lens not using ...
     # our own scripts
     # knd
     # bekind
