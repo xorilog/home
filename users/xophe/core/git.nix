@@ -127,32 +127,23 @@
           "insteadOf " = "http://gitlab.com/";
           "insteadOf  " = "https://gitlab.com/";
         };
-        "git@gitlab.edf-sf.com:" = {
-          insteadOf = "git://gitlab.edf-sf.com/";
-          "insteadOf " = "http://gitlab.edf-sf.com/";
-          "insteadOf  " = "https://gitlab.edf-sf.com/";
-        };
       };
     };
 
     includes = [
       {
-        path = "${config.xdg.configHome}/git/config.d/edf-sf.gitconfig";
-        condition = "gitdir:${config.home.homeDirectory}/src/gitlab.edf-sf.com/";
+        path = "${config.xdg.configHome}/git/config.d/ags.gitconfig";
+        condition = "hasconfig:remote.*.url:git@gitlab.com:agregio_group/**";
       }
       {
-        path = "${config.xdg.configHome}/git/config.d/edf-sf.gitconfig";
-        condition = "gitdir:${config.home.homeDirectory}/src/github.com/christophe-edfsf/";
+        path = "${config.xdg.configHome}/git/config.d/ags.gitconfig";
+        condition = "hasconfig:remote.*.url:git@github.com:agregio-solutions/**";
       }
       {
-        path = "${config.xdg.configHome}/git/config.d/edf-sf.gitconfig";
-        condition = "gitdir:${config.home.homeDirectory}/src/github.com/edf-sf/";
-      }
-      {
-        path = "${config.xdg.configHome}/git/config.d/edf-sf.gitconfig";
+        path = "${config.xdg.configHome}/git/config.d/ags.gitconfig";
         condition = "gitdir:${config.home.homeDirectory}/src/gitlab.com/agregio_group/";
       }
     ];
   };
-  xdg.configFile."git/config.d/edf-sf.gitconfig".source = ./git-extra-config/edf-sf.gitconfig;
+  xdg.configFile."git/config.d/ags.gitconfig".source = ./git-extra-config/ags.gitconfig;
 }
