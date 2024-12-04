@@ -28,6 +28,7 @@ in
       ../modules
       (import ../../users).xophe
       (import ../../users).root
+      ../../users/xophe/desktop/ghostty.nix
     ];
 
   # Add required elements to play with zfs.
