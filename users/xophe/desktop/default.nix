@@ -24,7 +24,7 @@
     hunspellDicts.en_US-large
     hunspellDicts.en_GB-ize
     hunspellDicts.fr-any
-    libreoffice-fresh
+    # libreoffice-fresh Failing and 2h33 to build.
     #wmctrl
     #xclip
     xdg-user-dirs
