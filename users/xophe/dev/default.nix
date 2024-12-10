@@ -21,6 +21,7 @@
     gron
     shfmt
     httpie
+    code-cursor
   ];
 
   home.file.".ignore".text = ''
