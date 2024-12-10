@@ -25,6 +25,7 @@ in
   ];
   home.sessionVariables = { WEBKIT_DISABLE_COMPOSITING_MODE = 1; };
   home.packages = with pkgs; [
+    ((builtins.getFlake "git+ssh://git@github.com/ghostty-org/ghostty?ref=main").packages.${builtins.currentSystem}.ghostty)
     alacritty
     kitty
     gthumb
@@ -114,8 +115,8 @@ in
     enable = true;
     package = pkgs.rofi.override { plugins = [ pkgs.rofi-emoji pkgs.rofi-menugen pkgs.rofi-mpd ]; };
     font = "Ubuntu Mono 14";
-    terminal = "${pkgs.kitty}/bin/kitty";
-    #terminal = "${pkgs.ghostty}/bin/ghostty"; ## TODO : not working now
+    #terminal = "${pkgs.kitty}/bin/kitty";~
+    terminal = "${config.home.profileDirectory}/bin/ghostty";
     theme = "slate";
   };
   services = {
@@ -398,8 +399,8 @@ in
 
       bindsym $mod+o mode "resize"
       ## quick terminal (tmux)
-      ## exec --no-startup-id kitty --title metask --class metask tmux
-      exec --no-startup-id ghostty --title metask --class metask tmux
+      exec --no-startup-id kitty --title metask --class metask tmux
+      #exec --no-startup-id ghostty --title=metask.scratchpad --class=metask.scratchpad -e tmux
       for_window [instance="metask"] floating enable;
       for_window [instance="metask"] move scratchpad; [instance="metask"] scratchpad show; move position center; move scratchpad
       bindcode $mod+49 [instance="metask"] scratchpad show
