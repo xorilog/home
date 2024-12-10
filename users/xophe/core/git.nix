@@ -7,11 +7,21 @@
     git-review
 
     my.prm
-    hub
+
+    #hub
+    #gitAndTools.gh
+
   ];
 
   programs.gh = {
     enable = true;
+    gitCredentialHelper = {
+      enable = true;
+      hosts = [
+        "github.com"
+        "gist.github.com"
+      ];
+    };
     settings = {
       git_protocol = "ssh";
       editor = "nvim";
@@ -110,6 +120,17 @@
       };
 
       github.user = "xorilog";
+      credential = {
+        #"https://github.com" = {
+        #  helper = "!${pkgs.gh}/bin/gh auth git-credential";
+        #};
+        #"https://gist.github.com" = {
+        #  helper = "!${pkgs.gh}/bin/gh auth git-credential";
+        #};
+        "https://gitlab.com" = {
+          helper = "!${pkgs.glab}/bin/glab auth git-credential";
+        };
+      };
 
       "filter \"lfs\"" = {
         clean = "git lfs clean %f";
