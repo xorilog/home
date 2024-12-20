@@ -24,7 +24,6 @@
     ./sway.nix
     ./tailscale.nix
     ./openvpn3.nix
-    ./virtualization.nix
     ./wireguard.server.nix
     ./yubikey.nix
     ./zsh.nix

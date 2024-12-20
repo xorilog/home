@@ -31,6 +31,7 @@ in
       ../../users/xophe/desktop/ghostty.nix
       # TODO: Xophe to move elsewhere
       ../../systems/modules/dev/default.nix
+      ../../systems/modules/virtualisation/default.nix
     ];
 
   # Add required elements to play with zfs.
@@ -97,6 +98,10 @@ in
   services.hardware.bolt.enable = true;
 
   modules = {
+    virtualisation.libvirt = {
+      enable = true;
+      nested = true;
+    };
     dev = {
       enable = true;
       containers = {
@@ -126,8 +131,6 @@ in
     home = true;
     dev.enable = true;
     yubikey = { enable = true; u2f = false; autoLock = false; };
-    virtualization = { enable = true; nested = true; };
-    #docker.enable = true; # Switched to a module.
     tailscale.enable = true;
     openvpn3.enable = true;
   };
@@ -167,28 +170,6 @@ in
       SUBSYSTEM=="leds", ACTION=="add", KERNEL=="*::kbd_backlight", RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/leds/%k/brightness", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/leds/%k/brightness"
     '';
   };
-
-  virtualisation = {
-    podman.enable = true;
-    containers = {
-      enable = true;
-      registries = {
-        search = [ "docker.io" "quay.io" "docker.pkg.github.com" "ghcr.io" ];
-      };
-      policy = {
-        default = [{ type = "insecureAcceptAnything"; }];
-        transports = {
-          docker-daemon = {
-            "" = [{ type = "insecureAcceptAnything"; }];
-          };
-        };
-      };
-    };
-  };
-
-
-
-
 
   # Set default EDITOR system wide
   environment.variables.EDITOR = "vim";

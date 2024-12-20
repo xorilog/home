@@ -2,23 +2,14 @@
 
 with lib;
 let
-  cfg = config.profiles.virtualization;
+  inherit (lib) mkEnableOption mkIf mkMerge;
+  cfg = config.modules.virtualisation.libvirt;
 in
 {
-  options = {
-    profiles.virtualization = {
-      enable = mkEnableOption "Enable virtualization profile";
-      nested = mkOption {
-        default = false;
-        description = "Enable nested virtualization";
-        type = types.bool;
-      };
-      listenTCP = mkOption {
-        default = false;
-        description = "Make libvirt listen to TCP";
-        type = types.bool;
-      };
-    };
+  options.modules.virtualisation.libvirt = {
+    enable = mkEnableOption "Enable libvirt";
+    nested = mkEnableOption "Enable nested virtualisation (kvm)";
+    listenTCP = mkEnableOption "Expose and make libvirt to a TCP port";
   };
   config = mkIf cfg.enable (mkMerge [
     {
@@ -45,6 +36,7 @@ in
         libosinfo
       ];
     }
+    # TODO: Xophe move to config.modules.desktop.enable when moved.
     (mkIf config.profiles.desktop.enable {
       environment.systemPackages = with pkgs; [ virt-manager ];
     })
