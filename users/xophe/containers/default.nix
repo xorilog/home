@@ -7,5 +7,7 @@
 
   home.packages = with pkgs; [
     skopeo
+    oras
+    dive
   ];
 }

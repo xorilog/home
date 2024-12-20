@@ -25,7 +25,9 @@ in
   };
 
   nix = {
-    settings.trusted-users = [ "xophe" ];
+    settings = {
+      trusted-users = [ "xophe" ];
+    };
   };
 
   security = {
@@ -53,17 +55,20 @@ in
     (
       [
         (import ./core)
-        # (import ./mails { hostname = config.networking.hostName; pkgs = pkgs; })
+        # TODO: Xophe to move elsewhere
         (import ../modules/iaas/aws)
       ]
-      ++ optionals config.profiles.dev.enable [
-        (import ./containers)
+      ++ optionals config.modules.dev.enable [
         (import ./dev)
+      ]
+      ++ optionals config.modules.dev.containers.enable [
+        (import ./containers)
       ]
       ++ optionals config.profiles.desktop.enable [ (import ./desktop) ]
       ++ optionals config.profiles.desktop.gnome.enable [ (import ./desktop/gnome.nix) ]
       # ++ optionals config.profiles.desktop.i3.enable [ (import ./desktop/i3.nix) ]
-      ++ optionals config.profiles.docker.enable [
+      # TODO: (Xophe) i need to see where to put it
+      ++ optionals config.virtualisation.docker.enable [
         {
           home.packages = with pkgs; [ docker docker-compose ];
         }

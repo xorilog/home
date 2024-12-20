@@ -29,6 +29,8 @@ in
       (import ../../users).xophe
       (import ../../users).root
       ../../users/xophe/desktop/ghostty.nix
+      # TODO: Xophe to move elsewhere
+      ../../systems/modules/dev/default.nix
     ];
 
   # Add required elements to play with zfs.
@@ -94,6 +96,26 @@ in
 
   services.hardware.bolt.enable = true;
 
+  modules = {
+    dev = {
+      enable = true;
+      containers = {
+        enable = true;
+        docker = {
+          enable = true;
+          package = pkgs.docker_27;
+        };
+        podman.enable = true;
+        buildkit = {
+          enable = true;
+          grpcAddress = [
+            "unix:///run/buildkit/buildkitd.sock"
+          ];
+        };
+      };
+    };
+  };
+
   profiles = {
     desktop.i3.enable = true;
     # desktop.sway.enable = true;
@@ -105,7 +127,7 @@ in
     dev.enable = true;
     yubikey = { enable = true; u2f = false; autoLock = false; };
     virtualization = { enable = true; nested = true; };
-    docker.enable = true;
+    #docker.enable = true; # Switched to a module.
     tailscale.enable = true;
     openvpn3.enable = true;
   };
@@ -219,7 +241,8 @@ in
   # networking.firewall.enable = false;
   networking.firewall.allowPing = true;
   # warning: Strict reverse path filtering breaks Tailscale exit node use and some subnet routing setups. Consider setting `networking.firewall.checkReversePath` = 'loose'
-  networking.firewall.checkReversePath = "loose";
+  # Todo: check how to do this in multiple modules. loose is needed for Tailscale, but false is needed for virtualisation.
+  # networking.firewall.checkReversePath = "loose";
   # Samba discovery of machines and shares https://wiki.archlinux.org/index.php/Samba#.22Browsing.22_network_fails_with_.22Failed_to_retrieve_share_list_from_server.22
   networking.firewall.extraCommands = ''iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns'';
 
