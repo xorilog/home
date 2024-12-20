@@ -14,8 +14,10 @@ in
     kubectl
 
     # run localy
+    ko
     #k3s
     kube3d
+    krew
     kind
     minikube
 

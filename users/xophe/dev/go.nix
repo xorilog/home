@@ -21,9 +21,6 @@
     jetbrains.jcef
     # misc
     protobuf
-    my.ram
-    my.esc
-    my.yaspell
   ];
   #xdg.configFile."nr/dev.go" = {
   #  text = builtins.toJSON [

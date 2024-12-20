@@ -190,7 +190,6 @@ in
       ] ++ [
         pkgs.vscode-extensions.bbenoist.Nix
         pkgs.vscode-extensions.ms-python.python
-        # pkgs.vscodeliveshare
       ];
     };
   };
