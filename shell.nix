@@ -16,6 +16,7 @@ pkgs.mkShell
     nixpkgs-fmt
     sops
     libguestfs-with-appliance
+    nix-output-monitor
   ];
   shellHook = ''
     export NIX_PATH="nixpkgs=${pkgs.path}:nixos=${nixos.path}:nixos-unstable=${nixos-unstable.path}"

@@ -32,6 +32,13 @@ home-build: secrets
 home-switch: secrets
 	home-manager -f home.nix switch
 
+.PHONY: pretty-build
+pretty-build: secrets
+	./bin/system build |& nom
+
+.PHONY: build
+build: secrets
+	./bin/system build
 .PHONY: build
 build: secrets
 	./bin/system build
