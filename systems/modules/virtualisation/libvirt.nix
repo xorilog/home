@@ -21,15 +21,15 @@ in
       security.polkit.enable = true; # 22.11: libvirtd requires poltkit to be enabled
       # virtualbox part
       # Commented out as i never use them...
-      # virtualisation.virtualbox = {
-      #   host = {
-      #     enable = true;
-      #     enableExtensionPack = true;
-      #   };
-      #   guest = {
-      #     enable = true;
-      #   };
-      # };
+      virtualisation.virtualbox = {
+        host = {
+          enable = true;
+          enableExtensionPack = true;
+        };
+        guest = {
+          enable = true;
+        };
+      };
       environment.systemPackages = with pkgs; [
         qemu
         vde2
