@@ -102,6 +102,7 @@ in
       enable = true;
       nested = true;
     };
+    hardware.tpm.enable = true;
     dev = {
       enable = true;
       containers = {

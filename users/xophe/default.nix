@@ -16,6 +16,7 @@ in
       ++ optionals config.networking.networkmanager.enable [ "networkmanager" ]
       ++ optionals config.virtualisation.docker.enable [ "docker" ]
       ++ optionals config.virtualisation.buildkitd.enable [ "buildkit" ]
+      ++ optionals config.modules.hardware.tpm.enable [ "tss" ] # tss group has access to TPM devices
       ++ optionals config.modules.virtualisation.libvirt.enable [ "libvirtd" "vboxusers" ];
     shell = mkIf config.programs.zsh.enable pkgs.zsh;
     isNormalUser = true;
