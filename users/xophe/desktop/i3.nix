@@ -25,7 +25,9 @@ in
   ];
   home.sessionVariables = { WEBKIT_DISABLE_COMPOSITING_MODE = 1; };
   home.packages = with pkgs; [
-    ((builtins.getFlake "git+ssh://git@github.com/ghostty-org/ghostty?ref=main").packages.${builtins.currentSystem}.ghostty)
+    # Pining version as v1.1.1 has dead keys regression https://github.com/ghostty-org/ghostty/issues/5494
+    #((builtins.getFlake "git+ssh://git@github.com/ghostty-org/ghostty?ref=main").packages.${builtins.currentSystem}.ghostty)
+    ((builtins.getFlake "git+ssh://git@github.com/ghostty-org/ghostty?ref=v1.0.1").packages.${builtins.currentSystem}.ghostty)
     alacritty
     kitty
     gthumb
