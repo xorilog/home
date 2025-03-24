@@ -10,6 +10,12 @@ in
     (sources.nixos-hardware + "/dell/xps/13-9310")
   ];
 
+  # Until the following issue is fixed: https://github.com/NixOS/nixpkgs/pull/388905
+  # Disabling the fprintd service (Fingerprint sensor).
+  services.fprintd.enable = lib.mkForce false;
+  services.fprintd.tod.enable = lib.mkForce false;
+  # services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;  # commented out or can be removed
+
   boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "usbhid" "sd_mod" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelPackages = lib.mkIf (lib.versionOlder pkgs.linux.version "5.6") pkgs.linuxPackages_latest;
