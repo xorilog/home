@@ -11,7 +11,7 @@
         hash = "sha256-k8T/lmfgAFxW1nwEyh61lagrlHP5geT2tA7e5j61+qw=";
       };
     })
-    signal-desktop
+    signal-desktop-bin
     slack
     discord
   ];
