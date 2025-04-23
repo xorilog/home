@@ -12,7 +12,7 @@ in
     description = "Christophe Boucharlat";
     extraGroups = [ "wheel" "input" ]
       ++ optionals config.profiles.desktop.enable [ "audio" "video" ]
-      ++ optionals config.profiles.scanning.enable [ "lp" "scanner" ]
+      # ++ optionals config.profiles.scanning.enable [ "lp" "scanner" ]
       ++ optionals config.networking.networkmanager.enable [ "networkmanager" ]
       ++ optionals config.virtualisation.docker.enable [ "docker" ]
       ++ optionals config.virtualisation.buildkitd.enable [ "buildkit" ]

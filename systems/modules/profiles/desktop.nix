@@ -18,16 +18,6 @@ in
         description = "Enable pipewire with the desktop profile";
         type = types.bool;
       };
-      scanning = mkOption {
-        default = true;
-        description = "Enable scanning with the desktop profile";
-        type = types.bool;
-      };
-      printing = mkOption {
-        default = true;
-        description = "Enable printing with the desktop profile";
-        type = types.bool;
-      };
       networkmanager = mkOption {
         default = true;
         description = "Enable networkmanager with the desktop profile";
@@ -36,7 +26,6 @@ in
     };
   };
   config = mkIf cfg.enable {
-    profiles.printing.enable = cfg.printing;
     #### TODO: Xophe begining of a migration from profiles to modules.
     #### This shall be completed later.
     # profiles.pulseaudio.enable = cfg.pulseaudio;
@@ -45,7 +34,6 @@ in
       pipewire.enable = cfg.pipewire;
       pulseaudio.enable = cfg.pulseaudio;
     };
-    profiles.scanning.enable = cfg.scanning;
 
     hardware.bluetooth.enable = true;
 

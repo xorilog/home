@@ -4,7 +4,6 @@
     ./desktop.nix
     ./dev.nix
     ./edf-sf.nix
-    ./gaming.nix
     ./git.nix
     ./gnome.nix
     ./home.nix
@@ -14,9 +13,7 @@
     ./keybase.nix
     ./mail.nix
     ./nix-auto-update.nix
-    ./printing.nix
     ./qemu.nix
-    ./scanning.nix
     ./sway.nix
     ./zsh.nix
   ];

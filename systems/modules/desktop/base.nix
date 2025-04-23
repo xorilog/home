@@ -96,7 +96,7 @@ in
       # Enable printing by default too
       printing = {
         enable = true;
-        drivers = [ pkgs.gutenprint pkgs.hplip pkgs.hplipWithPlugin ];
+        drivers = [ pkgs.gutenprint ];
       };
 
       # Enable xserver on desktop

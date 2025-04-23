@@ -15,9 +15,7 @@ in
     #profiles = {
     #  desktop.enable = true;
     #};
-    profiles.printing.enable = true;
     # profiles.pulseaudio.enable = true;
-    profiles.scanning.enable = true;
 
     hardware.bluetooth.enable = true;
 
