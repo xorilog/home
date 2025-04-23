@@ -18,7 +18,6 @@
     ./printing.nix
     ./qemu.nix
     ./scanning.nix
-    ./ssh.nix
     ./syncthing.nix
     ./sway.nix
     ./tailscale.nix
