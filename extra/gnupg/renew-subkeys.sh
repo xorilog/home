@@ -46,4 +46,4 @@ gpg --edit-key $KEYID
 
 popd
 # Next, Export public keys:
-gpg --armor --export $KEYID > module/gnupg/gpg-$KEYID-$(date +%F).asc
+gpg --armor --export $KEYID > extra/gnupg/gpg-$KEYID-$(date +%F).asc
