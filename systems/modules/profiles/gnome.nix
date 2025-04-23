@@ -13,7 +13,6 @@ in
   config = mkIf cfg.enable {
     profiles = {
       desktop.enable = true;
-      avahi.enable = true;
     };
     services = {
       gnome = {

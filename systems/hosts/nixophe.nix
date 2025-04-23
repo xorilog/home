@@ -123,6 +123,9 @@ in
         };
       };
     };
+    services = {
+      avahi.enable = true;
+    };
   };
 
   profiles = {

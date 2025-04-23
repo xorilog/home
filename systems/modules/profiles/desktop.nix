@@ -8,11 +8,6 @@ in
   options = {
     profiles.desktop = {
       enable = mkEnableOption "Enable desktop profile";
-      avahi = mkOption {
-        default = true;
-        description = "Enable avahi  with the desktop profile";
-        type = types.bool;
-      };
       pulseaudio = mkOption {
         default = false;
         description = "Enable pulseaudio with the desktop profile";
@@ -46,7 +41,6 @@ in
     };
   };
   config = mkIf cfg.enable {
-    profiles.avahi.enable = cfg.avahi;
     profiles.printing.enable = cfg.printing;
     #### TODO: Xophe begining of a migration from profiles to modules.
     #### This shall be completed later.

@@ -1,6 +1,5 @@
 {
   imports = [
-    ./avahi.nix
     ./base.nix
     ./desktop.nix
     ./dev.nix
