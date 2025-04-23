@@ -2,9 +2,10 @@
   imports = [
     ./audio.nix
     ./bluetooth.nix
-    ./yubikey.nix
+    ./laptop.nix
     ./trusted-platform-module.nix
     # remove "nixos"
     ./sane-extra-config.nixos.nix
+    ./yubikey.nix
   ];
 }

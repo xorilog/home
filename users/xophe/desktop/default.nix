@@ -39,7 +39,9 @@
     profile-sync-daemon
   ];
 
-  programs.autorandr.enable = nixosConfig.profiles.laptop.enable;
+  # TODO: Xophe cleanup all this to Xorg with i3.
+  #programs.autorandr.enable = nixosConfig.profiles.laptop.enable;
+  programs.autorandr.enable = nixosConfig.modules.hardware.laptop.enable;
 
   home.file.".XCompose".source = ./xorg/XCompose;
   # home.file.".Xmodmap".source = ./xorg/Xmodmap;
