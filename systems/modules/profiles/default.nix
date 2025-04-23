@@ -24,7 +24,6 @@
     ./sway.nix
     ./tailscale.nix
     ./wireguard.server.nix
-    ./yubikey.nix
     ./zsh.nix
   ];
 }

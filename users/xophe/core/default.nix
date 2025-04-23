@@ -62,12 +62,6 @@ in
 
       # Build
       #neovim-unwrapped # uses an overlay to build from master (i want neovim 0.5.0 version)
-      # GPG Yubikey etc
-      yubico-piv-tool
-      yubikey-personalization
-      #yubioath-desktop # removed.
-      yubikey-manager
-
       # Gnupg
       #gnupg
       #pinentry # dialog

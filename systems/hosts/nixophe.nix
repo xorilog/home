@@ -103,6 +103,9 @@ in
       nested = true;
     };
     hardware.tpm.enable = true;
+    hardware = {
+      yubikey = { enable = true; u2f = false; autoLock = false; agent = false; };
+    };
     dev = {
       enable = true;
       containers = {
@@ -125,13 +128,12 @@ in
   profiles = {
     desktop.i3.enable = true;
     # desktop.sway.enable = true;
-    #desktop.gnome.enable = true;
+#    #desktop.gnome.enable = true;
     edf-sf.enable = true;
     laptop.enable = true;
     keybase.enable = true;
     home = true;
     dev.enable = true;
-    yubikey = { enable = true; u2f = false; autoLock = false; };
     tailscale.enable = true;
   };
   services.xserver.videoDrivers = [ "displaylink" "modesetting" ];

@@ -74,9 +74,6 @@ in
           home.packages = with pkgs; [ docker docker-compose ];
         }
       ]
-      ++ optionals (config.profiles.yubikey.enable && config.profiles.yubikey.u2f) [{
-        home.file.".config/Yubico/u2f_keys".source = pkgs.mkSecret ../../secrets/u2f_keys;
-      }]
       #++ optionals config.profiles.kubernetes.enable [ (import ./containers/kubernetes.nix) ]
       ++ optionals config.profiles.edf-sf.enable [
         (import ./edf-sf)
