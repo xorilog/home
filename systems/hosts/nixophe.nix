@@ -125,6 +125,13 @@ in
     };
     services = {
       avahi.enable = true;
+      ssh.enable = false;
+      syncthing = {
+        enable = true;
+      };
+      tailscale = {
+        enable = true;
+      };
     };
   };
 
@@ -137,7 +144,6 @@ in
     keybase.enable = true;
     home = true;
     dev.enable = true;
-    tailscale.enable = true;
   };
   services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
   environment.systemPackages = with pkgs; [

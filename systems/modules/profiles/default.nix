@@ -18,10 +18,7 @@
     ./printing.nix
     ./qemu.nix
     ./scanning.nix
-    ./syncthing.nix
     ./sway.nix
-    ./tailscale.nix
-    ./wireguard.server.nix
     ./zsh.nix
   ];
 }

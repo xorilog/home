@@ -2,11 +2,11 @@
 
 with lib;
 let
-  cfg = config.profiles.tailscale;
+  cfg = config.modules.services.tailscale;
 in
 {
   options = {
-    profiles.tailscale = {
+    modules.services.tailscale = {
       enable = mkEnableOption "Whether to enable tailscale.";
       port = mkOption {
         default = 41641;

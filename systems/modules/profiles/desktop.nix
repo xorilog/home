@@ -18,11 +18,6 @@ in
         description = "Enable pipewire with the desktop profile";
         type = types.bool;
       };
-      syncthing = mkOption {
-        default = true;
-        description = "Enable syncthing with the desktop profile";
-        type = types.bool;
-      };
       scanning = mkOption {
         default = true;
         description = "Enable scanning with the desktop profile";
@@ -51,7 +46,6 @@ in
       pulseaudio.enable = cfg.pulseaudio;
     };
     profiles.scanning.enable = cfg.scanning;
-    profiles.syncthing.enable = cfg.syncthing;
 
     hardware.bluetooth.enable = true;
 

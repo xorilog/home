@@ -18,7 +18,6 @@ in
     profiles.printing.enable = true;
     # profiles.pulseaudio.enable = true;
     profiles.scanning.enable = true;
-    profiles.syncthing.enable = true;
 
     hardware.bluetooth.enable = true;
 
