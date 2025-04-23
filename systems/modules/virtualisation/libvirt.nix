@@ -1,6 +1,5 @@
 { config, lib, pkgs, ... }:
 
-with lib;
 let
   inherit (lib) mkEnableOption mkIf mkMerge;
   cfg = config.modules.virtualisation.libvirt;
@@ -30,6 +29,7 @@ in
       #    enable = true;
       #  };
       #};
+      #networking.firewall.trustedInterfaces = [ "vboxnet0" ];
       environment.systemPackages = with pkgs; [
         qemu
         vde2
@@ -59,7 +59,6 @@ in
         # extraOptions = [ "--listen" ];
       };
       networking.firewall.allowedTCPPorts = [ 16509 ];
-      networking.firewall.trustedInterfaces = [ "vboxnet0" ];
     })
   ]);
 }
