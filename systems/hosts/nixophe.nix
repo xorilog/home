@@ -133,7 +133,6 @@ in
     dev.enable = true;
     yubikey = { enable = true; u2f = false; autoLock = false; };
     tailscale.enable = true;
-    openvpn3.enable = true;
   };
   services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
   environment.systemPackages = with pkgs; [

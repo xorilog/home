@@ -23,7 +23,6 @@
     ./syncthing.nix
     ./sway.nix
     ./tailscale.nix
-    ./openvpn3.nix
     ./wireguard.server.nix
     ./yubikey.nix
     ./zsh.nix
