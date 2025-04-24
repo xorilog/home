@@ -11,8 +11,6 @@
     ./i3.nix
     ./ipfs.nix
     ./keybase.nix
-    ./mail.nix
-    ./nix-auto-update.nix
     ./sway.nix
     ./zsh.nix
   ];
