@@ -11,21 +11,19 @@ in
     };
   };
   config = mkIf cfg.enable {
-    # TODO: Xophe to activate after migration to modules.
-    #modules.editors.vim.enable = true;
-    #modules.shell = {
-    #  direnv.enable = true;
-    #  git.enable = true;
-    #  gnupg.enable = true;
-    #  tmux.enable = true;
-    #};
+    modules.editors.vim.enable = true;
+    modules.shell = {
+      direnv.enable = true;
+      git.enable = true;
+      gnupg.enable = true;
+      tmux.enable = true;
+    };
     # Enable lorri (to handle nix shells)
     # services.lorri.enable = true;
     environment.systemPackages = with pkgs; [
       grc
       ripgrep
       gnumake
-      glab
     ];
   };
 }

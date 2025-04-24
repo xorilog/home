@@ -5,6 +5,7 @@ let
 in
 {
   imports = [
+    # TODO: Xophe review the location of all those modules.
     ../../modules/shells/bash.nix
     ../../modules/shells/zsh.nix
     ../../modules/tools/direnv.nix

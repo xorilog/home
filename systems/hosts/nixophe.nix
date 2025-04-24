@@ -143,7 +143,6 @@ in
     edf-sf.enable = true;
     keybase.enable = true;
     home = true;
-    dev.enable = true;
   };
   services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
   environment.systemPackages = with pkgs; [

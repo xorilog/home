@@ -11,6 +11,7 @@ in
     environment = {
       # Install some packages
       systemPackages = with pkgs; [
+        glab
         gitAndTools.gitFull
         gitAndTools.git-annex
         gitAndTools.git-extras
