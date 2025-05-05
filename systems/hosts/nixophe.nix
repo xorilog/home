@@ -141,7 +141,6 @@ in
     # desktop.sway.enable = true;
 #    #desktop.gnome.enable = true;
     edf-sf.enable = true;
-    keybase.enable = true;
     home = true;
   };
   services.xserver.videoDrivers = [ "displaylink" "modesetting" ];

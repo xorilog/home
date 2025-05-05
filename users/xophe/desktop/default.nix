@@ -32,8 +32,6 @@
     xsel
     # TODO make this an option
     obs-studio
-    # FIXME move this elsewhere
-    keybase
     # pass
     playerctl
     profile-sync-daemon

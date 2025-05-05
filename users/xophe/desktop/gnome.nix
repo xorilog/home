@@ -42,8 +42,6 @@
     xdg-user-dirs
     xdg-utils
     xsel
-    # FIXME move this elsewhere
-    keybase
     pass
     profile-sync-daemon
   ];
