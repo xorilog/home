@@ -33,6 +33,12 @@ in
 
   security = {
     pam = {
+      services = {
+        # https://github.com/NixOS/nixpkgs/issues/401891#issuecomment-2831813778
+        i3lock = {
+          enable = true;
+        };
+      };
       # Nix will hit the stack limit when using `nixFlakes`.
       loginLimits = [
         { domain = config.users.users.xophe.name; item = "stack"; type = "-"; value = "unlimited"; }

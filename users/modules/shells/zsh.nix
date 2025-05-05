@@ -33,7 +33,7 @@ in
       share = true;
     };
     envExtra = shellConfig.env;
-    initExtra = ''
+    initContent = ''
       # c.f. https://wiki.gnupg.org/AgentForwarding
       gpgconf --create-socketdir &!
       path+="$HOME/${config.programs.zsh.dotDir}/functions"
