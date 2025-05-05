@@ -1,5 +1,6 @@
 { config, lib, pkgs, ... }:
 # FIXME We need to review all that ...
+# This is the customization to do to when at home.
 with lib;
 let
   cfg = config.profiles.home;

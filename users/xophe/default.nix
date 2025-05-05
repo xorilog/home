@@ -72,7 +72,6 @@ in
         (import ./containers)
       ]
       ++ optionals config.profiles.desktop.enable [ (import ./desktop) ]
-      ++ optionals config.profiles.desktop.gnome.enable [ (import ./desktop/gnome.nix) ]
       # ++ optionals config.profiles.desktop.i3.enable [ (import ./desktop/i3.nix) ]
       # TODO: (Xophe) i need to see where to put it
       ++ optionals config.virtualisation.docker.enable [

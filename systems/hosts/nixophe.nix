@@ -139,7 +139,6 @@ in
   profiles = {
     desktop.i3.enable = true;
     # desktop.sway.enable = true;
-#    #desktop.gnome.enable = true;
     edf-sf.enable = true;
     home = true;
   };
