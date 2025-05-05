@@ -15,7 +15,8 @@ in
     modules.shell = {
       direnv.enable = true;
       git.enable = true;
-      gnupg.enable = true;
+      # TODO: To review, current location of the gnupg folder is at $HOME not $XDG_CONFIG_HOME/gnupg
+      gnupg.enable = false;
       tmux.enable = true;
     };
     # Enable lorri (to handle nix shells)
