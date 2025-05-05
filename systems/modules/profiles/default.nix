@@ -6,6 +6,5 @@
     ./home.nix
     ./i3.nix
     ./sway.nix
-    ./zsh.nix
   ];
 }
