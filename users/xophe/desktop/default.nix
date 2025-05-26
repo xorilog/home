@@ -8,7 +8,7 @@
     ./mpv.nix
     ./redshift.nix
     ./communication-tools.nix
-  ] ++ lib.optionals nixosConfig.profiles.desktop.i3.enable [ ./i3.nix ]
+  ] ++ lib.optionals nixosConfig.modules.desktop.xorg.i3.enable [ ./i3.nix ]
   ++ lib.optionals nixosConfig.profiles.desktop.sway.enable [ ./sway.nix ];
 
   home.pointerCursor = {

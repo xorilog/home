@@ -2,27 +2,31 @@
 
 with lib;
 let
-  cfg = config.modules.desktop.i3;
+  cfg = config.modules.desktop.xorg.i3;
 in
 {
   options = {
-    modules.desktop.i3 = {
-      enable = mkEnableOption "Enable i3 desktop profile";
+    modules.desktop.xorg.i3 = {
+      enable = mkEnableOption "Enable i3 desktop module";
     };
   };
 
   config = mkIf cfg.enable {
-    # Enable desktop modules if not already
-    modules.desktop.enable = true;
+    # Enable xorg desktop modules if not already
+    modules.desktop.xorg.enable = true;
+
+    # Enable pipewire
+    modules.hardware.audio = {
+      enable = true;
+      pipewire.enable = true;
+    };
+
     services = {
       blueman.enable = true;
       autorandr.enable = true;
+      displayManager.defaultSession = "none+i3";
+      displayManager.sddm.enable = true;
       xserver = {
-        displayManager = {
-          defaultSession = "none+i3";
-          lightdm.enable = true;
-          lightdm.greeters.pantheon.enable = false; # Elementary os Login Screen
-        };
         windowManager.i3.enable = true;
       };
       dbus = {
@@ -31,5 +35,6 @@ in
         packages = [ pkgs.dconf ];
       };
     };
+    programs.dconf.enable = true;
   };
 }

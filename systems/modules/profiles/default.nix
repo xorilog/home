@@ -1,10 +1,9 @@
 {
   imports = [
     ./base.nix
-    ./desktop.nix
     ./edf-sf.nix
     ./home.nix
-    ./i3.nix
+    # TODO: move this to desktop module folder
     ./sway.nix
   ];
 }

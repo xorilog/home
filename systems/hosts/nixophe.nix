@@ -98,12 +98,16 @@ in
   services.hardware.bolt.enable = true;
 
   modules = {
+    desktop = {
+      xorg.i3.enable = true;
+    };
     virtualisation.libvirt = {
       enable = true;
       nested = true;
     };
     hardware.tpm.enable = true;
     hardware = {
+      bluetooth.enable = true;
       laptop = { enable = true; };
       yubikey = { enable = true; u2f = false; autoLock = false; agent = false; };
     };
@@ -137,7 +141,7 @@ in
   };
 
   profiles = {
-    desktop.i3.enable = true;
+    # desktop.i3.enable = true;
     # desktop.sway.enable = true;
     edf-sf.enable = true;
     home = true;

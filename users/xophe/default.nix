@@ -11,7 +11,7 @@ in
     uid = 1000;
     description = "Christophe Boucharlat";
     extraGroups = [ "wheel" "input" ]
-      ++ optionals config.profiles.desktop.enable [ "audio" "video" ]
+      ++ optionals config.modules.desktop.enable [ "audio" "video" ]
       # ++ optionals config.profiles.scanning.enable [ "lp" "scanner" ]
       ++ optionals config.networking.networkmanager.enable [ "networkmanager" ]
       ++ optionals config.virtualisation.docker.enable [ "docker" ]
@@ -71,7 +71,7 @@ in
       ++ optionals config.modules.dev.containers.enable [
         (import ./containers)
       ]
-      ++ optionals config.profiles.desktop.enable [ (import ./desktop) ]
+      ++ optionals config.modules.desktop.enable [ (import ./desktop) ]
       # ++ optionals config.profiles.desktop.i3.enable [ (import ./desktop/i3.nix) ]
       # TODO: (Xophe) i need to see where to put it
       ++ optionals config.virtualisation.docker.enable [

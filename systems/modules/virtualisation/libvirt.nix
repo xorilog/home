@@ -37,7 +37,7 @@ in
       ];
     }
     # TODO: Xophe move to config.modules.desktop.enable when moved.
-    (mkIf config.profiles.desktop.enable {
+    (mkIf config.modules.desktop.enable {
       environment.systemPackages = with pkgs; [ virt-manager ];
     })
     (mkIf cfg.nested {

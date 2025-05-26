@@ -36,7 +36,7 @@ in
       };
     }
     # TODO: Xophe move to config.modules.desktop.enable when moved.
-    (mkIf config.profiles.desktop.enable {
+    (mkIf config.modules.desktop.enable {
       # FIXME to enable
       # Graphical interface, we can add additionnal packages
       # Enable setting power-profiles trough DBus

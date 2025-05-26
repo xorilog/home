@@ -1,37 +1,51 @@
 { config, lib, pkgs, ... }:
 let
-  inherit (lib) mkIf mkEnableOption mkDefault;
+  inherit (lib) mkIf mkEnableOption mkDefault mkOption types;
   cfg = config.modules.desktop;
 in
 {
   options = {
     modules.desktop = {
       enable = mkEnableOption "desktop configuration";
+      plymouth = {
+        theme = mkOption {
+          default = "deus_ex";
+          description = "Plymouth theme to use for boot (hexagon, green_loader, deus_ex, cuts, sphere, spinner_alt)";
+          type = types.str;
+        };
+        themePackage = mkOption {
+          default = pkgs.my.adi1090x-plymouth;
+          description = "Plymouth theme package to use";
+          type = types.package;
+        };
+      };
     };
   };
   config = mkIf cfg.enable {
+    modules.services.avahi.enable = true;
     boot = {
+      # Enable netbootxyz if systemd-boot is enabled
+      loader.systemd-boot.netbootxyz.enable = config.core.boot.systemd-boot;
       # /tmp to be tmpfs
-      tmpOnTmpfs = true;
+      tmp = {
+        useTmpfs = true;
+        cleanOnBoot = true;
+      };
       # Enable Plymouth on desktops
-      plymouth.enable = true;
+      plymouth = {
+        enable = true;
+        themePackages = [ cfg.plymouth.themePackage ];
+        theme = cfg.plymouth.theme;
+      };
     };
-
-    # FIXME Fix tmpOnTmpfs
-    systemd.additionalUpstreamSystemUnits = [ "tmp.mount" ];
-
-    # Extra packages to add to the system
-    environment.systemPackages = with pkgs; [
-      xorg.xmessage
-    ];
 
     # Configure some fonts
     fonts = {
       # enableFontDir = true;
       fontDir.enable = true;
       enableGhostscriptFonts = true;
-      fonts = with pkgs; [
-        liberation_ttf
+      packages = with pkgs; [
+        cascadia-code
         corefonts
         dejavu_fonts
         emojione
@@ -39,23 +53,36 @@ in
         fira
         fira-code
         fira-code-symbols
-        fira-code-nerdfont
         fira-mono
+        font-awesome
+        go-font
+        hack-font
         hasklig
         inconsolata
-        inconsolata-nerdfont
         iosevka
-        nerdfonts
+        jetbrains-mono
+        liberation_ttf
+        nerd-fonts.jetbrains-mono
+        nerd-fonts.inconsolata
+        nerd-fonts.fira-code
+        nerd-fonts.fira-mono
+        nerd-fonts.caskaydia-cove
+        nerd-fonts.caskaydia-mono
+        nerd-fonts.overpass
+        nerd-fonts.ubuntu
+        nerd-fonts.ubuntu-mono
+        nerd-fonts.ubuntu-sans
         noto-fonts
         noto-fonts-cjk-sans
         noto-fonts-emoji
         noto-fonts-extra
         overpass
-        symbola
         source-code-pro
+        symbola
         twemoji-color-font
         ubuntu_font_family
         unifont
+        recursive
       ];
     };
 
@@ -73,6 +100,7 @@ in
       ++ lib.optionals config.virtualisation.docker.enable [ "interface-name:docker0" ]
       # Do not manager libvirt interfaces
       ++ lib.optionals config.virtualisation.libvirtd.enable [ "interface-name:virbr*" ];
+      plugins = with pkgs; [ networkmanager-openvpn ];
     };
 
     nix = {
@@ -80,10 +108,8 @@ in
       sshServe.enable = mkDefault true;
     };
 
-
-    modules.services.avahi.enable = true;
-
     services = {
+      # udisks2.enable = true; # Sway related
       envfs = {
         enable = true;
       };
@@ -98,18 +124,15 @@ in
         enable = true;
         drivers = [ pkgs.gutenprint ];
       };
-
-      # Enable xserver on desktop
-      xserver = {
-        enable = true;
-        enableTCP = false;
-        libinput.enable = true;
-        synaptics.enable = false;
-        layout = "us";
-        xkbVariant = "intl";
-        xkbOptions = "";
-      };
-
     };
+
+    # TODO: Xophe, move this elsewhere
+    environment.systemPackages = with pkgs; [
+      cryptsetup
+      unzip
+      gnupg
+      pinentry
+      inxi
+    ];
   };
 }
