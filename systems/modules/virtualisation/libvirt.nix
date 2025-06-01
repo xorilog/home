@@ -36,7 +36,6 @@ in
         libosinfo
       ];
     }
-    # TODO: Xophe move to config.modules.desktop.enable when moved.
     (mkIf config.modules.desktop.enable {
       environment.systemPackages = with pkgs; [ virt-manager ];
     })

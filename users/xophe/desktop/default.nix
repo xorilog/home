@@ -1,5 +1,8 @@
-{ lib, pkgs, nixosConfig, ... }:
+{ config, lib, pkgs, nixosConfig, ... }:
 
+let
+  inherit (lib) optionals;
+in
 {
   imports = [
     ./audio.nix
@@ -8,8 +11,10 @@
     ./mpv.nix
     ./redshift.nix
     ./communication-tools.nix
-  ] ++ lib.optionals nixosConfig.modules.desktop.xorg.i3.enable [ ./i3.nix ]
-  ++ lib.optionals nixosConfig.profiles.desktop.sway.enable [ ./sway.nix ];
+  ]
+  ++ optionals nixosConfig.modules.desktop.xorg.i3.enable [ ./i3.nix ]
+  ++ optionals nixosConfig.modules.desktop.xorg.enable [ ./xorg.nix ]
+  ++ optionals nixosConfig.profiles.desktop.sway.enable [ ./sway.nix ];
 
   home.pointerCursor = {
     package = pkgs.vanilla-dmz;
@@ -36,10 +41,6 @@
     playerctl
     profile-sync-daemon
   ];
-
-  # TODO: Xophe cleanup all this to Xorg with i3.
-  #programs.autorandr.enable = nixosConfig.profiles.laptop.enable;
-  programs.autorandr.enable = nixosConfig.modules.hardware.laptop.enable;
 
   home.file.".XCompose".source = ./xorg/XCompose;
   # home.file.".Xmodmap".source = ./xorg/Xmodmap;

@@ -35,7 +35,6 @@ in
         '';
       };
     }
-    # TODO: Xophe move to config.modules.desktop.enable when moved.
     (mkIf config.modules.desktop.enable {
       # FIXME to enable
       # Graphical interface, we can add additionnal packages
