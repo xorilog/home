@@ -20,9 +20,13 @@ in
   imports = [
     ./alacritty.nix
     ./autorandr.nix
-    # ./dconf.nix
-    ./xsession.nix
   ];
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = true;
+    package = pkgs.vanilla-dmz;
+    name = "Vanilla-DMZ";
+  };
   home.sessionVariables = { WEBKIT_DISABLE_COMPOSITING_MODE = 1; };
   home.packages = with pkgs; [
     ((builtins.getFlake "git+ssh://git@github.com/ghostty-org/ghostty?ref=main").packages.${builtins.currentSystem}.ghostty)

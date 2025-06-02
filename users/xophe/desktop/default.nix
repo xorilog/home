@@ -16,10 +16,6 @@ in
   ++ optionals nixosConfig.modules.desktop.xorg.enable [ ./xorg.nix ]
   ++ optionals nixosConfig.profiles.desktop.sway.enable [ ./sway.nix ];
 
-  home.pointerCursor = {
-    package = pkgs.vanilla-dmz;
-    name = "Vanilla-DMZ";
-  };
   home.sessionVariables = { WEBKIT_DISABLE_COMPOSITING_MODE = 1; };
   home.packages = with pkgs; [
     aspell
@@ -29,7 +25,6 @@ in
     hunspellDicts.en_US-large
     hunspellDicts.en_GB-ize
     hunspellDicts.fr-any
-    # libreoffice-fresh Failing and 2h33 to build.
     #wmctrl
     #xclip
     xdg-user-dirs
