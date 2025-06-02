@@ -120,8 +120,8 @@ in
     theme = "slate";
   };
   services = {
-    blueman-applet.enable = true;
-    pasystray.enable = true;
+    blueman-applet.enable = nixosConfig.modules.hardware.bluetooth.enable;
+    pasystray.enable = nixosConfig.modules.hardware.audio.enable;
     dunst = {
       enable = true;
       settings = {
@@ -168,17 +168,6 @@ in
     };
     udiskie.enable = true;
     network-manager-applet.enable = true;
-    /*
-      screen-locker = {
-      enable = true;
-      lockCmd = lockCommand;
-      inactiveInterval = 60;
-      xautolock = {
-        enable = true;
-        detectSleep = true;
-      };
-      };
-    */
     random-background = {
       enable = true;
       enableXinerama = true;

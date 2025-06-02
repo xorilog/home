@@ -38,7 +38,6 @@ in
       # Authenticator is in version 0.4.0 and we need to use version 0.5 at least
       #aws-iam-authenticator
       kubectl
-      docker-compose
       terragrunt
       # terraform_0_14 <- deprecated
       terraform

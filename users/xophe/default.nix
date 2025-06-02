@@ -62,24 +62,16 @@ in
     (
       [
         (import ./core)
-        # TODO: Xophe to move elsewhere
-        (import ../modules/iaas/aws)
       ]
       ++ optionals config.modules.dev.enable [
         (import ./dev)
+        # TODO: Xophe to move elsewhere
+        (import ../modules/iaas/aws)
       ]
       ++ optionals config.modules.dev.containers.enable [
         (import ./containers)
       ]
       ++ optionals config.modules.desktop.enable [ (import ./desktop) ]
-      # ++ optionals config.profiles.desktop.i3.enable [ (import ./desktop/i3.nix) ]
-      # TODO: (Xophe) i need to see where to put it
-      ++ optionals config.virtualisation.docker.enable [
-        {
-          home.packages = with pkgs; [ docker docker-compose ];
-        }
-      ]
-      #++ optionals config.profiles.kubernetes.enable [ (import ./containers/kubernetes.nix) ]
       ++ optionals config.profiles.edf-sf.enable [
         (import ./edf-sf)
       ]
