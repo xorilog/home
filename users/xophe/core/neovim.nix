@@ -32,7 +32,7 @@
       fzf-vim
       gruvbox
       lightline-vim
-      LanguageClient-neovim
+      #LanguageClient-neovim
       nvim-lspconfig
       tagbar
       ultisnips
