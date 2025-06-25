@@ -33,7 +33,6 @@
       gruvbox
       lightline-vim
       #LanguageClient-neovim
-      nvim-lspconfig
       tagbar
       ultisnips
       vim-go
@@ -45,7 +44,6 @@
       vim-rhubarb
       vim-gitgutter
       vim-nix
-      vim-lsp
     ];
     extraConfig = ''
       "" General Config
