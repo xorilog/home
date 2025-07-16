@@ -147,6 +147,7 @@ in
     home = true;
   };
   services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
+  hardware.graphics.enable = true;
   environment.systemPackages = with pkgs; [
     virt-manager
     # force xbacklight to work
