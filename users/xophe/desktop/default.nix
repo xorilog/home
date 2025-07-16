@@ -9,7 +9,7 @@ in
     ./firefox.nix
     ./gtk.nix
     ./mpv.nix
-    ./redshift.nix
+    ./gammastep.nix
     ./communication-tools.nix
   ]
   ++ optionals nixosConfig.modules.desktop.xorg.i3.enable [ ./i3.nix ]

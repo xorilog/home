@@ -126,6 +126,8 @@ in
       };
     };
 
+    location.provider = "geoclue2";
+
     # TODO: Xophe, move this elsewhere
     environment.systemPackages = with pkgs; [
       cryptsetup
