@@ -12,6 +12,7 @@ in
     ./gammastep.nix
     ./communication-tools.nix
   ]
+  ++ [ ./claude.nix ]
   ++ optionals nixosConfig.modules.desktop.xorg.i3.enable [ ./i3.nix ]
   ++ optionals nixosConfig.modules.desktop.xorg.enable [ ./xorg.nix ]
   ++ optionals nixosConfig.profiles.desktop.sway.enable [ ./sway.nix ];
