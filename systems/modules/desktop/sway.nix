@@ -2,12 +2,12 @@
 
 with lib;
 let
-  cfg = config.profiles.desktop.sway;
+  cfg = config.modules.desktop.sway;
 in
 {
   options = {
-    profiles.desktop.sway = {
-      enable = mkEnableOption "Enable sway desktop profile";
+    modules.desktop.sway = {
+      enable = mkEnableOption "Enable sway desktop";
     };
   };
 

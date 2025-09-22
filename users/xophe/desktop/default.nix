@@ -15,7 +15,7 @@ in
   ++ [ ./claude.nix ]
   ++ optionals nixosConfig.modules.desktop.xorg.i3.enable [ ./i3.nix ]
   ++ optionals nixosConfig.modules.desktop.xorg.enable [ ./xorg.nix ]
-  ++ optionals nixosConfig.profiles.desktop.sway.enable [ ./sway.nix ];
+  ++ optionals nixosConfig.modules.desktop.sway.enable [ ./sway.nix ];
 
   home.sessionVariables = { WEBKIT_DISABLE_COMPOSITING_MODE = 1; };
   home.packages = with pkgs; [
