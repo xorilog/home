@@ -1,18 +1,24 @@
 { config, lib, pkgs, ... }:
-# FIXME We need to review all that ...
 # This is the customization to do to when at home.
 with lib;
 let
-  cfg = config.profiles.home;
+  cfg = config.modules.core.home;
   #secretPath = ../../../secrets/machines.nix;
   #secretCondition = (builtins.pathExists secretPath);
   #machines = lib.optionalAttrs secretCondition (import secretPath);
 in
 {
   options = {
-    profiles.home = mkEnableOption "Enable home profile";
+    #modules.core.home = mkEnableOption "Enable home network profile";
+    modules.core.home = {
+      enable = mkOption {
+        default = true;
+        description = "Enable home network profile";
+        type = types.bool;
+      };
+    };
   };
-  config = mkIf cfg {
+  config = mkIf cfg.enable {
     boot.kernelParams = [ "nfs.nfs4_disable_idmapping=0" "nfsd.nfs4_disable_idmapping=0" ];
     networking = {
       domain = "home";

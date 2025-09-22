@@ -2,11 +2,11 @@
 
 with lib;
 let
-  cfg = config.profiles.edf-sf;
+  cfg = config.modules.edf-sf;
 in
 {
   options = {
-    profiles.edf-sf = {
+    modules.edf-sf = {
       enable = mkEnableOption "Enable the EDF Store & Forecast profiles (Apps, VPN, certs, …)";
     };
   };

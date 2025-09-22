@@ -141,11 +141,8 @@ in
     core = {
       base.enable = true;
       development.enable = true;
+      home.enable = true;
     };
-  };
-
-  profiles = {
-    home = true;
     edf-sf.enable = true;
   };
   services.xserver.videoDrivers = [ "displaylink" "modesetting" ];

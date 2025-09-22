@@ -4,6 +4,7 @@
     ./boot.nix
     ./config.nix
     ./development.nix
+    ./home.nix
     ./home-manager.nix
     ./nix.nix
     ./nur.nix

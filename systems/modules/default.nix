@@ -2,9 +2,9 @@
   imports = [
     ./core
     ./desktop
+    ./edf-sf
     ./editors
     ./hardware
-    ./profiles
     ./services
     ./shell
     ./virtualisation

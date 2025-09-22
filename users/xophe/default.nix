@@ -72,7 +72,7 @@ in
         (import ./containers)
       ]
       ++ optionals config.modules.desktop.enable [ (import ./desktop) ]
-      ++ optionals config.profiles.edf-sf.enable [
+      ++ optionals config.modules.edf-sf.enable [
         (import ./edf-sf)
       ]
     );
