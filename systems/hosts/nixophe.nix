@@ -140,6 +140,7 @@ in
     };
     core = {
       base.enable = true;
+      development.enable = true;
     };
   };
 

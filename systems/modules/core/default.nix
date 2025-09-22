@@ -3,6 +3,7 @@
     ./base.nix
     ./boot.nix
     ./config.nix
+    ./development.nix
     ./home-manager.nix
     ./nix.nix
     ./nur.nix

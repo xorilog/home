@@ -15,17 +15,11 @@ in
     };
   };
   config = mkIf cfg.enable {
-    environment.pathsToLink = [
-      "/share/nix-direnv"
-    ];
     environment = {
       variables = {
         EDITOR = pkgs.lib.mkOverride 0 "vim";
       };
       systemPackages = with pkgs; [
-        cachix
-        direnv
-        eza
         file
         htop
         iotop
@@ -33,11 +27,9 @@ in
         netcat
         psmisc
         pv
-        tmux
         tree
         vim
         wget
-        gnumake
       ];
     };
     security.sudo = {
