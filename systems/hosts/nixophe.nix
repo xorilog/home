@@ -138,7 +138,7 @@ in
         enable = true;
       };
     };
-    core = {
+    base = {
       base.enable = true;
       development.enable = true;
       home.enable = true;

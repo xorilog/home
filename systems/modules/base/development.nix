@@ -2,11 +2,11 @@
 
 with lib;
 let
-  cfg = config.modules.core.development;
+  cfg = config.modules.base.development;
 in
 {
   options = {
-    modules.core.development = {
+    modules.base.development = {
       enable = mkOption {
         default = true;
         description = "Enable development tools and environment";

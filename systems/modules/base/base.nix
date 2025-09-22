@@ -2,11 +2,11 @@
 
 with lib;
 let
-  cfg = config.modules.core.base;
+  cfg = config.modules.base.base;
 in
 {
   options = {
-    modules.core.base = {
+    modules.base.base = {
       enable = mkOption {
         default = true;
         description = "Enable base system configuration";

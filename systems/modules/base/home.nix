@@ -2,7 +2,7 @@
 # This is the customization to do to when at home.
 with lib;
 let
-  cfg = config.modules.core.home;
+  cfg = config.modules.base.home;
   #secretPath = ../../../secrets/machines.nix;
   #secretCondition = (builtins.pathExists secretPath);
   #machines = lib.optionalAttrs secretCondition (import secretPath);
@@ -10,7 +10,7 @@ in
 {
   options = {
     #modules.core.home = mkEnableOption "Enable home network profile";
-    modules.core.home = {
+    modules.base.home = {
       enable = mkOption {
         default = true;
         description = "Enable home network profile";
