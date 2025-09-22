@@ -21,7 +21,7 @@ in
     autosuggestion = { enable = true; };
     enableCompletion = true;
     autocd = true;
-    dotDir = ".config/zsh";
+    dotDir = "${config.xdg.configHome}/zsh";
     # xophe
     #defaultKeymap = "emacs";
     history = {
@@ -36,10 +36,10 @@ in
     initContent = ''
       # c.f. https://wiki.gnupg.org/AgentForwarding
       gpgconf --create-socketdir &!
-      path+="$HOME/${config.programs.zsh.dotDir}/functions"
+      path+="${config.programs.zsh.dotDir}/functions"
       fpath+="$HOME/.nix-profile/share/zsh/site-functions"
-      fpath+="$HOME/${config.programs.zsh.dotDir}/functions"
-      for func ($HOME/${config.programs.zsh.dotDir}/functions) autoload -U $func/*(x:t)
+      fpath+="${config.programs.zsh.dotDir}/functions"
+      for func (${config.programs.zsh.dotDir}/functions) autoload -U $func/*(x:t)
       autoload -Uz select-word-style; select-word-style bash
       if [ -e ''${HOME}/.nix-profile/etc/profile.d/nix.sh ]; then . ''${HOME}/.nix-profile/etc/profile.d/nix.sh; fi
       #if [ -n "$INSIDE_EMACS" ]; then
@@ -60,14 +60,14 @@ in
       fi
       # make sure navigation using emacs keybindings works on all non-alphanumerics
       # syntax highlighting
-      source $HOME/${config.programs.zsh.dotDir}/plugins/zsh-nix-shell/nix-shell.plugin.zsh
+      source ${config.programs.zsh.dotDir}/plugins/zsh-nix-shell/nix-shell.plugin.zsh
       source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
       ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=white,bold,bg=red')
       ZSH_HIGHLIGHT_PATTERNS+=('rm -fR *' 'fg=white,bold,bg=red')
       ZSH_HIGHLIGHT_PATTERNS+=('rm -fr *' 'fg=white,bold,bg=red')
-      source $HOME/${config.programs.zsh.dotDir}/completion.zsh
-      source $HOME/${config.programs.zsh.dotDir}/plugins/powerlevel10k/powerlevel10k.zsh-theme
-      source $HOME/${config.programs.zsh.dotDir}/prompt.zsh
+      source ${config.programs.zsh.dotDir}/completion.zsh
+      source ${config.programs.zsh.dotDir}/plugins/powerlevel10k/powerlevel10k.zsh-theme
+      source ${config.programs.zsh.dotDir}/prompt.zsh
       setopt hist_ignore_space
       alias -g L="|less"
       alias -g EEL=' 2>&1 | less'
