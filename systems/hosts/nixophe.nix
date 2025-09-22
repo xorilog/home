@@ -25,13 +25,10 @@ in
       # Include the results of the hardware scan.
       ../hardware/dell-xps-13-9310.nix
       (import ../../nix).home-manager
-      ../modules
+      ../common
       (import ../../users).xophe
       (import ../../users).root
       ../../users/xophe/desktop/ghostty.nix
-      # TODO: Xophe to move elsewhere
-      ../../systems/modules/dev/default.nix
-      ../../systems/modules/virtualisation/default.nix
     ];
 
   # Add required elements to play with zfs.
@@ -99,6 +96,7 @@ in
 
   modules = {
     desktop = {
+      enable = true;
       xorg.i3.enable = true;
     };
     virtualisation.libvirt = {

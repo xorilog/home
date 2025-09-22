@@ -2,6 +2,7 @@
   imports = [
     ./base
     ./desktop
+    ./dev
     ./edf-sf
     ./editors
     ./hardware
