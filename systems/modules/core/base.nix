@@ -2,20 +2,19 @@
 
 with lib;
 let
-  cfg = config.profiles.base;
+  cfg = config.modules.core.base;
 in
 {
   options = {
-    profiles.base = {
+    modules.core.base = {
       enable = mkOption {
         default = true;
-        description = "Enable base profile";
+        description = "Enable base system configuration";
         type = types.bool;
       };
     };
   };
   config = mkIf cfg.enable {
-    boot.loader.systemd-boot.enable = true;
     environment.pathsToLink = [
       "/share/nix-direnv"
     ];

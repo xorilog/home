@@ -138,13 +138,14 @@ in
         enable = true;
       };
     };
+    core = {
+      base.enable = true;
+    };
   };
 
   profiles = {
-    # desktop.i3.enable = true;
-    # desktop.sway.enable = true;
-    edf-sf.enable = true;
     home = true;
+    edf-sf.enable = true;
   };
   services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
   hardware.graphics.enable = true;

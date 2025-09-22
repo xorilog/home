@@ -1,5 +1,6 @@
 {
   imports = [
+    ./base.nix
     ./boot.nix
     ./config.nix
     ./home-manager.nix
