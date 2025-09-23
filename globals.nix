@@ -1,44 +1,86 @@
 { lib, hostname ? "", ... }:
 
 {
-  # Configuration globale du projet
-  # Inspiré du pattern vdemeester
+  # Configuration globale du projet (pattern vdemeester)
   
-  # Informations machines
-  machines = {
-    nixophe = {
-      system = "x86_64-linux";
-      desktop = "i3"; # ou "sway", null pour headless
-      hardware = "laptop";
-      location = "home";
-    };
-  };
-  
-  # Configuration SSH (TODO: à compléter)
+  # Configuration SSH
   ssh = {
     xophe = [
-      # "ssh-rsa AAAA..." # TODO: ajouter clés SSH
+      # TODO: ajouter clés SSH publiques
+      # "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIxxx xophe@nixophe"
     ];
   };
   
-  # Utilisateurs système
+  # Dossiers Syncthing globaux (pattern vdemeester)  
+  syncthingFolders = {
+    sync = {
+      id = "sync-folder-id";
+      path = "/home/xophe/sync";
+    };
+    documents = {
+      id = "docs-folder-id";
+      path = "/home/xophe/documents";
+    };
+    # TODO: ajouter autres dossiers selon besoins
+  };
+  
+  # Configuration réseau
+  net = {
+    dns = {
+      cacheNetworks = [
+        "192.168.1.0/24"
+        "10.0.0.0/8"
+      ];
+    };
+  };
+  
+  # Informations machines (pattern vdemeester enrichi)
+  machines = {
+    nixophe = {
+      # Informations système
+      system = "x86_64-linux";
+      desktop = "i3";
+      hardware = "laptop";
+      
+      # Configuration réseau
+      net = {
+        ips = [ "192.168.1.100" ]; # TODO: IP réelle
+        names = [
+          "nixophe.home"
+          "nixophe.local"
+        ];
+        # vpn = {
+        #   pubkey = ""; # TODO: avec agenix
+        #   ips = [ "10.100.0.10" ];
+        # };
+      };
+      
+      # Configuration SSH
+      ssh = {
+        hostKey = ""; # TODO: ajouter host key
+      };
+      
+      # Configuration Syncthing
+      syncthing = {
+        id = ""; # TODO: ID Syncthing réel
+        folders = {
+          sync = {
+            type = "sendreceive";
+          };
+          documents = {
+            type = "sendreceive";
+          };
+        };
+      };
+    };
+  };
+  
+  # Utilisateurs système  
   users = {
     xophe = {
       uid = 1000;
       description = "Christophe Boucharlat";
       shell = "zsh";
     };
-  };
-  
-  # Configuration réseau (TODO: secrets)
-  network = {
-    # TODO: déplacer vers secrets ou agenix
-    domain = "local";
-  };
-  
-  # Versions par défaut
-  versions = {
-    stateVersion = "24.11";
-    nixpkgs = "nixos-unstable";
   };
 }

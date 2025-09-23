@@ -10,12 +10,11 @@
   # Configuration git personnalisée
   programs.git = {
     userName = "Christophe Boucharlat";
-    userEmail = "christophe.boucharlat@gmail.com";
+    # userEmail configuré dans home/common/shell/git.nix
     
     # Configuration additionnelle spécifique
     extraConfig = {
       # Personnalisations spécifiques à xophe
-      user.signingkey = "christophe.boucharlat@gmail.com";
       commit.gpgsign = true;
     };
   };

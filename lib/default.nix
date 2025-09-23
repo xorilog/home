@@ -9,10 +9,10 @@
   # Fonction utilitaire (basique, à développer)
   libx = import ./functions.nix { inherit (inputs.nixpkgs) lib; };
   
-  # Fonction pour générer les configurations home-manager
+  # Fonction pour générer les configurations home-manager (pattern vdemeester)
   mkHome = {
     hostname,
-    username,
+    user,
     desktop ? null,
     system ? "x86_64-linux",
   }:
@@ -33,8 +33,8 @@
         hostname
         desktop
         globals
-        username
         ;
+      username = user;  # Pattern vdemeester: user -> username
       libx = import ./functions.nix { inherit (inputs.nixpkgs) lib; };
     };
     modules = [
@@ -42,10 +42,11 @@
     ];
   };
 
-  # Fonction pour générer les configurations host NixOS
+  # Fonction pour générer les configurations host NixOS (pattern vdemeester)
   mkHost = {
     hostname,
     desktop ? null,
+    hardwareType ? "",
     system ? "x86_64-linux",
     pkgsInput ? inputs.nixpkgs,
     homeInput ? inputs.home-manager,
@@ -63,6 +64,7 @@
         stateVersion
         hostname
         desktop
+        hardwareType
         system
         globals
         ;

@@ -76,18 +76,20 @@
         nixophe = libx.mkHost {
           hostname = "nixophe";
           desktop = "i3";  # Depuis globals.nix
+          hardwareType = "laptop";
           system = "x86_64-linux";
         };
       };
 
-      # Configurations Home Manager standalone (désactivé temporairement)
-      # homeConfigurations = {
-      #   "xophe@nixophe" = mkHome {
-      #     username = "xophe";
-      #     hostname = "nixophe";
-      #     system = "x86_64-linux";
-      #   };
-      # };
+      # Configurations Home Manager standalone (pattern vdemeester)
+      homeConfigurations = {
+        "xophe@nixophe" = libx.mkHome {
+          user = "xophe";
+          hostname = "nixophe";
+          desktop = "i3";
+          system = "x86_64-linux";
+        };
+      };
 
       # Packages personnalisés (migration depuis default.nix)
       packages = forAllSystems (system:
