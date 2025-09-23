@@ -13,7 +13,8 @@
   inputs = {
     # Nixpkgs versions (basé sur sources.json analysées)
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11"; 
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs-master.url = "github:NixOS/nixpkgs/master"; 
     
     # Home Manager
     home-manager = {
@@ -54,7 +55,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, emacs-overlay, nixos-hardware, sops-nix, gitignore, ghostty, claude-desktop, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, nixpkgs-master, home-manager, emacs-overlay, nixos-hardware, sops-nix, gitignore, ghostty, claude-desktop, ... }@inputs:
     let
       inherit (self) outputs;
       stateVersion = "24.11";
@@ -100,17 +101,8 @@
         }
       );
 
-      # Overlays (export pour réutilisation)
-      overlays = {
-        default = final: prev: {
-          # Migration depuis nix/overlays/
-        };
-        
-        emacs = emacs-overlay.overlays.default;
-        
-        # Packages locaux
-        local = final: prev: (self.packages.${prev.system} or {});
-      };
+      # Overlays (système avancé pattern vdemeester)
+      overlays = import ./overlays { inherit inputs; };
 
       # Shells de développement
       devShells = forAllSystems (system:

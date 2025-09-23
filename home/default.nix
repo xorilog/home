@@ -12,7 +12,7 @@
   ...
 }:
 {
-  # Imports conditionnels (pattern vdemeester adapté)
+  # Imports conditionnels (pattern vdemeester optimisé)
   imports = [
     # Shell toujours présent
     ./common/shell
@@ -20,8 +20,8 @@
   ]
   # Desktop si défini
   ++ lib.optional (builtins.isString desktop) ./common/desktop
-  # Utilisateur spécifique si existe (TODO: créer common/users/${username})
-  # ++ lib.optional (builtins.pathExists (./. + "/common/users/${username}")) ./common/users/${username}
+  # Utilisateur spécifique si existe  
+  ++ lib.optional (builtins.pathExists (./. + "/common/users/${username}")) ./common/users/${username}
   # Import autres modules communs
   ++ [
     ./common/dev
@@ -30,8 +30,13 @@
     ./common/services
     ./common/tools
   ]
-  # Machine-specific home config si existe (TODO: créer)
-  # ++ lib.optional (builtins.pathExists (../systems/. + "/${hostname}/home.nix")) ../systems/${hostname}/home.nix
+  # Syncthing conditionnel basé sur globals
+  ++ lib.optional (
+    builtins.hasAttr "${hostname}" globals.machines
+    && libx.hasSyncthingFolders globals.machines."${hostname}"
+  ) ./common/services/syncthing.nix
+  # Machine-specific home config si existe
+  ++ lib.optional (builtins.pathExists (../systems/. + "/${hostname}/home.nix")) ../systems/${hostname}/home.nix
   ;
 
   # Configuration home de base
@@ -52,18 +57,17 @@
   # Configuration nixpkgs avec overlays
   nixpkgs = {
     overlays = [
-      # Nos overlays (TODO: développer)
-      # outputs.overlays.additions
-      # outputs.overlays.modifications
+      # Nos overlays (système avancé)
+      outputs.overlays.additions
+      outputs.overlays.modifications
+      outputs.overlays.unstable-packages
       
       # Overlays externes (disponibles via inputs)
       inputs.emacs-overlay.overlays.default
-      # TODO: ajouter autres overlays quand inputs étendus
       
-      # Overlays de compatibilité/migration
-      (_: prev: {
-        # TODO: packages de migration si nécessaire
-      })
+      # Overlays externes à intégrer
+      inputs.ghostty.overlays.default or (_: _: {})
+      inputs.claude-desktop.overlays.default or (_: _: {})
     ];
     config = {
       allowUnfree = true;
