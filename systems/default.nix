@@ -12,31 +12,36 @@
 {
   # Imports conditionnels basés sur hostname et desktop (pattern vdemeester)
   imports = [
-    # Configuration spécifique machine (hardware, boot, etc.)
-    (./. + "/hosts/${hostname}.nix")
+    # Configuration spécifique machine (pattern vdemeester)
+    ./nixophe/boot.nix
+    ./nixophe/hardware.nix
+    ./nixophe/extra.nix
     
     # Modules système communs
-    ./common
+    ./common/base
+    ./common/users
+    ./common/hardware
   ]
   # Import conditionnel desktop si défini
-  ++ lib.optional (builtins.isString desktop) ./common/desktop
-  # Import conditionnel fichier extra par hostname
-  ++ lib.optional (builtins.pathExists (./. + "/hosts/${hostname}/extra.nix")) ./hosts/${hostname}/extra.nix;
+  ++ lib.optional (builtins.isString desktop) ./common/desktop;
 
-  # Configuration nixpkgs avec overlays
+  # Configuration nixpkgs avec overlays (pattern vdemeester)
   nixpkgs = {
     overlays = [
-      # Nos overlays locaux (TODO: développer)
-      # outputs.overlays.additions
-      # outputs.overlays.modifications
+      # Nos overlays (système avancé)
+      outputs.overlays.additions
+      outputs.overlays.modifications
+      outputs.overlays.unstable-packages
       
       # Overlays externes
       inputs.emacs-overlay.overlays.default
-      # inputs.sops-nix.overlays.default (pas d'overlay sops)
+      inputs.ghostty.overlays.default or (_: _: {})
+      inputs.claude-desktop.overlays.default or (_: _: {})
       
-      # Compatibility layer (migration sources.nix)
+      # Packages spéciaux depuis inputs
       (_: prev: {
-        # TODO: migrer packages depuis default.nix
+        inherit (inputs.ghostty.packages.${prev.system}) ghostty;
+        inherit (inputs.claude-desktop.packages.${prev.system}) claude-desktop-with-fhs;
       })
     ];
     config = {

@@ -1,11 +1,12 @@
+{ hardwareType ? "", lib, ... }:
 {
   imports = [
     ./audio.nix
     ./bluetooth.nix
-    ./laptop.nix
     ./trusted-platform-module.nix
-    # remove "nixos"
     ./sane-extra-config.nixos.nix
     ./yubikey.nix
-  ];
+  ]
+  # Import conditionnel selon hardwareType (pattern vdemeester)
+  ++ lib.optional (hardwareType == "laptop") ./laptop.nix;
 }
