@@ -1,43 +1,26 @@
-{ lib, ... }:
+{ lib }:
 
 with lib;
 
 {
-  # Fonction pour créer des imports conditionnels
-  optionalImport = path: condition:
-    if condition then [ path ] else [ ];
+  # Fonctions utilitaires basiques
+  # TODO: développer selon besoins
 
-  # Fonction pour gérer les configurations par hostname
-  hostConfig = hostname: path:
-    (path + "/${hostname}");
-
-  # Helper pour déterminer si desktop est activé
-  hasDesktop = config:
-    config.modules.desktop.enable or false;
-
-  # Import conditionnel avancé avec vérification d'existence
-  conditionalImport = basePath: name: condition:
-    let
-      fullPath = basePath + "/${name}";
-    in
-    optionals (condition && builtins.pathExists fullPath) [ fullPath ];
-
-  # Génération d'imports par profils de machine  
-  machineProfile = hostname:
-    let
-      profiles = {
-        "nixophe" = [ "laptop" "development" "desktop" ];
-        # Autres machines à venir
-      };
-    in
-    profiles.${hostname} or [ "base" ];
-
-  # Import intelligent par type de machine
-  smartImports = hostname: basePath:
-    let
-      profiles = machineProfile hostname;
-      profilePaths = map (profile: basePath + "/${profile}") profiles;
-      existingPaths = filter builtins.pathExists profilePaths;
-    in
-    existingPaths;
+  # Vérifier si un chemin existe  
+  pathExists = path: builtins.pathExists path;
+  
+  # Fonction pour importer conditionnellement
+  optionalImport = path: default: 
+    if pathExists path then import path else default;
+    
+  # Fonction pour créer des imports conditionnels par hostname  
+  hostImport = hostname: path:
+    let fullPath = path + "/${hostname}.nix"; 
+    in optional (pathExists fullPath) fullPath;
+    
+  # Fonction pour créer des imports conditionnels par desktop
+  desktopImport = desktop: path:
+    if desktop != null 
+    then optional (pathExists (path + "/${desktop}.nix")) (path + "/${desktop}.nix")
+    else [];
 }

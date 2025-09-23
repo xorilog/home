@@ -1,8 +1,8 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+# and in the NixOS manual (accessible by running 'nixos-help').
 
-{ config, pkgs, lib, ... }:
+{ inputs, config, pkgs, lib, ... }:
 with lib;
 let
   hostname = "nixophe";
@@ -20,14 +20,13 @@ let
   wireguardDNS = strings.optionalString secretCondition (import secretPath).wg.wireguardDNS;
 in
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ../hardware/dell-xps-13-9310.nix
-      (import ../../nix).home-manager
-      ../common
-      ../../home/common/desktop/ghostty.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ../hardware/dell-xps-13-9310.nix
+    # home-manager intégré via flake.nix maintenant
+    # ../common -> géré par systems/default.nix
+    ../../home/common/desktop/ghostty.nix
+  ];
 
   # Add required elements to play with zfs.
   boot.supportedFilesystems = [ "zfs" ];
