@@ -1,33 +1,15 @@
+# Tailscale configuration (pattern vdemeester)
 { config, lib, pkgs, ... }:
-
-with lib;
-let
-  cfg = config.modules.services.tailscale;
-in
 {
-  options = {
-    modules.services.tailscale = {
-      enable = mkEnableOption "Whether to enable tailscale.";
-      port = mkOption {
-        default = 41641;
-        type = with types; int;
-        description = ''
-          The port to listen on for tunnel traffic
-        '';
-      };
-    };
-  };
-  config = mkIf cfg.enable {
-    # Enable the tailscale daemon; this will do a variety of tasks:
-    services.tailscale = { enable = true; };
+  # Enable the tailscale daemon
+  services.tailscale.enable = true;
 
-    # Add the Tailscale https://tailscale.com/ package.
-    environment.systemPackages = [ pkgs.tailscale ];
+  # Add the Tailscale package
+  environment.systemPackages = [ pkgs.tailscale ];
 
-    # Trust the tailscale interface
-    networking.firewall.trustedInterfaces = [ "tailscale0" ];
+  # Trust the tailscale interface
+  networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
-    # Let's open the UDP port with which the network is tunneled through
-    networking.firewall.allowedUDPPorts = [ cfg.port ];
-  };
+  # Open the UDP port for tunnel traffic
+  networking.firewall.allowedUDPPorts = [ 41641 ];
 }

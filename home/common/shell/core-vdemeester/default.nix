@@ -15,7 +15,7 @@
   ];
 
   home = {
-    stateVersion = "20.03";
+    stateVersion = lib.mkDefault "24.11";
     packages = with pkgs; [
       enchive
       entr

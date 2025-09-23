@@ -1,142 +1,84 @@
+# Desktop base configuration (pattern vdemeester)
 { config, lib, pkgs, ... }:
-let
-  inherit (lib) mkIf mkEnableOption mkDefault mkOption types;
-  cfg = config.modules.desktop;
-in
 {
-  options = {
-    modules.desktop = {
-      enable = mkEnableOption "desktop configuration";
-      plymouth = {
-        theme = mkOption {
-          default = "deus_ex";
-          description = "Plymouth theme to use for boot (hexagon, green_loader, deus_ex, cuts, sphere, spinner_alt)";
-          type = types.str;
-        };
-        themePackage = mkOption {
-          default = pkgs.my.adi1090x-plymouth;
-          description = "Plymouth theme package to use";
-          type = types.package;
-        };
-      };
+  # Import avahi service
+  imports = [ ../services/avahi.nix ];
+
+  boot = {
+    # /tmp to be tmpfs
+    tmp = {
+      useTmpfs = true;
+      cleanOnBoot = true;
+    };
+    # Enable Plymouth for boot splash
+    plymouth = {
+      enable = true;
+      theme = "spinner";
     };
   };
-  config = mkIf cfg.enable {
-    modules.services.avahi.enable = true;
-    boot = {
-      # Enable netbootxyz if systemd-boot is enabled
-      loader.systemd-boot.netbootxyz.enable = config.core.boot.systemd-boot;
-      # /tmp to be tmpfs
-      tmp = {
-        useTmpfs = true;
-        cleanOnBoot = true;
-      };
-      # Enable Plymouth on desktops
-      plymouth = {
-        enable = true;
-        themePackages = [ cfg.plymouth.themePackage ];
-        theme = cfg.plymouth.theme;
-      };
-    };
 
-    # Configure some fonts
-    fonts = {
-      # enableFontDir = true;
-      fontDir.enable = true;
-      enableGhostscriptFonts = true;
-      packages = with pkgs; [
-        cascadia-code
-        corefonts
-        dejavu_fonts
-        emojione
-        feh
-        fira
-        fira-code
-        fira-code-symbols
-        fira-mono
-        font-awesome
-        go-font
-        hack-font
-        hasklig
-        inconsolata
-        iosevka
-        jetbrains-mono
-        liberation_ttf
-        nerd-fonts.jetbrains-mono
-        nerd-fonts.inconsolata
-        nerd-fonts.fira-code
-        nerd-fonts.fira-mono
-        nerd-fonts.caskaydia-cove
-        nerd-fonts.caskaydia-mono
-        nerd-fonts.overpass
-        nerd-fonts.ubuntu
-        nerd-fonts.ubuntu-mono
-        nerd-fonts.ubuntu-sans
-        noto-fonts
-        noto-fonts-cjk-sans
-        noto-fonts-emoji
-        noto-fonts-extra
-        overpass
-        source-code-pro
-        symbola
-        twemoji-color-font
-        ubuntu_font_family
-        unifont
-        recursive
-      ];
-    };
-
-    # Enable NetkworManager by default
-    networking.networkmanager = {
-      enable = mkDefault true;
-      unmanaged = [
-        "interface-name:br-*"
-        "interface-name:ve-*" # FIXME are those docker's or libvirt's
-        "interface-name:veth-*" # FIXME are those docker's or libvirt's
-      ]
-      # Do not manager wireguard
-      ++ lib.optionals config.networking.wireguard.enable [ "interface-name:wg0" ]
-      # Do not manage docker interfaces
-      ++ lib.optionals config.virtualisation.docker.enable [ "interface-name:docker0" ]
-      # Do not manager libvirt interfaces
-      ++ lib.optionals config.virtualisation.libvirtd.enable [ "interface-name:virbr*" ];
-      plugins = with pkgs; [ networkmanager-openvpn ];
-    };
-
-    nix = {
-      # Enable SSH-serving nix packages
-      sshServe.enable = mkDefault true;
-    };
-
-    services = {
-      # udisks2.enable = true; # Sway related
-      envfs = {
-        enable = true;
-      };
-
-      # Make `/run/user/X` larger.
-      logind.settings = {
-        Login = {
-          RuntimeDirectorySize = "20%";
-        };
-      };
-
-      # Enable printing by default too
-      printing = {
-        enable = true;
-        drivers = [ pkgs.gutenprint ];
-      };
-    };
-
-    location.provider = "geoclue2";
-
-    # TODO: Xophe, move this elsewhere
-    environment.systemPackages = with pkgs; [
-      cryptsetup
-      unzip
-      gnupg
-      pinentry
-      inxi
+  # Configure fonts
+  fonts = {
+    fontDir.enable = true;
+    enableGhostscriptFonts = true;
+    packages = with pkgs; [
+      cascadia-code
+      corefonts
+      dejavu_fonts
+      fira
+      fira-code
+      fira-code-symbols
+      fira-mono
+      font-awesome
+      inconsolata
+      jetbrains-mono
+      liberation_ttf
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.fira-code
+      nerd-fonts.fira-mono
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-emoji
+      source-code-pro
+      ubuntu_font_family
     ];
   };
+
+  # Enable NetworkManager
+  networking.networkmanager = {
+    enable = lib.mkDefault true;
+    unmanaged = [
+      "interface-name:br-*"
+      "interface-name:ve-*"
+      "interface-name:veth-*"
+    ]
+    ++ lib.optionals config.networking.wireguard.enable [ "interface-name:wg0" ]
+    ++ lib.optionals config.virtualisation.docker.enable [ "interface-name:docker0" ]
+    ++ lib.optionals config.virtualisation.libvirtd.enable [ "interface-name:virbr*" ];
+    plugins = with pkgs; [ networkmanager-openvpn ];
+  };
+
+  services = {
+    envfs.enable = true;
+    
+    # Make /run/user/X larger
+    logind.settings.Login.RuntimeDirectorySize = "20%";
+
+    # Enable printing
+    printing = {
+      enable = true;
+      drivers = [ pkgs.gutenprint ];
+    };
+  };
+
+  location.provider = "geoclue2";
+
+  # Essential packages
+  environment.systemPackages = with pkgs; [
+    cryptsetup
+    unzip
+    gnupg
+    pinentry
+    inxi
+  ];
 }

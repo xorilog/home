@@ -1,3 +1,4 @@
+# Atuin configuration (pattern vdemeester)
 { config, ... }:
 {
   programs.atuin = {
@@ -11,5 +12,8 @@
       "--disable-up-arrow"
     ];
   };
-  xdg.dataFile."atuin/key".source = ../../../secrets/personal/atuin/key;
+  
+  # Configuration de la clé directement (sans agenix)
+  # TODO: this has to be handled with agenix.
+  #xdg.dataFile."atuin/key".source = ../../../secrets/personal/atuin/key;
 }

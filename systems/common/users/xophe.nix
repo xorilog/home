@@ -10,14 +10,12 @@ in
     createHome = true;
     uid = 1000;
     description = "Christophe Boucharlat";
-    extraGroups = [ "wheel" "input" ]
-      ++ optionals config.modules.desktop.enable [ "audio" "video" ]
-      # ++ optionals config.profiles.scanning.enable [ "lp" "scanner" ]
+    extraGroups = [ "wheel" "input" "audio" "video" ]
       ++ optionals config.networking.networkmanager.enable [ "networkmanager" ]
       ++ optionals config.virtualisation.docker.enable [ "docker" ]
       ++ optionals config.virtualisation.buildkitd.enable [ "buildkit" ]
-      ++ optionals config.modules.hardware.tpm.enable [ "tss" ] # tss group has access to TPM devices
-      ++ optionals config.modules.virtualisation.libvirt.enable [ "libvirtd" "vboxusers" ];
+      ++ optionals config.security.tpm2.enable [ "tss" ] # tss group has access to TPM devices
+      ++ optionals config.virtualisation.libvirtd.enable [ "libvirtd" "vboxusers" ];
     shell = mkIf config.programs.zsh.enable pkgs.zsh;
     isNormalUser = true;
     initialPassword = "changeMe";
@@ -58,13 +56,9 @@ in
   # the home-manager configuration. This should help play around the conditions
   # inside each "home-manager" modules instead of here.
   # Configuration home-manager pour xophe
-  home-manager.users.xophe = lib.mkMerge
-    (
-      [
-        (import ../../../home/common)
-      ]
-      ++ optionals config.modules.edf-sf.enable [
-        (import ../../../home/common/edf-sf)
-      ]
-    );
+  home-manager.users.xophe = lib.mkMerge [
+    (import ../../../home/common)
+    # EDF-SF configuration can be enabled selectively
+    # (import ../../../home/common/edf-sf)
+  ];
 }

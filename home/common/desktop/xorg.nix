@@ -1,6 +1,12 @@
-{ config, lib, pkgs, nixosConfig, ... }:
+{ config, lib, pkgs, nixosConfig, globals, hostname, ... }:
 
 {
   # home.file.".Xmodmap".source = ./xorg/Xmodmap;
-  programs.autorandr.enable = nixosConfig.modules.hardware.laptop.enable;
+  # Enable autorandr for laptop hardware
+  programs.autorandr.enable = 
+    let 
+      machine = globals.machines.${hostname} or {};
+      hardware = machine.hardware or null;
+    in 
+    hardware == "laptop";
 }

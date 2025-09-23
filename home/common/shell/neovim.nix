@@ -7,7 +7,7 @@
     yaml-language-server
     solargraph # ruby language server
     nodePackages.bash-language-server
-    nodePackages.dockerfile-language-server-nodejs
+    dockerfile-language-server
     nodePackages.typescript-language-server
     nodejs
     ctags

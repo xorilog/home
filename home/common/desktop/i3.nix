@@ -124,8 +124,8 @@ in
     theme = "slate";
   };
   services = {
-    blueman-applet.enable = nixosConfig.modules.hardware.bluetooth.enable;
-    pasystray.enable = nixosConfig.modules.hardware.audio.enable;
+    blueman-applet.enable = nixosConfig.hardware.bluetooth.enable or false;
+    pasystray.enable = nixosConfig.services.pipewire.enable or false;
     dunst = {
       enable = true;
       settings = {

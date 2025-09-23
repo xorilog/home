@@ -23,7 +23,7 @@ in
   ];
 
   home = {
-    stateVersion = "21.03";
+    stateVersion = lib.mkDefault "24.11";
     packages = with pkgs; [
       google-chrome
       # Common tools

@@ -39,7 +39,8 @@
     nixophe = {
       # Informations système
       system = "x86_64-linux";
-      desktop = "i3";
+      # TODO: need to validate this as i expect this to be in the flake.nix file.
+      #desktop = "i3";
       hardware = "laptop";
       
       # Configuration réseau

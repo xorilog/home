@@ -1,4 +1,4 @@
-{ config, lib, pkgs, nixosConfig, ... }:
+{ config, lib, pkgs, nixosConfig, desktop, ... }:
 
 let
   inherit (lib) optionals;
@@ -11,11 +11,10 @@ in
     ./mpv.nix
     ./gammastep.nix
     ./communication-tools.nix
+    ./claude.nix
   ]
-  ++ [ ./claude.nix ]
-  ++ optionals nixosConfig.modules.desktop.xorg.i3.enable [ ./i3.nix ]
-  ++ optionals nixosConfig.modules.desktop.xorg.enable [ ./xorg.nix ]
-  ++ optionals nixosConfig.modules.desktop.sway.enable [ ./sway.nix ];
+  ++ optionals (desktop == "i3") [ ./i3.nix ./xorg.nix ]
+  ++ optionals (desktop == "sway") [ ./sway.nix ];
 
   home.sessionVariables = { WEBKIT_DISABLE_COMPOSITING_MODE = 1; };
   home.packages = with pkgs; [

@@ -1,6 +1,23 @@
-# Configuration extra spécifique à nixophe (temporaire simplifiée)
+# Configuration extra spécifique à nixophe (pattern vdemeester)
 { inputs, config, pkgs, lib, ... }:
 {
+  # Imports directs modules common (pattern vdemeester)
+  imports = [
+    # Hardware laptop (déjà géré par hardware/default.nix conditionnel)
+    # Services requis
+    ../common/services/avahi.nix
+    ../common/services/syncthing.nix  
+    ../common/services/tailscale.nix
+    # Development
+    ../common/dev
+    ../common/virtualisation
+    # EDF-SF
+    ../common/edf-sf
+    # Shell & editors
+    ../common/shell
+    ../common/editors
+  ];
+
   # Configuration système spécifique
   networking = {
     hostName = "nixophe";
@@ -9,8 +26,15 @@
     firewall.extraCommands = ''iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns'';
   };
 
-  # Services système essentiels
-  services.gvfs.enable = true;
+  # Services système
+  services = {
+    gvfs.enable = true;
+    
+    # Configuration directe sans modules.*
+    avahi.enable = true;
+    tailscale.enable = true;
+    syncthing.enable = true;
+  };
 
   # Configuration système
   time.timeZone = "Europe/Paris";
@@ -33,6 +57,4 @@
 
   # Version système
   system.stateVersion = "22.05";
-  
-  # TODO: réintégrer modules après finalisation Point 5
 }

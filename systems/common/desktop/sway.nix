@@ -1,92 +1,72 @@
+# Sway desktop configuration (pattern vdemeester)
 { config, lib, pkgs, ... }:
-
-with lib;
-let
-  cfg = config.modules.desktop.sway;
-in
 {
-  options = {
-    modules.desktop.sway = {
-      enable = mkEnableOption "Enable sway desktop";
-    };
+  # Bluetooth support
+  hardware.bluetooth.enable = true;
+
+  # NetworkManager configuration
+  networking.networkmanager = {
+    enable = true;
+    unmanaged = [
+      "interface-name:br-*"
+      "interface-name:ve-*"
+      "interface-name:veth*"
+      "interface-name:wg0"
+      "interface-name:docker0"
+      "interface-name:virbr*"
+    ];
+    plugins = with pkgs; [ networkmanager-openvpn ];
   };
 
-  config = mkIf cfg.enable {
-    #profiles = {
-    #  desktop.enable = true;
-    #};
-    # profiles.pulseaudio.enable = true;
+  # Sway compositor session
+  systemd.user.targets.sway-session = {
+    description = "Sway compositor session";
+    documentation = [ "man:systemd.special(7)" ];
+    bindsTo = [ "graphical-session.target" ];
+    wants = [ "graphical-session-pre.target" ];
+    after = [ "graphical-session-pre.target" ];
+  };
+  
+  # Sway configuration
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+    extraPackages = with pkgs; [
+      alacritty
+      swaylock
+      swayidle
+      dmenu
+      wofi
+      xwayland
+      mako
+      kanshi
+      grim
+      slurp
+      wl-clipboard
+      wf-recorder
+    ];
+    extraSessionCommands = ''
+      export SDL_VIDEODRIVER=wayland
+      export QT_QPA_PLATFORM=wayland
+      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+      export _JAVA_AWT_WM_NONREPARENTING=1
+      export MOZ_ENABLE_WAYLAND=1
+    '';
+  };
 
-    hardware.bluetooth.enable = true;
-
-    networking.networkmanager = {
+  # X server and display manager
+  services = {
+    xserver = {
       enable = true;
-      unmanaged = [
-        "interface-name:br-*"
-        "interface-name:ve-*"
-        "interface-name:veth*"
-        "interface-name:wg0"
-        "interface-name:docker0"
-        "interface-name:virbr*"
-      ]; # FIXME: add unmanaged depending on profiles (wg0, docker0, …)
-      packages = with pkgs; [ networkmanager-openvpn ];
+      xkb = {
+        layout = "us";
+        variant = "intl";
+      };
     };
-
-    # configuring sway itself (assmung a display manager starts it)
-    systemd.user.targets.sway-session = {
-      description = "Sway compositor session";
-      documentation = [ "man:systemd.special(7)" ];
-      bindsTo = [ "graphical-session.target" ];
-      wants = [ "graphical-session-pre.target" ];
-      after = [ "graphical-session-pre.target" ];
+    displayManager = {
+      defaultSession = "sway";
+      sddm.enable = true;
     };
-    programs.sway = {
-      enable = true;
-      wrapperFeatures.gtk = true;
-      extraPackages = with pkgs; [
-        alacritty
-        swaylock
-        swayidle
-        dmenu
-        wofi
-        xwayland
-        mako
-        kanshi
-        grim
-        slurp
-        wl-clipboard
-        wf-recorder
-      ];
-      extraSessionCommands = ''
-        export SDL_VIDEODRIVER=wayland
-        export QT_QPA_PLATFORM=wayland
-        export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-        export _JAVA_AWT_WM_NONREPARENTING=1
-        export MOZ_ENABLE_WAYLAND=1
-      '';
-    };
-    # configuring kanshi
-    #systemd.user.services.kanshi = {
-    #  description = "Kanshi output autoconfig ";
-    #  wantedBy = [ "graphical-session.target" ];
-    #  partOf = [ "graphical-session.target" ];
-    #  environment = { XDG_CONFIG_HOME = "/home/xophe/.config"; };
-    #  serviceConfig = {
-    #    # kanshi doesn't have an option to specifiy config file yet, so it looks
-    #    # at .config/kanshi/config
-    #    ExecStart = ''
-    #      ${pkgs.kanshi}/bin/kanshi
-    #    '';
-    #    RestartSec = 5;
-    #    Restart = "always";
-    #  };
-    #};
-
-    services.xserver.enable = true;
-    services.xserver.displayManager.defaultSession = "sway";
-    services.xserver.layout = "us";
-    services.xserver.xkbVariant = "intl";
-    services.xserver.displayManager.sddm.enable = true;
-    services.xserver.libinput.enable = true;
+    libinput.enable = true;
   };
 }

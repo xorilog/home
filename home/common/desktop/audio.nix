@@ -1,7 +1,7 @@
 { config, nixosConfig, lib, pkgs, ... }:
 
 {
-  xdg.configFile = lib.mkIf nixosConfig.services.pipewire.wireplumber.enable {
+  xdg.configFile = lib.mkIf (nixosConfig.services.pipewire.wireplumber.enable or false) {
     "pipewire/pipewire.conf.d/raop-discover.conf" = {
       text = ''
         context.modules = [
