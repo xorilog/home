@@ -41,9 +41,20 @@
       url = "github:hercules-ci/gitignore";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    
+    # Applications externes
+    ghostty = {
+      url = "git+ssh://git@github.com/ghostty-org/ghostty?ref=main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
+    claude-desktop = {
+      url = "github:k3d3/claude-desktop-linux-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, emacs-overlay, nixos-hardware, sops-nix, gitignore, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, emacs-overlay, nixos-hardware, sops-nix, gitignore, ghostty, claude-desktop, ... }@inputs:
     let
       inherit (self) outputs;
       stateVersion = "24.11";
