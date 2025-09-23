@@ -4,7 +4,7 @@ with lib; {
   users.users.root = {
     shell = mkIf config.programs.zsh.enable pkgs.zsh;
   };
-  home-manager.users.root = lib.mkMerge (
-    [ (import ../xophe/core) ]
-  );
+  
+  # Configuration home-manager pour root (config de base)
+  home-manager.users.root = import ../../../home/common;
 }

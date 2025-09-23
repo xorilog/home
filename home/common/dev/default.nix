@@ -6,7 +6,9 @@
     ./nix.nix
     ./python.nix
     ./pre-commit.nix
-    ../../modules/tools/atuin.nix
+    ../tools/atuin.nix
+    ./iaas
+    ./containers
   ];
 
   home.extraOutputsToInstall = [ "doc" "info" "devdoc" ];

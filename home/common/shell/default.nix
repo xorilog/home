@@ -5,17 +5,18 @@ let
 in
 {
   imports = [
-    # TODO: Xophe review the location of all those modules.
-    ../../modules/shells/bash.nix
-    ../../modules/shells/zsh.nix
-    ../../modules/tools/direnv.nix
-    ../../modules/tools/fzf.nix
-    ../../modules/tools/gopass.nix
-    ../../modules/tools/sops.nix
-    ../../modules/tools/age.nix
-    ../../modules/tools/htop.nix
-    ../../modules/tools/tmux.nix
-    ../../modules/tools/xdg.nix
+    # Modules shells migrated
+    ./bash.nix
+    ./zsh.nix
+    # Modules tools migrated
+    ../tools/direnv.nix
+    ../tools/fzf.nix
+    ../tools/gopass.nix
+    ../tools/sops.nix
+    ../tools/age.nix
+    ../tools/htop.nix
+    ../tools/tmux.nix
+    ../tools/xdg.nix
     ./git.nix
     ./gpg.nix
     ./neovim.nix

@@ -51,29 +51,20 @@ in
     ${pkgs.systemd}/bin/loginctl enable-linger ${config.users.users.xophe.name}
   '';
 
-
   # To use nixos config in home-manager configuration, use the nixosConfig attr.
   # This make it possible to import the whole configuration, and let each module
   # load their own.
   # FIXME(vdemeester) using nixosConfig, we can get the NixOS configuration from
   # the home-manager configuration. This should help play around the conditions
   # inside each "home-manager" modules instead of here.
+  # Configuration home-manager pour xophe
   home-manager.users.xophe = lib.mkMerge
     (
       [
-        (import ./core)
+        (import ../../../home/common)
       ]
-      ++ optionals config.modules.dev.enable [
-        (import ./dev)
-        # TODO: Xophe to move elsewhere
-        (import ../modules/iaas/aws)
-      ]
-      ++ optionals config.modules.dev.containers.enable [
-        (import ./containers)
-      ]
-      ++ optionals config.modules.desktop.enable [ (import ./desktop) ]
       ++ optionals config.modules.edf-sf.enable [
-        (import ./edf-sf)
+        (import ../../../home/common/edf-sf)
       ]
     );
 }

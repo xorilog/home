@@ -26,9 +26,7 @@ in
       ../hardware/dell-xps-13-9310.nix
       (import ../../nix).home-manager
       ../common
-      (import ../../users).xophe
-      (import ../../users).root
-      ../../users/xophe/desktop/ghostty.nix
+      ../../home/common/desktop/ghostty.nix
     ];
 
   # Add required elements to play with zfs.
