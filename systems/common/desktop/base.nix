@@ -115,9 +115,11 @@ in
       };
 
       # Make `/run/user/X` larger.
-      logind.extraConfig = ''
-        RuntimeDirectorySize=20%
-      '';
+      logind.settings = {
+        Login = {
+          RuntimeDirectorySize = "20%";
+        };
+      };
 
       # Enable printing by default too
       printing = {

@@ -29,10 +29,12 @@ in
       systemd.services.nix-gc.unitConfig.ConditionACPower = true;
       # When a laptop is docked or on external power, ignore the lid state (if the laptop is opened or closed)
       services = {
-        logind.extraConfig = ''
-          HandleLidSwitchExternalPower=ignore
-          HandleLidSwitchDocked=ignore
-        '';
+        logind.settings = {
+          Login = {
+            HandleLidSwitchExternalPower = "ignore";
+            HandleLidSwitchDocked = "ignore";
+          };
+        };
       };
     }
     (mkIf config.modules.desktop.enable {

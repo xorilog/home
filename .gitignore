@@ -13,3 +13,10 @@ networking.nix
 .secrets
 hardware-configuration.nix
 /key.bin
+
+.claude/*
+analyse_*
+displaylink-*.zip
+guide-flakes.md
+migration/*
+reorganisation_*

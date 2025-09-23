@@ -25,7 +25,7 @@ in
     ../hardware/dell-xps-13-9310.nix
     # home-manager intégré via flake.nix maintenant
     # ../common -> géré par systems/default.nix
-    ../../home/common/desktop/ghostty.nix
+    # ../../home/common/desktop/ghostty.nix # TODO: temporaire, problème flake ghostty
   ];
 
   # Add required elements to play with zfs.

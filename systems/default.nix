@@ -105,8 +105,8 @@
   # Fix stack limit pour nix-daemon
   systemd.services.nix-daemon.serviceConfig."LimitSTACK" = "infinity";
 
-  # Version système
+  # Version système (mkDefault pour éviter conflit avec modules existants)
   system = {
-    inherit stateVersion;
+    stateVersion = lib.mkDefault stateVersion;
   };
 }

@@ -29,7 +29,8 @@ in
   };
   home.sessionVariables = { WEBKIT_DISABLE_COMPOSITING_MODE = 1; };
   home.packages = with pkgs; [
-    ((builtins.getFlake "git+ssh://git@github.com/ghostty-org/ghostty?ref=main").packages.${builtins.currentSystem}.ghostty)
+    # TODO: migrer vers input flake
+    # ((builtins.getFlake "git+ssh://git@github.com/ghostty-org/ghostty?ref=main").packages.${builtins.currentSystem}.ghostty)
     alacritty
     kitty
     gthumb
@@ -120,7 +121,7 @@ in
     package = pkgs.rofi.override { plugins = [ pkgs.rofi-emoji pkgs.rofi-menugen pkgs.rofi-mpd ]; };
     font = "Ubuntu Mono 14";
     #terminal = "${pkgs.kitty}/bin/kitty";~
-    terminal = "${config.home.profileDirectory}/bin/ghostty";
+    terminal = "${config.home.profileDirectory}/bin/alacritty"; # TODO: ghostty après migration flake
     theme = "slate";
   };
   services = {
@@ -197,7 +198,7 @@ in
       };
       keybindings = {
         #"Mod4+Return" = "exec kitty";
-        "Mod4+Return" = "exec ghostty";
+        "Mod4+Return" = "exec alacritty"; # TODO: ghostty après migration flake
       };
       gaps = {
         inner = 2;
