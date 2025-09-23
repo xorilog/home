@@ -6,7 +6,7 @@
     ./nix.nix
     ./python.nix
     ./pre-commit.nix
-    ../tools/atuin.nix
+    # ../tools/atuin.nix # TODO: temporaire, secret manquant
     ./iaas
     ./containers
   ];
