@@ -1,7 +1,7 @@
 {
   imports = [
     ./age.nix
-    # ./atuin.nix # TODO: temporaire, secret manquant
+    # ./atuin.nix # TODO: sera réactivé avec agenix
     ./direnv.nix
     ./fzf.nix
     ./gopass.nix

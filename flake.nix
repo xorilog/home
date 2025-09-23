@@ -82,18 +82,10 @@
         let
           pkgs = nixpkgs.legacyPackages.${system};
         in
-        pkgs.callPackage ./default.nix {
-          # Passage compatibilité sources -> inputs
-          sources = {
-            lib = nixpkgs.lib;
-            pkgs = _: pkgs;
-            pkgs-unstable = _: pkgs;  
-            nixpkgs = _: pkgs;
-          };
-          inherit (pkgs) lib;
-          inherit pkgs;
-          pkgs-unstable = pkgs;
-          nixpkgs = pkgs;
+        {
+          # Migration directe depuis default.nix
+          univ = pkgs.callPackage ./tools/univ { };
+          system = pkgs.callPackage ./tools/system { };
         }
       );
 
@@ -133,7 +125,6 @@
               
               # Validation
               nixos-rebuild
-              home-manager
             ];
             
             shellHook = ''
