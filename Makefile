@@ -6,7 +6,7 @@ SRCHOME = ~/src/github.com/xorilog/home
 
 # Flake configuration
 FLAKE_HOST := nixophe
-FLAKE := .#$(FLAKE_HOST)
+FLAKE := .#nixosConfigurations.$(FLAKE_HOST)
 HOME_FLAKE := .#homeConfigurations."xophe@$(FLAKE_HOST)"
 
 # Build flags
@@ -54,27 +54,27 @@ help:
 .PHONY: build
 build: secrets
 	@echo "🔨 Build configuration système flake..."
-	nix build $(BUILD_FLAGS) $(FLAKE).config.system.build.toplevel
+	nix build $(BUILD_FLAGS) .#nixosConfigurations.$(FLAKE_HOST).config.system.build.toplevel
 
 .PHONY: switch  
 switch: secrets
 	@echo "🔄 Switch vers nouvelle configuration..."
-	sudo nixos-rebuild switch $(REBUILD_FLAGS) --flake $(FLAKE)
+	sudo nixos-rebuild switch $(REBUILD_FLAGS) --flake .#$(FLAKE_HOST)
 
 .PHONY: test
 test: secrets
 	@echo "🧪 Test configuration temporaire..."
-	sudo nixos-rebuild test $(REBUILD_FLAGS) --flake $(FLAKE)
+	sudo nixos-rebuild test $(REBUILD_FLAGS) --flake .#$(FLAKE_HOST)
 
 .PHONY: boot
 boot: secrets  
 	@echo "🚀 Configuration pour prochaine boot..."
-	sudo nixos-rebuild boot $(REBUILD_FLAGS) --flake $(FLAKE)
+	sudo nixos-rebuild boot $(REBUILD_FLAGS) --flake .#$(FLAKE_HOST)
 
 .PHONY: dry-run
 dry-run: secrets
 	@echo "👁️  Preview changements (dry-run)..."
-	sudo nixos-rebuild switch $(REBUILD_FLAGS) --flake $(FLAKE) --dry-run
+	sudo nixos-rebuild switch $(REBUILD_FLAGS) --flake .#$(FLAKE_HOST) --dry-run
 
 # HOME MANAGER (migration flakes)
 .PHONY: home-build

@@ -43,7 +43,9 @@ in
       # terraform_0_14 <- deprecated
       terraform
       tfswitch
-      terraform-docs
+      # TODO: https://github.com/NixOS/nixpkgs/blob/97e5d399726f2ab2d501d6c4b4cf808134e6cadc/pkgs/by-name/te/terraform-docs/package.nix#L4
+      # Wait for upstream fix.
+      # terraform-docs
 
       # Real editor
       vscode
