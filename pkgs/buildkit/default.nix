@@ -17,7 +17,7 @@ buildGoModule rec {
     repo = "buildkit";
     sha256 = "sha256-xjuHMjJjA4sx2Hrr6tPpvKtSmhGZ3AZka733DLxmYfk=";
   };
-  vendorSha256 = null;
+  vendorHash = null;
   doCheck = false;
 
   meta = {

@@ -8,7 +8,6 @@
     ./home-manager.nix
     ./nix.nix
     ./nur.nix
-    ./users.nix
     ./i18n.nix
   ];
 

@@ -13,7 +13,8 @@
     # Enable Plymouth for boot splash
     plymouth = {
       enable = true;
-      theme = "spinner";
+      theme = "deus_ex";
+      themePackages = [ pkgs.adi1090x-plymouth ];
     };
   };
 
@@ -25,42 +26,47 @@
       cascadia-code
       corefonts
       dejavu_fonts
+      emojione
+      feh
       fira
       fira-code
       fira-code-symbols
       fira-mono
       font-awesome
+      go-font
+      hack-font
+      hasklig
       inconsolata
+      iosevka
       jetbrains-mono
       liberation_ttf
       nerd-fonts.jetbrains-mono
+      nerd-fonts.inconsolata
       nerd-fonts.fira-code
       nerd-fonts.fira-mono
+      nerd-fonts.caskaydia-cove
+      nerd-fonts.caskaydia-mono
+      nerd-fonts.overpass
+      nerd-fonts.ubuntu
+      nerd-fonts.ubuntu-mono
+      nerd-fonts.ubuntu-sans
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-emoji
+      noto-fonts-extra
+      overpass
       source-code-pro
+      symbola
+      twemoji-color-font
       ubuntu_font_family
+      unifont
+      recursive
     ];
-  };
-
-  # Enable NetworkManager
-  networking.networkmanager = {
-    enable = lib.mkDefault true;
-    unmanaged = [
-      "interface-name:br-*"
-      "interface-name:ve-*"
-      "interface-name:veth-*"
-    ]
-    ++ lib.optionals config.networking.wireguard.enable [ "interface-name:wg0" ]
-    ++ lib.optionals config.virtualisation.docker.enable [ "interface-name:docker0" ]
-    ++ lib.optionals config.virtualisation.libvirtd.enable [ "interface-name:virbr*" ];
-    plugins = with pkgs; [ networkmanager-openvpn ];
   };
 
   services = {
     envfs.enable = true;
-    
+
     # Make /run/user/X larger
     logind.settings.Login.RuntimeDirectorySize = "20%";
 

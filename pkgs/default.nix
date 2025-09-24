@@ -1,11 +1,9 @@
-{ sources ? import ../.
-, pkgs ? sources.pkgs { }
-}:
+{ pkgs }:
 rec {
   # pre nur-packages import
   scripts = pkgs.callPackage ./my/scripts { };
   vrsync = pkgs.callPackage ./my/vrsync { };
-  bekind = pkgs.callPackage ../../tools/bekind { };
+  bekind = pkgs.callPackage ../tools/bekind { };
 
   # Mine
   ape = pkgs.callPackage ./ape { };

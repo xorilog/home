@@ -6,11 +6,17 @@
     # Hardware laptop (déjà géré par hardware/default.nix conditionnel)
     # Services requis
     ../common/services/avahi.nix
-    ../common/services/syncthing.nix  
+    ../common/services/syncthing.nix
     ../common/services/tailscale.nix
+    ../common/services/networkmanager.nix
+
+    # Containers & virtualisation
+    ../common/services/containers.nix
+    ../common/services/docker.nix
+    ../common/services/libvirt.nix
+
     # Development
     ../common/dev
-    ../common/virtualisation
     # EDF-SF
     ../common/edf-sf
     # Shell & editors
@@ -29,7 +35,7 @@
   # Services système
   services = {
     gvfs.enable = true;
-    
+
     # Configuration directe sans modules.*
     avahi.enable = true;
     tailscale.enable = true;
@@ -38,7 +44,6 @@
 
   # Configuration système
   time.timeZone = "Europe/Paris";
-  environment.variables.EDITOR = "vim";
   nixpkgs.config.allowUnfree = true;
 
   # Configuration GPG

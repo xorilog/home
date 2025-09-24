@@ -8,6 +8,7 @@ in
     # Modules shells migrated
     ./bash.nix
     ./zsh.nix
+    # TODO: move the tools in the current home/common/shell directory
     # Modules tools migrated
     ../tools/direnv.nix
     ../tools/fzf.nix
@@ -16,7 +17,7 @@ in
     ../tools/age.nix
     ../tools/htop.nix
     ../tools/tmux.nix
-    ../tools/xdg.nix
+    ./xdg.nix
     ./git.nix
     ./gpg.nix
     ./neovim.nix

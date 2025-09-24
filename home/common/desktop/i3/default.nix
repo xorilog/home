@@ -20,6 +20,7 @@ in
   imports = [
     ./alacritty.nix
     ./autorandr.nix
+    ./xorg.nix
   ];
   home.pointerCursor = {
     gtk.enable = true;
@@ -27,7 +28,6 @@ in
     package = pkgs.vanilla-dmz;
     name = "Vanilla-DMZ";
   };
-  home.sessionVariables = { WEBKIT_DISABLE_COMPOSITING_MODE = 1; };
   home.packages = with pkgs; [
     inputs.ghostty.packages.${pkgs.system}.ghostty
     alacritty

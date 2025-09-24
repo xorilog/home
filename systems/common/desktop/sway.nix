@@ -4,20 +4,6 @@
   # Bluetooth support
   hardware.bluetooth.enable = true;
 
-  # NetworkManager configuration
-  networking.networkmanager = {
-    enable = true;
-    unmanaged = [
-      "interface-name:br-*"
-      "interface-name:ve-*"
-      "interface-name:veth*"
-      "interface-name:wg0"
-      "interface-name:docker0"
-      "interface-name:virbr*"
-    ];
-    plugins = with pkgs; [ networkmanager-openvpn ];
-  };
-
   # Sway compositor session
   systemd.user.targets.sway-session = {
     description = "Sway compositor session";

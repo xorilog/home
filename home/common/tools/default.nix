@@ -8,6 +8,5 @@
     ./htop.nix
     ./sops.nix
     ./tmux.nix
-    ./xdg.nix
   ];
 }

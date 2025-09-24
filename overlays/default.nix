@@ -1,12 +1,14 @@
 { inputs, ... }:
 {
-  # Custom packages (from ../pkgs directory if it exists)
-  additions = final: _prev: 
-    let 
+  # Custom packages (from ../pkgs directory)
+  additions = final: _prev:
+    let
       pkgsPath = ../pkgs;
     in
-    if builtins.pathExists pkgsPath 
-    then import pkgsPath { pkgs = final; }
+    if builtins.pathExists pkgsPath
+    then {
+      my = import pkgsPath { pkgs = final; };
+    } // (import pkgsPath { pkgs = final; })
     else {};
 
   # Package modifications and overrides

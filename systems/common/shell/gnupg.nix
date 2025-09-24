@@ -2,7 +2,8 @@
 { config, lib, pkgs, ... }:
 {
   environment = {
-    variables.GNUPGHOME = "$XDG_CONFIG_HOME/gnupg";
+    # GNUPGHOME est défini dans home-manager où XDG_CONFIG_HOME est disponible
+    # variables.GNUPGHOME = "$XDG_CONFIG_HOME/gnupg";
     systemPackages = [ pkgs.gnupg ];
   };
 }

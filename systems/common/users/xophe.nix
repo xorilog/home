@@ -1,26 +1,63 @@
-{ config, lib, pkgs, ... }:
-with lib;
+{
+  pkgs,
+  lib,
+  config,
+  desktop,
+  hostname,
+  outputs,
+  stateVersion,
+  inputs,
+  globals,
+  libx,
+  ...
+}:
 let
-  hasConfigVirtualizationContainers = builtins.hasAttr "containers" config.virtualisation;
-  isContainersEnabled = if hasConfigVirtualizationContainers then config.virtualisation.containers.enable else false;
+  ifExists = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in
 {
-  warnings = if (versionAtLeast config.system.nixos.release "21.11") then [ ] else [ "NixOS release: ${config.system.nixos.release}" ];
   users.users.xophe = {
+    description = "Christophe Boucharlat";
     createHome = true;
     uid = 1000;
-    description = "Christophe Boucharlat";
-    extraGroups = [ "wheel" "input" "audio" "video" ]
-      ++ optionals config.networking.networkmanager.enable [ "networkmanager" ]
-      ++ optionals config.virtualisation.docker.enable [ "docker" ]
-      ++ optionals config.virtualisation.buildkitd.enable [ "buildkit" ]
-      ++ optionals config.security.tpm2.enable [ "tss" ] # tss group has access to TPM devices
-      ++ optionals config.virtualisation.libvirtd.enable [ "libvirtd" "vboxusers" ];
-    shell = mkIf config.programs.zsh.enable pkgs.zsh;
     isNormalUser = true;
+    shell = pkgs.zsh;
+    extraGroups =
+      [
+        "wheel"
+        "input"
+      ]
+      ++ lib.optionals (builtins.isString desktop) [
+        "networkmanager"
+        "audio"
+        "video"
+      ]
+      ++ ifExists [
+        "buildkit"
+        "docker"
+        "libvirt"
+        "libvirtd"
+        "lxd"
+        "lp"
+        "messagebus"
+        "nginx"
+        "plugdev"
+        "scanner"
+        "tss"
+        "vboxusers"
+      ];
+    subUidRanges = [
+      {
+        startUid = 100000;
+        count = 65536;
+      }
+    ];
+    subGidRanges = [
+      {
+        startGid = 100000;
+        count = 65536;
+      }
+    ];
     initialPassword = "changeMe";
-    subUidRanges = [{ startUid = 100000; count = 65536; }];
-    subGidRanges = [{ startGid = 100000; count = 65536; }];
   };
 
   nix = {
@@ -56,9 +93,30 @@ in
   # the home-manager configuration. This should help play around the conditions
   # inside each "home-manager" modules instead of here.
   # Configuration home-manager pour xophe
-  home-manager.users.xophe = lib.mkMerge [
-    (import ../../../home/common)
-    # EDF-SF configuration can be enabled selectively
-    # (import ../../../home/common/edf-sf)
-  ];
+  # Previous xophe way to do it.
+  #home-manager.users.xophe = lib.mkMerge [
+  #  (import ../../../home/common)
+  #  # EDF-SF configuration can be enabled selectively
+  #  # (import ../../../home/common/edf-sf)
+  #];
+  # Do I user home-manager nixosModule *or* home-manager on its own
+  home-manager.users.xophe = import ../../../home/default.nix {
+    inherit
+      config
+      pkgs
+      lib
+      hostname
+      desktop
+      globals
+      outputs
+      inputs
+      stateVersion
+      libx
+      ;
+    username = "xophe";
+  };
+  # This is a workaround for not seemingly being able to set $EDITOR in home-manager
+  environment.sessionVariables = {
+    EDITOR = "nvim";
+  };
 }

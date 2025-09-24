@@ -1,14 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
-with lib;
-let
-  knd = pkgs.writeScriptBin "knd" ''
-    #!${pkgs.stdenv.shell}
-    ${pkgs.kubectl}/bin/kubectl get namespaces -o name | ${pkgs.fzf}/bin/fzf --multi | xargs kubectl delete
-  '';
-in
 {
   home.packages = with pkgs; [
+    skopeo
+    oras
+    dive
+
     #cri-tools
     # base
     kubectl

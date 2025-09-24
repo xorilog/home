@@ -8,7 +8,6 @@
     ./pre-commit.nix
     # ../tools/atuin.nix # TODO: sera réactivé avec agenix
     ./iaas
-    ./containers
   ];
 
   home.extraOutputsToInstall = [ "doc" "info" "devdoc" ];

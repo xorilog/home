@@ -34,7 +34,7 @@
         desktop
         globals
         ;
-      username = user;  # Pattern vdemeester: user -> username
+      username = user;
       libx = import ./functions.nix { inherit (inputs.nixpkgs) lib; };
     };
     modules = [

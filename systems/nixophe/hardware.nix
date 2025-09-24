@@ -17,7 +17,6 @@
   environment.systemPackages = with pkgs; [
     virt-manager
     acpilight  # Force xbacklight à fonctionner
-    docker-client
   ];
 
   # Règles udev pour backlight

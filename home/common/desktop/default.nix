@@ -1,10 +1,13 @@
-{ config, lib, pkgs, nixosConfig, desktop, ... }:
+{ config, lib, pkgs, desktop, ... }:
 
 let
   inherit (lib) optionals;
 in
 {
   imports = [
+    # FIXME why the infinite recusion
+    (./. + "/${desktop}/default.nix")
+
     ./audio.nix
     ./firefox.nix
     ./gtk.nix
@@ -12,11 +15,8 @@ in
     ./gammastep.nix
     ./communication-tools.nix
     ./claude.nix
-  ]
-  ++ optionals (desktop == "i3") [ ./i3.nix ./xorg.nix ]
-  ++ optionals (desktop == "sway") [ ./sway.nix ];
+  ];
 
-  home.sessionVariables = { WEBKIT_DISABLE_COMPOSITING_MODE = 1; };
   home.packages = with pkgs; [
     aspell
     aspellDicts.en

@@ -2,9 +2,6 @@
 { config, lib, pkgs, ... }:
 {
   environment = {
-    variables = {
-      EDITOR = pkgs.lib.mkOverride 0 "vim";
-    };
     systemPackages = with pkgs; [
       file
       htop
@@ -18,7 +15,7 @@
       wget
     ];
   };
-  
+
   security.sudo.extraConfig = ''
     Defaults env_keep += SSH_AUTH_SOCK
   '';
