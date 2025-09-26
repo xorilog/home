@@ -1,5 +1,5 @@
 # Atuin configuration (pattern vdemeester)
-{ config, ... }:
+{ config, lib, ... }:
 {
   programs.atuin = {
     enable = true;
@@ -12,8 +12,11 @@
       "--disable-up-arrow"
     ];
   };
-  
-  # Configuration de la clé directement (sans agenix)
-  # TODO: this has to be handled with agenix.
-  #xdg.dataFile."atuin/key".source = ../../../secrets/personal/atuin/key;
+
+  # Configuration de la clé avec agenix (si le secret existe)
+  # Note: Le secret doit être défini dans systems/common/programs/agenix.nix
+  # et le fichier de clé doit être créé avec: agenix -e atuin-key.age
+  xdg.dataFile."atuin/key" = lib.mkIf (builtins.pathExists "/run/agenix/atuin-key") {
+    source = "/run/agenix/atuin-key";
+  };
 }

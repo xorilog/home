@@ -27,9 +27,15 @@
     # NixOS hardware support (identifié dans sources.json)
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
-    # SOPS pour secrets (identifié dans sources.json) 
+    # SOPS pour secrets (identifié dans sources.json)
     sops-nix = {
       url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Agenix pour secrets avec age
+    agenix = {
+      url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
@@ -51,7 +57,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, nixpkgs-master, home-manager, nixos-hardware, sops-nix, gitignore, ghostty, claude-desktop, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, nixpkgs-master, home-manager, nixos-hardware, sops-nix, agenix, gitignore, ghostty, claude-desktop, ... }@inputs:
     let
       inherit (self) outputs;
       stateVersion = "24.11";

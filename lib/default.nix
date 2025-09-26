@@ -80,6 +80,7 @@
 
       # Modules externes
       inputs.sops-nix.nixosModules.sops
+      inputs.agenix.nixosModules.default
       homeInput.nixosModules.home-manager
 
       # Configuration home-manager
