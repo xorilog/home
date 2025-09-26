@@ -77,20 +77,18 @@
     modules = [
       # Modules personnalisés (TODO: à créer)
       # self.nixosModules.exemple
-      
+
       # Modules externes
       inputs.sops-nix.nixosModules.sops
       homeInput.nixosModules.home-manager
-      
+
       # Configuration home-manager
-      { 
+      {
         home-manager = {
-          useGlobalPkgs = true;
-          useUserPackages = true;
           extraSpecialArgs = specialArgs;
         };
       }
-      
+
       # Point d'entrée systems/
       ../systems
     ];

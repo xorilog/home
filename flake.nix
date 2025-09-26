@@ -14,23 +14,19 @@
     # Nixpkgs versions (basé sur sources.json analysées)
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
-    nixpkgs-master.url = "github:NixOS/nixpkgs/master"; 
-    
+    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
+
     # Home Manager
     home-manager = {
-      url = "github:nix-community/home-manager";
+      type = "github";
+      owner = "nix-community";
+      repo = "home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
-    # Emacs overlay (identifié dans sources.json)
-    emacs-overlay = {
-      url = "github:nix-community/emacs-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    
+
     # NixOS hardware support (identifié dans sources.json)
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    
+
     # SOPS pour secrets (identifié dans sources.json) 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -55,7 +51,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, nixpkgs-master, home-manager, emacs-overlay, nixos-hardware, sops-nix, gitignore, ghostty, claude-desktop, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, nixpkgs-master, home-manager, nixos-hardware, sops-nix, gitignore, ghostty, claude-desktop, ... }@inputs:
     let
       inherit (self) outputs;
       stateVersion = "24.11";

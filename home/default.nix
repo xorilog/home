@@ -54,28 +54,26 @@
   };
 
   # Configuration nixpkgs avec overlays - désactivé car useGlobalPkgs = true
-  # nixpkgs = {
-  #   overlays = [
-  #     # Nos overlays (système avancé)
-  #     outputs.overlays.additions
-  #     outputs.overlays.modifications
-  #     outputs.overlays.unstable-packages
-  #
-  #     # Overlays externes (disponibles via inputs)
-  #     # TODO: remove emacs stuff
-  #     inputs.emacs-overlay.overlays.default
-  #
-  #     # Overlays externes à intégrer
-  #     inputs.ghostty.overlays.default or (_: _: {})
-  #     inputs.claude-desktop.overlays.default or (_: _: {})
-  #   ];
-  #   config = {
-  #     allowUnfree = true;
-  #     # Workaround pour home-manager
-  #     allowUnfreePredicate = _: true;
-  #   };
-  # };
+  nixpkgs = {
+    overlays = [
+      # Nos overlays (système avancé)
+      outputs.overlays.additions
+      outputs.overlays.modifications
+      outputs.overlays.unstable-packages
 
-  # Programme home-manager
-  programs.home-manager.enable = true;
+      # Overlays externes (disponibles via inputs)
+
+      # Overlays externes à intégrer
+      inputs.ghostty.overlays.default or (_: _: {})
+      inputs.claude-desktop.overlays.default or (_: _: {})
+    ];
+    config = {
+      allowUnfree = true;
+      # Workaround pour home-manager
+      allowUnfreePredicate = _: true;
+    };
+  };
+
+  ## Programme home-manager
+  #programs.home-manager.enable = true;
 }

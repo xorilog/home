@@ -34,7 +34,6 @@
       outputs.overlays.unstable-packages
       
       # Overlays externes
-      inputs.emacs-overlay.overlays.default
       inputs.ghostty.overlays.default or (_: _: {})
       inputs.claude-desktop.overlays.default or (_: _: {})
       

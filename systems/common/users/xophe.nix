@@ -58,6 +58,7 @@ in
       }
     ];
     initialPassword = "changeMe";
+    packages = [ pkgs.home-manager ];
   };
 
   nix = {
