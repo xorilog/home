@@ -61,7 +61,10 @@
     # Optimisation automatique
     optimise = {
       automatic = true;
-      dates = [ "03:10" ]; # 3h du matin
+      dates = [
+        "01:10"
+        "12:10"
+      ]; # 1h10 du matin et 12:10
     };
 
     settings = {
@@ -70,25 +73,31 @@
         "nix-command"
         "flakes"
       ];
-      
+
       # Optimisation store
       auto-optimise-store = true;
-      
+
       # Utilisateurs de confiance
       trusted-users = [ "root" "@wheel" ];
       allowed-users = [ "@wheel" ];
-      
+
       # XDG pour organisation
       use-xdg-base-directories = true;
-      
-      # Caches binaires
+
+      # Add some "caches" (substituters)
       substituters = [
         "https://cache.nixos.org/"
-        # TODO: ajouter autres caches si nécessaire
+        "https://r-ryantm.cachix.org"
+        "https://shortbrain.cachix.org"
+        "https://vdemeester.cachix.org"
+        "https://nixos-raspberrypi.cachix.org"
       ];
-      
       trusted-public-keys = [
-        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+        "r-ryantm.cachix.org-1:gkUbLkouDAyvBdpBX0JOdIiD2/DP1ldF3Z3Y6Gqcc4c="
+        "shortbrain.cachix.org-1:dqXcXzM0yXs3eo9ChmMfmob93eemwNyhTx7wCR4IjeQ="
+        "mic92.cachix.org-1:gi8IhgiT3CYZnJsaW7fxznzTkMUOn1RY4GmXdT/nXYQ="
+        "vdemeester.cachix.org-1:eZWNOrLR9A9szeMahn9ENaoT9DB3WgOos8va+d2CU44="
+        "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
       ];
     };
 

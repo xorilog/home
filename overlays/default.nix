@@ -17,10 +17,18 @@
     # custom-package = prev.package.overrideAttrs (oldAttrs: {
     #   # customizations
     # });
-    
+
     # Ghostty and Claude from inputs (if needed as overlay)
     # ghostty = inputs.ghostty.packages.${final.system}.ghostty;
     # claude-desktop = inputs.claude-desktop.packages.${final.system}.claude-desktop-with-fhs;
+
+    # Legacy mkSecret functionality
+    mkSecret = path:
+      let
+        name = builtins.baseNameOf (toString path);
+        stub = final.writeText name "This is a stub!\n";
+      in
+      if builtins.pathExists path then path else final.lib.warn "Using stub for secrets/${name}" stub;
   };
 
   # Access to different nixpkgs versions

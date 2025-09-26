@@ -5,22 +5,21 @@ let
 in
 {
   imports = [
-    # Modules shells migrated
+    # Modules shells
     ./bash.nix
     ./zsh.nix
-    # TODO: move the tools in the current home/common/shell directory
-    # Modules tools migrated
-    ../tools/direnv.nix
-    ../tools/fzf.nix
-    ../tools/gopass.nix
-    ../tools/sops.nix
-    ../tools/age.nix
-    ../tools/htop.nix
-    ../tools/tmux.nix
     ./xdg.nix
     ./git.nix
     ./gpg.nix
     ./neovim.nix
+
+    # Shell tools (migrated from tools/)
+    ./direnv.nix
+    ./fzf.nix
+    ./gopass.nix
+    ./htop.nix
+    ./tmux.nix
+    ./atuin.nix
   ];
 
   home = {

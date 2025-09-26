@@ -8,6 +8,7 @@
     ./nix.nix
     ./nur.nix
     ./i18n.nix
+    ../programs
   ];
 
   boot = {

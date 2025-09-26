@@ -22,7 +22,6 @@
     ./common/edf-sf
     ./common/profiles
     ./common/services
-    ./common/tools
   ]
   # Desktop si défini
   ++ lib.optional (builtins.isString desktop) ./common/desktop

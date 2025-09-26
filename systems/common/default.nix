@@ -6,7 +6,6 @@
     ./edf-sf
     ./editors
     ./hardware
-    ./programs
     ./services
     ./shell
     ./users

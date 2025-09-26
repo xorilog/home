@@ -94,13 +94,9 @@ in
     # `nix-daemon` will hit the stack limit when using `nixFlakes`.
     systemd.services.nix-daemon.serviceConfig."LimitSTACK" = "infinity";
 
+    # nixpkgs overlays are now handled at the flake level
+    # No need to import them here since they're passed via specialArgs
     nixpkgs = {
-      overlays = [
-        (import ../../../nix/overlays/mkSecret.nix)
-        (import ../../../nix/overlays/sbr.nix)
-        (import ../../../nix/overlays/unstable.nix)
-        #(import ../../../nix/overlays/neovim-overlay.nix)
-      ];
       config = {
         allowUnfree = true;
       };
@@ -108,7 +104,7 @@ in
     system = {
       extraSystemBuilderCmds = ''
         ln -sv ${pkgs.path} $out/nixpkgs
-        ln -sv ${../../../nix/overlays} $out/overlays
+        ln -sv ${../../../overlays} $out/overlays
       '';
 
       stateVersion = "22.05";
