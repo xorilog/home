@@ -107,6 +107,49 @@
         };
       };
     };
+
+    # NAS peer for Syncthing
+    nas = {
+      # Informations système
+      system = "x86_64-linux"; # Assuming standard NAS
+
+      # Configuration réseau
+      net = {
+        ips = []; # NAS may have dynamic/DHCP IP
+        names = [
+          "nas.home.localtime.dev"
+          "nas.tail.localtime.dev"
+        ];
+      };
+
+      # Configuration Syncthing
+      syncthing = {
+        id = "XXXXXXX-XXXXXXX-XXXXXXX-XXXXXXX-XXXXXXX-XXXXXXX-XXXXXXX-XXXXXXX"; # TODO: Replace with actual NAS Syncthing ID
+        folders = {
+          "desktop/downloads" = {
+            type = "sendreceive";
+          };
+          "sync/nixos/personal" = {
+            type = "sendreceive";
+          };
+          "AGS-backup-src" = {
+            type = "sendreceive";
+          };
+          "desktop/pictures" = {
+            type = "sendreceive";
+          };
+          "sync/password-store" = {
+            type = "sendreceive";
+          };
+          "edf-sf/documents" = {
+            type = "sendreceive";
+          };
+          "sync/nixos/edf-sf" = {
+            type = "sendreceive";
+          };
+        };
+      };
+    };
   };
 
   # Utilisateurs système
