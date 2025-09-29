@@ -20,5 +20,6 @@ here is the error log.
 18:15:23.913 [helper] ERROR: ImportError: cannot import name 'list_ctap_devices' from partially initialized module 'ykman.hid' (most likely due to a circular import) (/nix/store/3m8qzkq8q45kqai8fnhnzs5bv5dx8z6d-python3.13-yubikey-manager-5.8.0/lib/python3.13/site-packages/ykman/hid/__init__.py)
 18:15:42.685 [desktop.init] INFO: Copying log to clipboard (7.2.3)...
 
-2. my dimming application does not show in the i3bar (have to find it again to add it back) (redshift ?)
-3. My ~/.syncthing/config.xml has been messed up the peer is no more present. i need to find out how to add it back.
+Seems to be fixed in the next yubikey-manager release cf: https://github.com/nixos/nixpkgs/issues/442315
+
+

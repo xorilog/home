@@ -1,5 +1,13 @@
 # Syncthing configuration (pattern vdemeester)
-{ config, lib, pkgs, globals, hostname, libx, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  globals,
+  hostname,
+  libx,
+  ...
+}:
 {
   services.syncthing = {
     enable = true;
@@ -11,7 +19,9 @@
     openDefaultPorts = true; # TODO: Xophe This has to be checked.
     settings = {
       devices = libx.generateSyncthingDevices hostname globals.machines;
-      folders = libx.generateSyncthingFolders hostname globals.machines."${hostname}" globals.machines globals.syncthingFolders;
+      folders =
+        libx.generateSyncthingFolders hostname globals.machines."${hostname}" globals.machines
+          globals.syncthingFolders;
     };
   };
 }

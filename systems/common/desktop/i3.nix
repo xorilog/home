@@ -1,5 +1,10 @@
 # i3 desktop configuration (pattern vdemeester)
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   # Import required modules
   imports = [
@@ -20,6 +25,6 @@
       packages = [ pkgs.dconf ];
     };
   };
-  
+
   programs.dconf.enable = true;
 }

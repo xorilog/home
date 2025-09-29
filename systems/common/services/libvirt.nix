@@ -1,4 +1,9 @@
-{ lib, pkgs, desktop, ... }:
+{
+  lib,
+  pkgs,
+  desktop,
+  ...
+}:
 {
   boot.kernelParams = [ "kvm_intel.nested=1" ];
   environment.etc."modprobe.d/kvm.conf".text = ''
@@ -18,14 +23,16 @@
   };
   networking.firewall.allowedTCPPorts = [ 16509 ];
   security.polkit.enable = true; # 22.11: libvirtd requires poltkit to be enabled
-  environment.systemPackages = with pkgs; [
-    qemu
-    vde2
-    libosinfo
-  ]
-  ++ lib.optionals (builtins.isString desktop) [
-    virt-manager
-  ];
+  environment.systemPackages =
+    with pkgs;
+    [
+      qemu
+      vde2
+      libosinfo
+    ]
+    ++ lib.optionals (builtins.isString desktop) [
+      virt-manager
+    ];
   boot.kernel.sysctl = {
     "net.ipv4.ip_forward" = lib.mkDefault 1;
   };

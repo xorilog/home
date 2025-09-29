@@ -1,4 +1,9 @@
-{ stdenv, lib, fetchFromGitHub, buildGoModule }:
+{
+  stdenv,
+  lib,
+  fetchFromGitHub,
+  buildGoModule,
+}:
 
 buildGoModule rec {
   name = "buildx-${version}";
@@ -22,7 +27,7 @@ buildGoModule rec {
 
   meta = {
     description = "Docker CLI plugin for extended build capabilities with buildkit";
-    homepage = https://github.com/docker/buildx;
+    homepage = "https://github.com/docker/buildx";
     license = lib.licenses.asl20;
   };
 }

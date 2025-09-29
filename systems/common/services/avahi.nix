@@ -1,5 +1,10 @@
 # Avahi configuration (pattern vdemeester)
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   inherit (lib) versionOlder;
@@ -15,10 +20,15 @@ in
       userServices = true;
     };
     openFirewall = true;
-  } // (if stable
-  then {
-    nssmdns = true;
-  } else {
-    nssmdns4 = true;
-  });
+  }
+  // (
+    if stable then
+      {
+        nssmdns = true;
+      }
+    else
+      {
+        nssmdns4 = true;
+      }
+  );
 }

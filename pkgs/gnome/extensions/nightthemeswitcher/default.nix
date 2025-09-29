@@ -1,4 +1,13 @@
-{ stdenv, fetchFromGitLab, glib, gettext, bash, nodePackages, gnome, unzip }:
+{
+  stdenv,
+  fetchFromGitLab,
+  glib,
+  gettext,
+  bash,
+  nodePackages,
+  gnome,
+  unzip,
+}:
 
 stdenv.mkDerivation rec {
   pname = "nightthemeswitcher-gnome-shell-extension";

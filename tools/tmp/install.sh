@@ -3,7 +3,7 @@
 # This scripts tries to automate the NixOS installation
 # as much as possible.
 # curl https://gitlab.com/vdemeester/home/-/raw/master/install.sh | sh
-REPO=https://github.com/xorilog/home.git
+
 set -eo pipefail
 
 read -p "Hostname: " name
@@ -43,7 +43,7 @@ echo "Setup configuration"
 set -x
 
 mkdir -p /mnt/etc
-git clone --recurse-submodules ${REPO} /mnt/etc/nixos
+git clone --recurse-submodules https://gitlab.com/vdemeester/home.git /mnt/etc/nixos
 echo -n ${name} > /mnt/etc/nixos/hostname
 nixos-generate-config --root /mnt
 

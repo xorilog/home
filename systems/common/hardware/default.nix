@@ -1,4 +1,8 @@
-{ hardwareType ? "", lib, ... }:
+{
+  hardwareType ? "",
+  lib,
+  ...
+}:
 {
   imports = [
     ./audio.nix

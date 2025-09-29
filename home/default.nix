@@ -7,8 +7,8 @@
   stateVersion,
   username,
   inputs,
-  globals ? {},
-  libx ? {},
+  globals ? { },
+  libx ? { },
   ...
 }:
 {
@@ -35,7 +35,9 @@
     && libx.hasSyncthingFolders globals.machines."${hostname}"
   ) ./common/services/syncthing.nix
   # Machine-specific home config si existe
-  ++ lib.optional (builtins.pathExists (../systems/. + "/${hostname}/home.nix")) ../systems/${hostname}/home.nix;
+  ++ lib.optional (builtins.pathExists (
+    ../systems/. + "/${hostname}/home.nix"
+  )) ../systems/${hostname}/home.nix;
 
   # Configuration home de base
   home = {
@@ -63,8 +65,8 @@
       # Overlays externes (disponibles via inputs)
 
       # Overlays externes à intégrer
-      inputs.ghostty.overlays.default or (_: _: {})
-      inputs.claude-desktop.overlays.default or (_: _: {})
+      inputs.ghostty.overlays.default or (_: _: { })
+      inputs.claude-desktop.overlays.default or (_: _: { })
     ];
     config = {
       allowUnfree = true;

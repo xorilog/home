@@ -1,15 +1,18 @@
 { inputs, ... }:
 {
   # Custom packages (from ../pkgs directory)
-  additions = final: _prev:
+  additions =
+    final: _prev:
     let
       pkgsPath = ../pkgs;
     in
-    if builtins.pathExists pkgsPath
-    then {
-      my = import pkgsPath { pkgs = final; };
-    } // (import pkgsPath { pkgs = final; })
-    else {};
+    if builtins.pathExists pkgsPath then
+      {
+        my = import pkgsPath { pkgs = final; };
+      }
+      // (import pkgsPath { pkgs = final; })
+    else
+      { };
 
   # Package modifications and overrides
   modifications = final: prev: {
@@ -23,7 +26,8 @@
     # claude-desktop = inputs.claude-desktop.packages.${final.system}.claude-desktop-with-fhs;
 
     # Legacy mkSecret functionality
-    mkSecret = path:
+    mkSecret =
+      path:
       let
         name = builtins.baseNameOf (toString path);
         stub = final.writeText name "This is a stub!\n";
@@ -38,13 +42,13 @@
       inherit (final) system;
       config.allowUnfree = true;
     };
-    
+
     # Unstable packages (nixos-unstable)
     unstable = import inputs.nixpkgs {
       inherit (final) system;
       config.allowUnfree = true;
     };
-    
+
     # Stable packages (24.11 stable)
     stable = import inputs.nixpkgs-stable {
       inherit (final) system;

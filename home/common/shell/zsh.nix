@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   shellConfig = import ./shell.nix { inherit config lib pkgs; };
 in
@@ -18,7 +23,9 @@ in
 
   programs.zsh = {
     enable = true;
-    autosuggestion = { enable = true; };
+    autosuggestion = {
+      enable = true;
+    };
     enableCompletion = true;
     autocd = true;
     dotDir = "${config.xdg.configHome}/zsh";
@@ -87,9 +94,15 @@ in
     localVariables = {
       EMOJI_CLI_KEYBIND = "^n";
       EMOJI_CLI_USE_EMOJI = "yes";
-      ZSH_HIGHLIGHT_HIGHLIGHTERS = [ "main" "brackets" "pattern" ];
+      ZSH_HIGHLIGHT_HIGHLIGHTERS = [
+        "main"
+        "brackets"
+        "pattern"
+      ];
     };
-    sessionVariables = { RPROMPT = ""; };
+    sessionVariables = {
+      RPROMPT = "";
+    };
     plugins = [
       {
         name = "emoji-cli";

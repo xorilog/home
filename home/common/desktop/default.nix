@@ -1,4 +1,10 @@
-{ config, lib, pkgs, desktop, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  desktop,
+  ...
+}:
 
 let
   inherit (lib) optionals;

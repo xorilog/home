@@ -1,4 +1,10 @@
-{ config, nixosConfig, lib, pkgs, ... }:
+{
+  config,
+  nixosConfig,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   wayland.windowManager.sway.enable = true;

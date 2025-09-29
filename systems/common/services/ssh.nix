@@ -1,5 +1,10 @@
 # SSH configuration (pattern vdemeester)
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   services = {
     openssh = {

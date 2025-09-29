@@ -1,5 +1,10 @@
 # Base system configuration (pattern vdemeester)
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   environment = {
     systemPackages = with pkgs; [

@@ -1,4 +1,11 @@
-{ config, nixosConfig, lib, pkgs, inputs, ... }:
+{
+  config,
+  nixosConfig,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   environment = {
     systemPackages = with pkgs; [

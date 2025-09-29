@@ -1,4 +1,10 @@
-{ config, nixosConfig, lib, pkgs, ... }:
+{
+  config,
+  nixosConfig,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   xdg.configFile = lib.mkIf (nixosConfig.services.pipewire.wireplumber.enable or false) {

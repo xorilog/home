@@ -1,5 +1,10 @@
 # ZSH configuration (pattern vdemeester)
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   programs.zsh = {
     enable = true;

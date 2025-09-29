@@ -1,4 +1,8 @@
-{ lib, hostname ? "", ... }:
+{
+  lib,
+  hostname ? "",
+  ...
+}:
 
 {
   # Configuration SSH
@@ -115,7 +119,7 @@
 
       # Configuration réseau
       net = {
-        ips = []; # NAS may have dynamic/DHCP IP
+        ips = [ ]; # NAS may have dynamic/DHCP IP
         names = [
           "nas.home.localtime.dev"
           "nas.tail.localtime.dev"

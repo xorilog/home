@@ -1,5 +1,10 @@
 # Bluetooth configuration (pattern vdemeester)
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   hardware.bluetooth = {
     enable = true;

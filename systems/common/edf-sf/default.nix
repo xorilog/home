@@ -1,5 +1,10 @@
 # EDF Store & Forecast configuration (pattern vdemeester)
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   environment.systemPackages = with pkgs; [
     (google-chrome.override {
@@ -7,7 +12,7 @@
     })
     libnotify
   ];
-  
+
   # NetworkManager VPN config (commented - requires secrets)
   # environment.etc."NetworkManager/system-connections/1-EDF-SF-VPN.ovpn" = {
   #   source = ../../../secrets/edf-sf/etc/NetworkManager/system-connections/1-EDF-SF-VPN.ovpn;

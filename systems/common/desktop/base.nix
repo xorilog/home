@@ -1,5 +1,10 @@
 # Desktop base configuration (pattern vdemeester)
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   # Import avahi service
   imports = [ ../services/avahi.nix ];

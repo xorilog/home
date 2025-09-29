@@ -1,5 +1,11 @@
 # Configuration extra spécifique à nixophe (pattern vdemeester)
-{ inputs, config, pkgs, lib, ... }:
+{
+  inputs,
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   # Imports directs modules common (pattern vdemeester)
   imports = [

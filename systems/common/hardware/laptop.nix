@@ -1,5 +1,11 @@
 # Laptop hardware configuration (pattern vdemeester)
-{ config, lib, pkgs, desktop, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  desktop,
+  ...
+}:
 {
   # Sysctl options for laptops
   boot.kernel.sysctl = {

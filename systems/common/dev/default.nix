@@ -1,5 +1,10 @@
 # Development base configuration (pattern vdemeester)
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   # Import shell tools directly
   imports = [

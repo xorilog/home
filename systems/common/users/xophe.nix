@@ -21,30 +21,29 @@ in
     uid = 1000;
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups =
-      [
-        "wheel"
-        "input"
-      ]
-      ++ lib.optionals (builtins.isString desktop) [
-        "networkmanager"
-        "audio"
-        "video"
-      ]
-      ++ ifExists [
-        "buildkit"
-        "docker"
-        "libvirt"
-        "libvirtd"
-        "lxd"
-        "lp"
-        "messagebus"
-        "nginx"
-        "plugdev"
-        "scanner"
-        "tss"
-        "vboxusers"
-      ];
+    extraGroups = [
+      "wheel"
+      "input"
+    ]
+    ++ lib.optionals (builtins.isString desktop) [
+      "networkmanager"
+      "audio"
+      "video"
+    ]
+    ++ ifExists [
+      "buildkit"
+      "docker"
+      "libvirt"
+      "libvirtd"
+      "lxd"
+      "lp"
+      "messagebus"
+      "nginx"
+      "plugdev"
+      "scanner"
+      "tss"
+      "vboxusers"
+    ];
     subUidRanges = [
       {
         startUid = 100000;
@@ -77,7 +76,12 @@ in
       };
       # Nix will hit the stack limit when using `nixFlakes`.
       loginLimits = [
-        { domain = config.users.users.xophe.name; item = "stack"; type = "-"; value = "unlimited"; }
+        {
+          domain = config.users.users.xophe.name;
+          item = "stack";
+          type = "-";
+          value = "unlimited";
+        }
       ];
     };
   };

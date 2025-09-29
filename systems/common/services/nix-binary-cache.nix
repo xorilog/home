@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 let
@@ -20,7 +25,10 @@ in
     };
   };
   config = mkIf cfg.enable {
-    networking.firewall.allowedTCPPorts = [ 80 443 ];
+    networking.firewall.allowedTCPPorts = [
+      80
+      443
+    ];
     systemd.services.nginx.serviceConfig.ReadWritePaths = [ "/var/public-nix-cache" ];
     services.nginx = {
       enable = true;

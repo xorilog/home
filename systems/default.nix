@@ -16,7 +16,7 @@
     ./nixophe/boot.nix
     ./nixophe/hardware.nix
     ./nixophe/extra.nix
-    
+
     # Modules système communs
     ./common/base
     ./common/users
@@ -32,11 +32,11 @@
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
-      
+
       # Overlays externes
-      inputs.ghostty.overlays.default or (_: _: {})
-      inputs.claude-desktop.overlays.default or (_: _: {})
-      
+      inputs.ghostty.overlays.default or (_: _: { })
+      inputs.claude-desktop.overlays.default or (_: _: { })
+
       # Packages spéciaux depuis inputs
       (_: prev: {
         inherit (inputs.ghostty.packages.${prev.system}) ghostty;
@@ -78,7 +78,10 @@
       auto-optimise-store = true;
 
       # Utilisateurs de confiance
-      trusted-users = [ "root" "@wheel" ];
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
       allowed-users = [ "@wheel" ];
 
       # XDG pour organisation

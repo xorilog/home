@@ -1,4 +1,13 @@
-{ stdenv, fetchFromGitHub, glib, gettext, bash, nodePackages, gnome, zip }:
+{
+  stdenv,
+  fetchFromGitHub,
+  glib,
+  gettext,
+  bash,
+  nodePackages,
+  gnome,
+  zip,
+}:
 
 stdenv.mkDerivation rec {
   pname = "hidetopbar";

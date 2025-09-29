@@ -1,5 +1,10 @@
 # Configuration spécifique à l'utilisateur xophe
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   # Configuration utilisateur personnalisée
   home.packages = with pkgs; [

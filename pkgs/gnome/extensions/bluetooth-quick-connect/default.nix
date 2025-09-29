@@ -1,4 +1,12 @@
-{ stdenv, fetchFromGitHub, glib, gettext, bash, nodePackages, gnome }:
+{
+  stdenv,
+  fetchFromGitHub,
+  glib,
+  gettext,
+  bash,
+  nodePackages,
+  gnome,
+}:
 
 stdenv.mkDerivation rec {
   pname = "gnome-bluetooth-quick-connect";

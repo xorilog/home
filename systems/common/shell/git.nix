@@ -1,5 +1,10 @@
 # Git configuration (pattern vdemeester)
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   environment = {
     # Git packages

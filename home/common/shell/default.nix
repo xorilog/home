@@ -1,4 +1,10 @@
-{ lib, config, pkgs, nixosConfig, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  nixosConfig,
+  ...
+}:
 
 let
   inherit (lib) versionOlder;
@@ -92,18 +98,27 @@ in
     text = builtins.toJSON [
       { cmd = "ncdu"; }
       { cmd = "sshfs"; }
-      { cmd = "lspci"; pkg = "pciutils"; }
-      { cmd = "lsusb"; pkg = "usbutils"; }
-      { cmd = "9"; pkg = "plan9port"; }
-      { cmd = "wakeonlan"; pkg = "python36Packages.wakeonlan"; }
+      {
+        cmd = "lspci";
+        pkg = "pciutils";
+      }
+      {
+        cmd = "lsusb";
+        pkg = "usbutils";
+      }
+      {
+        cmd = "9";
+        pkg = "plan9port";
+      }
+      {
+        cmd = "wakeonlan";
+        pkg = "python36Packages.wakeonlan";
+      }
     ];
     onChange = "${pkgs.my.nr}/bin/nr default";
   };
 
-
-
   # programs.gpg.enable = true;
-
 
   #programs.go.enable = true;
   # Always set GOROOT

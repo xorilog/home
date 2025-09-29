@@ -1,5 +1,10 @@
 # Xorg desktop configuration (pattern vdemeester)
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   # Import base desktop
   imports = [ ./base.nix ];

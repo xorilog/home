@@ -1,5 +1,10 @@
 # Sway desktop configuration (pattern vdemeester)
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   # Bluetooth support
   hardware.bluetooth.enable = true;
@@ -12,7 +17,7 @@
     wants = [ "graphical-session-pre.target" ];
     after = [ "graphical-session-pre.target" ];
   };
-  
+
   # Sway configuration
   programs.sway = {
     enable = true;

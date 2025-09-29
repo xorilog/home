@@ -1,11 +1,19 @@
-{ stdenv, lib, buildGoModule, fetchFromGitHub }:
+{
+  stdenv,
+  lib,
+  buildGoModule,
+  fetchFromGitHub,
+}:
 
 buildGoModule rec {
   name = "prm-${version}";
   version = "3.4.0";
   rev = "v${version}";
 
-  buildFlagsArray = let t = "github.com/ldez/prm/v3/meta"; in
+  buildFlagsArray =
+    let
+      t = "github.com/ldez/prm/v3/meta";
+    in
     ''
       -ldflags=
          -X ${t}.Version=${version}

@@ -10,6 +10,9 @@ in
     ##./sway.nix
     #./xorg.nix
   ]
-  ++ optionals (desktop == "i3") [ ./i3.nix ./xorg.nix ]
+  ++ optionals (desktop == "i3") [
+    ./i3.nix
+    ./xorg.nix
+  ]
   ++ optionals (desktop == "sway") [ ./sway.nix ];
 }

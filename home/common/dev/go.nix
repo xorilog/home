@@ -17,10 +17,14 @@
     delve
     gotools
     gotestsum
+    gofumpt
     jetbrains.goland
     jetbrains.jcef
     # misc
     protobuf
+    # not really go but still
+    gosmee
+    # cue
   ];
   #xdg.configFile."nr/dev.go" = {
   #  text = builtins.toJSON [

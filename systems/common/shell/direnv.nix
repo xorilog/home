@@ -1,5 +1,10 @@
 # Direnv configuration (pattern vdemeester)
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   environment = {
     # Path to link from packages to /run/current-system/sw

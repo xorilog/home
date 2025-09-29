@@ -1,5 +1,10 @@
 # GnuPG configuration (pattern vdemeester)
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   environment = {
     # GNUPGHOME est défini dans home-manager où XDG_CONFIG_HOME est disponible

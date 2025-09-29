@@ -1,5 +1,10 @@
 # TPM hardware configuration (pattern vdemeester)
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   security.tpm2 = {
     enable = true;

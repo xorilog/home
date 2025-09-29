@@ -1,5 +1,10 @@
 # Tailscale configuration (pattern vdemeester)
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   # Enable the tailscale daemon
   services.tailscale.enable = true;
