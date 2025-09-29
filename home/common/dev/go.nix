@@ -26,13 +26,4 @@
     gosmee
     # cue
   ];
-  #xdg.configFile."nr/dev.go" = {
-  #  text = builtins.toJSON [
-  #    { cmd = "pprof"; chan = "unstable"; }
-  #    { cmd = "vndr"; chan = "unstable"; }
-  #    { cmd = "go2nix"; }
-  #    { cmd = "dep2nix"; }
-  #  ];
-  #  onChange = "${pkgs.my.nr}/bin/nr dev.go";
-  #};
 }

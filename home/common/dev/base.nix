@@ -26,6 +26,7 @@
     shfmt
     httpie
     code-cursor
+    bash-language-server
   ];
 
   home.file.".ignore".text = ''
@@ -40,22 +41,4 @@
       set auto-load safe-path /
     '';
   };
-
-  xdg.configFile."nr/dev" = {
-    text = builtins.toJSON [
-      { cmd = "lnav"; }
-      { cmd = "miniserve"; }
-      { cmd = "licensor"; }
-      {
-        cmd = "yamllint";
-        pkg = "python311Packages.yamllint";
-      }
-      {
-        cmd = "http";
-        pkg = "httpie";
-      }
-    ];
-    onChange = "${pkgs.my.nr}/bin/nr dev";
-  };
-
 }

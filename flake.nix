@@ -37,20 +37,31 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # NixOS hardware support (identifié dans sources.json)
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    niri = {
+      type = "github";
+      owner = "sodiboo";
+      repo = "niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs-25_05";
+    };
 
+    # NixOS hardware support (identifié dans sources.json)
+    nixos-hardware = {
+      type = "github";
+      owner = "NixOS";
+      "repo" = "nixos-hardware";
+    };
     # SOPS pour secrets (identifié dans sources.json)
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Agenix pour secrets avec age
-    agenix = {
-      url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
+    agenix-25_05.url = "github:ryantm/agenix";
+    agenix-25_05.inputs.nixpkgs.follows = "nixpkgs-25_05";
+
 
     # Gitignore utilitaire (identifié dans sources.json)
     gitignore = {
@@ -144,54 +155,51 @@
 
       overlays = import ./overlays { inherit inputs; };
 
-      # Packages personnalisés (migration depuis default.nix)
+
+      # TODO: Document the bellow definition to build Darwin stuff at some point.
       packages = forAllSystems (
         system:
         let
-          pkgs = nixpkgs.legacyPackages.${system};
-        in
-        {
-          # Migration directe depuis default.nix
-          system = pkgs.callPackage ./tools/system { };
-        }
-      );
-
-      # Shells de développement
-      devShells = forAllSystems (
-        system:
-        let
-          pkgs = nixpkgs.legacyPackages.${system};
-        in
-        {
-          default = pkgs.mkShell {
-            name = "nixos-config-dev";
-            buildInputs = with pkgs; [
-              # Outils Nix
-              nixfmt-rfc-style
-              nil # Nix LSP
-              nix-tree # Exploration dépendances
-
-              # Outils développement
-              git
-              gnumake
-
-              # SOPS pour secrets
-              sops
-              age
-
-              # Validation
-              nixos-rebuild
+          pkgs = import inputs.nixpkgs {
+            inherit system;
+            config.allowAliases = false;
+            overlays = [
+              self.overlays.additions
             ];
-
-            shellHook = ''
-              echo "🏠 Environment de développement nixos-config activé"
-              echo "📦 Flakes activés, commandes disponibles:"
-              echo "   nix build .#nixosConfigurations.nixophe.config.system.build.toplevel"
-              echo "   make build, make switch, make update"
-            '';
           };
-        }
+          skipDarwinPackages =
+            system: n:
+            if lib.strings.hasSuffix "darwin" system then !(lib.strings.hasPrefix "koff" n) else true;
+          inherit (inputs.nixpkgs) lib;
+          drvAttrs = builtins.filter (n: lib.isDerivation pkgs.${n} && skipDarwinPackages system n) (
+            builtins.attrNames (self.overlays.additions pkgs pkgs)
+          );
+        in
+        lib.listToAttrs (map (n: lib.nameValuePair n pkgs.${n}) drvAttrs)
       );
+
+      devShells = forAllSystems (system: {
+        default =
+          let
+            pkgs = import inputs.nixpkgs {
+              inherit system;
+              config.allowUnfree = true;
+            };
+          in
+          inputs.nixpkgs.legacyPackages.${system}.mkShell {
+            inherit (self.checks.${system}.pre-commit-check) shellHook;
+            buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
+            packages = [
+              pkgs.git
+              pkgs.nodePackages.prettier
+              pkgs.deadnix
+              pkgs.nixfmt-rfc-style
+              inputs.agenix.packages.${system}.default
+            ];
+            name = "home";
+            DIRENV_LOG_FORMAT = "";
+          };
+      });
 
       # Formatage automatique
       formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);

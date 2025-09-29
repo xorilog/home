@@ -28,6 +28,17 @@ in
     ./atuin.nix
   ];
 
+  programs = {
+    broot = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+    eza.enable = true;
+    fd.enable = true;
+    git.enable = true;
+    jq.enable = true;
+  };
+
   home = {
     stateVersion = lib.mkDefault "24.11";
     packages = with pkgs; [
@@ -94,33 +105,4 @@ in
       };
     }
   '';
-  xdg.configFile."nr/default" = {
-    text = builtins.toJSON [
-      { cmd = "ncdu"; }
-      { cmd = "sshfs"; }
-      {
-        cmd = "lspci";
-        pkg = "pciutils";
-      }
-      {
-        cmd = "lsusb";
-        pkg = "usbutils";
-      }
-      {
-        cmd = "9";
-        pkg = "plan9port";
-      }
-      {
-        cmd = "wakeonlan";
-        pkg = "python36Packages.wakeonlan";
-      }
-    ];
-    onChange = "${pkgs.my.nr}/bin/nr default";
-  };
-
-  # programs.gpg.enable = true;
-
-  #programs.go.enable = true;
-  # Always set GOROOT
-  #config.environment.variables = { GOROOT = [ "${pkgs.go.out}/share/go" ]; };
 }
