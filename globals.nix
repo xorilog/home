@@ -124,7 +124,7 @@
 
       # Configuration Syncthing
       syncthing = {
-        id = "XXXXXXX-XXXXXXX-XXXXXXX-XXXXXXX-XXXXXXX-XXXXXXX-XXXXXXX-XXXXXXX"; # TODO: Replace with actual NAS Syncthing ID
+        id = "L43EL4J-VKIQ477-NVXYFPF-BQ4W5VH-LETCWOS-X3NK2NC-DO3OE6B-YD3TVQP"; # TODO: Replace with actual NAS Syncthing ID
         folders = {
           "desktop/downloads" = {
             type = "sendreceive";
