@@ -17,6 +17,7 @@
     ./common/shell
     # TODO: À terme, restaurer: inputs.niri.homeModules.niri quand inputs disponibles
 
+    # TODO: move this somewhere else during the way too many default.nix file removal.
     # Modules communs
     ./common/dev
     ./common/edf-sf
@@ -27,8 +28,6 @@
   ++ lib.optional (builtins.isString desktop) ./common/desktop
   # Version dynamique gardée pour examination future
   ++ lib.optional (builtins.pathExists (./. + "/common/users/${username}")) ./common/users/${username}
-  # Utilisateur spécifique - hardcodé pour xophe pour éviter infinite recursion
-  #++ lib.optional (builtins.pathExists ./common/users/xophe.nix) ./common/users/xophe.nix
   # Syncthing conditionnel basé sur globals
   ++ lib.optional (
     builtins.hasAttr "${hostname}" globals.machines
@@ -74,7 +73,4 @@
       allowUnfreePredicate = _: true;
     };
   };
-
-  ## Programme home-manager
-  #programs.home-manager.enable = true;
 }

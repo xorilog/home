@@ -5,10 +5,6 @@
   nixosConfig,
   ...
 }:
-
-let
-  inherit (lib) versionOlder;
-in
 {
   imports = [
     # Modules shells
@@ -40,7 +36,6 @@ in
   };
 
   home = {
-    stateVersion = lib.mkDefault "24.11";
     packages = with pkgs; [
       google-chrome
       # Common tools
@@ -91,18 +86,5 @@ in
     ];
   };
 
-  # manpages are broken on 21.05 and home-manager (for some reason..)
-  # (versionOlder nixosConfig.system.nixos.release "21.11");
   manual.manpages.enable = true;
-
-  xdg.configFile."nixpkgs/config.nix".text = ''
-    {
-      allowUnfree = true;
-      packageOverrides = pkgs: {
-        nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-          inherit pkgs;
-        };
-      };
-    }
-  '';
 }

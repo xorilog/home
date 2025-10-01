@@ -5,8 +5,6 @@
     ./config.nix
     ./development.nix
     ./home.nix
-    ./nix.nix
-    ./nur.nix
     ./i18n.nix
     ../programs
   ];

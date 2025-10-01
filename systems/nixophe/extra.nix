@@ -7,9 +7,8 @@
   ...
 }:
 {
-  # Imports directs modules common (pattern vdemeester)
+  # Imports directs modules common
   imports = [
-    # Hardware laptop (déjà géré par hardware/default.nix conditionnel)
     # Services requis
     ../common/services/avahi.nix
     ../common/services/syncthing.nix
@@ -65,7 +64,4 @@
     enable = true;
     polkitPolicyOwners = [ "xophe" ];
   };
-
-  # Version système
-  system.stateVersion = "22.05";
 }

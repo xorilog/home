@@ -10,18 +10,17 @@
   ...
 }:
 {
-  # Imports conditionnels basés sur hostname et desktop (pattern vdemeester)
+  # Imports conditionnels basés sur hostname et desktop
   imports = [
     # Configuration spécifique machine (pattern vdemeester)
-    ./nixophe/boot.nix
-    ./nixophe/hardware.nix
-    ./nixophe/extra.nix
+    (./. + "/${hostname}/boot.nix")
+    (./. + "/${hostname}/hardware.nix")
 
     # Modules système communs
     ./common/base
     ./common/users
-    ./common/hardware
   ]
+  ++ lib.optional (builtins.pathExists (./. + "/${hostname}/extra.nix")) ./${hostname}/extra.nix
   # Import conditionnel desktop si défini
   ++ lib.optional (builtins.isString desktop) ./common/desktop;
 
@@ -73,6 +72,7 @@
         "nix-command"
         "flakes"
       ];
+      sandbox = true;
 
       # Optimisation store
       auto-optimise-store = true;
@@ -123,6 +123,6 @@
 
   # Version système (mkDefault pour éviter conflit avec modules existants)
   system = {
-    stateVersion = lib.mkDefault stateVersion;
+    inherit stateVersion;
   };
 }

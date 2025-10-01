@@ -10,6 +10,12 @@
 {
   imports = [
     inputs.nixos-hardware.nixosModules.dell-xps-13-9310
+    ../common/hardware/audio.nix
+    ../common/hardware/bluetooth.nix
+    ../common/hardware/laptop.nix
+    ../common/hardware/sane-extra-config.nixos.nix
+    ../common/hardware/trusted-platform-module.nix
+    ../common/hardware/yubikey.nix
   ];
 
   boot.initrd.availableKernelModules = [

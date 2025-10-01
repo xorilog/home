@@ -23,7 +23,7 @@ in
     shell = pkgs.zsh;
     extraGroups = [
       "wheel"
-      "input"
+      "users"
     ]
     ++ lib.optionals (builtins.isString desktop) [
       "networkmanager"
@@ -35,7 +35,6 @@ in
       "docker"
       "libvirt"
       "libvirtd"
-      "lxd"
       "lp"
       "messagebus"
       "nginx"
@@ -57,6 +56,7 @@ in
       }
     ];
     initialPassword = "changeMe";
+    openssh.authorizedKeys.keys = globals.ssh.xophe;
     packages = [ pkgs.home-manager ];
   };
 
