@@ -2,11 +2,11 @@
 
 {
   imports = [
+    ./ai.nix
     ./go.nix
     ./nix.nix
     ./python.nix
     ./pre-commit.nix
-    ./iaas
   ];
 
   home.extraOutputsToInstall = [

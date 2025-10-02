@@ -20,7 +20,7 @@ in
     ./mpv.nix
     ./gammastep.nix
     ./communication-tools.nix
-    ./claude.nix
+    ./ai.nix
 
     ../dev/base.nix
     ../dev/desktop.nix
