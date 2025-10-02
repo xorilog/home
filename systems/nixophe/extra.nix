@@ -22,11 +22,12 @@
 
     # Development
     ../common/dev
-    # EDF-SF
-    ../common/edf-sf
+
     # Shell & editors
     ../common/shell
     ../common/editors
+    
+    ../edfsf
   ];
 
   # Configuration système spécifique

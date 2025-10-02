@@ -1,7 +1,4 @@
-# EDF Store & Forecast configuration (pattern vdemeester)
 {
-  config,
-  lib,
   pkgs,
   ...
 }:
@@ -18,4 +15,5 @@
   #   source = ../../../secrets/edf-sf/etc/NetworkManager/system-connections/1-EDF-SF-VPN.ovpn;
   #   mode = "0600";
   # };
+
 }

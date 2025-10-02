@@ -20,7 +20,6 @@
     # TODO: move this somewhere else during the way too many default.nix file removal.
     # Modules communs
     ./common/dev
-    ./common/edf-sf
     ./common/profiles
     ./common/services
   ]

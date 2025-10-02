@@ -98,12 +98,6 @@ in
   # the home-manager configuration. This should help play around the conditions
   # inside each "home-manager" modules instead of here.
   # Configuration home-manager pour xophe
-  # Previous xophe way to do it.
-  #home-manager.users.xophe = lib.mkMerge [
-  #  (import ../../../home/common)
-  #  # EDF-SF configuration can be enabled selectively
-  #  # (import ../../../home/common/edf-sf)
-  #];
   # Do I user home-manager nixosModule *or* home-manager on its own
   home-manager.users.xophe = import ../../../home/default.nix {
     inherit
