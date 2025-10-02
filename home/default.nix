@@ -19,31 +19,24 @@
 
     # TODO: move this somewhere else during the way too many default.nix file removal.
     # Modules communs
-    ./common/dev
-    ./common/profiles
     ./common/services
   ]
   # Desktop si défini
   ++ lib.optional (builtins.isString desktop) ./common/desktop
-  # Version dynamique gardée pour examination future
   ++ lib.optional (builtins.pathExists (./. + "/common/users/${username}")) ./common/users/${username}
-  # Syncthing conditionnel basé sur globals
   ++ lib.optional (
     builtins.hasAttr "${hostname}" globals.machines
     && libx.hasSyncthingFolders globals.machines."${hostname}"
   ) ./common/services/syncthing.nix
-  # Machine-specific home config si existe
   ++ lib.optional (builtins.pathExists (
     ../systems/. + "/${hostname}/home.nix"
   )) ../systems/${hostname}/home.nix;
 
-  # Configuration home de base
   home = {
     inherit username stateVersion;
     homeDirectory = "/home/${username}";
   };
 
-  # Configuration Nix pour home-manager
   nix.settings = {
     experimental-features = [
       "nix-command"
@@ -52,23 +45,21 @@
     use-xdg-base-directories = true;
   };
 
-  # Configuration nixpkgs avec overlays - désactivé car useGlobalPkgs = true
   nixpkgs = {
     overlays = [
-      # Nos overlays (système avancé)
+      # Our own flake exports (from overlays and pkgs dir)
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
 
-      # Overlays externes (disponibles via inputs)
-
-      # Overlays externes à intégrer
+      # And from other flakes
+      #inputs.agenix.overlays.default
       inputs.ghostty.overlays.default or (_: _: { })
       inputs.claude-desktop.overlays.default or (_: _: { })
     ];
     config = {
       allowUnfree = true;
-      # Workaround pour home-manager
+      # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = _: true;
     };
   };

@@ -21,6 +21,9 @@ in
     ./gammastep.nix
     ./communication-tools.nix
     ./claude.nix
+
+    ../dev/base.nix
+    ../dev/desktop.nix
   ];
 
   home.packages = with pkgs; [
