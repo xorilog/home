@@ -62,7 +62,6 @@
     agenix-25_05.url = "github:ryantm/agenix";
     agenix-25_05.inputs.nixpkgs.follows = "nixpkgs-25_05";
 
-
     # Gitignore utilitaire (identifié dans sources.json)
     gitignore = {
       url = "github:hercules-ci/gitignore";
@@ -155,7 +154,6 @@
 
       overlays = import ./overlays { inherit inputs; };
 
-
       # TODO: Document the bellow definition to build Darwin stuff at some point.
       packages = forAllSystems (
         system:
@@ -206,24 +204,24 @@
 
       # Validation flake
       checks = forAllSystems (system: {
-        # TODO: re enable later.
-        # pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
-        #   src = ./.;
-        #   hooks = {
-        #     # go
-        #     gofmt.enable = true;
-        #     # golangci-lint.enable = true;
-        #     # nix
-        #     deadnix.enable = true;
-        #     nixfmt-rfc-style.enable = true;
-        #     # statix.enable = true;
-        #     # python
-        #     flake8.enable = true;
-        #     ruff.enable = true;
-        #     # shell
-        #     shellcheck.enable = true;
-        #   };
-        # };
+        pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+          src = ./.;
+          hooks = {
+            # go
+            gofmt.enable = true;
+            # golangci-lint.enable = true;
+            # nix
+            # TODO: re enable deadnix later.
+            #deadnix.enable = true;
+            nixfmt-rfc-style.enable = true;
+            # statix.enable = true;
+            # python
+            flake8.enable = true;
+            ruff.enable = true;
+            # shell
+            shellcheck.enable = true;
+          };
+        };
 
         # Validation build système
         nixos-build = self.nixosConfigurations.nixophe.config.system.build.toplevel;
