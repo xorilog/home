@@ -101,17 +101,19 @@
 
       " Neovim LSP setup
       lua <<EOF
-        require'lspconfig'.gopls.setup{}
-        require'lspconfig'.dockerls.setup{}
-        require'lspconfig'.bashls.setup{}
-        require'lspconfig'.solargraph.setup{
+        vim.lsp.enable('gopls')
+        vim.lsp.enable('dockerls')
+        vim.lsp.enable('bashls')
+        vim.lsp.config['solargraph'] = {
           filetypes = { "ruby", "rb" }
         }
-        require'lspconfig'.ts_ls.setup{}
-        require'lspconfig'.yamlls.setup{
+        vim.lsp.enable('solargraph')
+        vim.lsp.enable('ts_ls')
+        vim.lsp.config['yamlls'] = {
           filetypes = { "yaml", "yml" }
         }
-        require'lspconfig'.rust_analyzer.setup{}
+        vim.lsp.enable('yamlls')
+        vim.lsp.enable('rust_analyzer')
       EOF
 
       autocmd Filetype go setlocal omnifunc=v:lua.vim.lsp.omnifunc
