@@ -35,9 +35,6 @@
     enable = true;
     package = pkgs.gitFull;
 
-    userName = "christophe.boucharlat";
-    userEmail = "christophe.boucharlat@gmail.com";
-
     signing = {
       #gpgPath = "/usr/bin/gpg";
       #gpgPath = "/home/xophe/.nix-profile/bin/gpg";
@@ -45,19 +42,24 @@
       signByDefault = true;
     };
 
-    aliases = {
-      co = "checkout";
-      ci = "commit --signoff";
-      st = "status";
-      br = "branch";
-      lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
-      type = "cat-file -t";
-      dump = "cat-file -p";
-      pullr = "pull --rebase --prune";
-      unadd = "reset HEAD";
-    };
+    settings = {
+      user = {
+        name = "christophe.boucharlat";
+        email = "christophe.boucharlat@gmail.com";
+      };
 
-    extraConfig = {
+      aliases = {
+        co = "checkout";
+        ci = "commit --signoff";
+        st = "status";
+        br = "branch";
+        lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
+        type = "cat-file -t";
+        dump = "cat-file -p";
+        pullr = "pull --rebase --prune";
+        unadd = "reset HEAD";
+      };
+
       core = {
         editor = "nvim";
         whitespace = "space-before-tab,-indent-with-non-tab,trailing-space";
