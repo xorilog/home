@@ -31,7 +31,6 @@
       cascadia-code
       corefonts
       dejavu_fonts
-      emojione
       feh
       fira
       fira-code
@@ -57,13 +56,13 @@
       nerd-fonts.ubuntu-sans
       noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-emoji
-      noto-fonts-extra
+      noto-fonts-color-emoji
+      noto-fonts
       overpass
       source-code-pro
       symbola
       twemoji-color-font
-      ubuntu_font_family
+      ubuntu-classic
       unifont
       recursive
     ];
@@ -89,7 +88,7 @@
     cryptsetup
     unzip
     gnupg
-    pinentry
+    pinentry-curses
     inxi
   ];
 }

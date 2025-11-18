@@ -36,7 +36,7 @@ in
     name = "Vanilla-DMZ";
   };
   home.packages = with pkgs; [
-    inputs.ghostty.packages.${pkgs.system}.ghostty
+    inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.ghostty
     alacritty
     kitty
     gthumb
@@ -193,7 +193,7 @@ in
     };
   };
   xsession.windowManager.i3 = {
-    package = pkgs.i3-gaps;
+    package = pkgs.i3;
     enable = true;
     config = {
       fonts = {

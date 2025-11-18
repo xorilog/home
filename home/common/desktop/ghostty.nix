@@ -9,7 +9,7 @@
 {
   environment = {
     systemPackages = with pkgs; [
-      inputs.ghostty.packages.${pkgs.system}.ghostty
+      inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.ghostty
     ];
   };
 }

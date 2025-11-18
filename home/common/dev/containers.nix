@@ -13,7 +13,7 @@
     # run localy
     ko
     #k3s
-    kube3d
+    k3d
     krew
     kind
     minikube

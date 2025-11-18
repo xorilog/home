@@ -33,7 +33,7 @@
 
   programs.git = {
     enable = true;
-    package = pkgs.gitAndTools.gitFull;
+    package = pkgs.gitFull;
 
     userName = "christophe.boucharlat";
     userEmail = "christophe.boucharlat@gmail.com";
