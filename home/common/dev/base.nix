@@ -1,14 +1,6 @@
 { pkgs, ... }:
 
 {
-  imports = [
-    ./ai.nix
-    ./go.nix
-    ./nix.nix
-    ./python.nix
-    ./pre-commit.nix
-  ];
-
   home.extraOutputsToInstall = [
     "doc"
     "info"
@@ -16,16 +8,22 @@
   ];
 
   home.packages = with pkgs; [
-    binutils
-    cmake
-    fswatch
-    gnumake
     jq
+    ijq # interactive jq
     yq-go
-    gron
+
+    binutils
+    moreutils
+    gnumake
+
+    # shell tooling
+    shellcheck
     shfmt
     httpie
-    code-cursor
+
+    # old
+    fswatch
+    cmake
     bash-language-server
   ];
 
