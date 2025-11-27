@@ -53,14 +53,8 @@ in
       lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry
     );
 
-    # Optimisation automatique
-    optimise = {
-      automatic = true;
-      dates = [
-        "01:10"
-        "12:10"
-      ]; # 1h10 du matin et 12:10
-    };
+    # Optimisation automatique (nix-darwin)
+    optimise.automatic = true;
 
     settings = {
       # Fonctionnalités expérimentales
@@ -69,9 +63,6 @@ in
         "flakes"
       ];
       sandbox = true;
-
-      # Optimisation store
-      auto-optimise-store = true;
 
       # Utilisateurs de confiance
       trusted-users = [
@@ -108,12 +99,8 @@ in
       keep-derivations = true
       builders-use-substitutes = true
     '';
-
-    # Performance sur laptops
-    daemonIOSchedClass = "idle";
-    daemonCPUSchedPolicy = "idle";
   };
 
-  # Version système (mkDefault pour éviter conflit avec modules existants)
-  system.stateVersion = stateVersion;
+  # Version système (nix-darwin attend un entier entre 1 et 6)
+  system.stateVersion = lib.mkDefault 6;
 }

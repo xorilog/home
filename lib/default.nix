@@ -133,8 +133,6 @@
         # self.nixosModules.exemple
 
         # Modules externes
-        inputs.sops-nix.nixosModules.sops
-        inputs.agenix.nixosModules.default
         homeInput.darwinModules.home-manager
 
         # Configuration home-manager
