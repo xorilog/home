@@ -44,8 +44,13 @@ in
   };
 
   # Configuration Nix avec flakes (compatibles nix-darwin)
+  # Disable nix-darwin's Nix management when using Determinate Systems
+  # With nix.enable = false, nix-darwin won't manage the Nix daemon.
+  # Nix settings should be configured via Determinate Systems or /etc/nix/nix.conf
   nix = {
-    # Registres flake pour cohérence nix3 commands
+    enable = false;
+
+    # Registry can still be set for user-level flake registry
     registry = lib.mkForce (lib.mapAttrs (_: value: { flake = value; }) inputs);
 
     # Legacy channels pour compatibilité
@@ -53,52 +58,11 @@ in
       lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry
     );
 
-    # Optimisation automatique (nix-darwin)
-    optimise.automatic = true;
-
-    settings = {
-      # Fonctionnalités expérimentales
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-      sandbox = true;
-
-      # Utilisateurs de confiance
-      trusted-users = [
-        "root"
-        "@wheel"
-      ];
-      allowed-users = [ "@wheel" ];
-
-      # XDG pour organisation
-      use-xdg-base-directories = true;
-
-      # Add some "caches" (substituters)
-      substituters = [
-        "https://cache.nixos.org/"
-        "https://r-ryantm.cachix.org"
-        "https://shortbrain.cachix.org"
-        "https://vdemeester.cachix.org"
-        "https://nixos-raspberrypi.cachix.org"
-      ];
-      trusted-public-keys = [
-        "r-ryantm.cachix.org-1:gkUbLkouDAyvBdpBX0JOdIiD2/DP1ldF3Z3Y6Gqcc4c="
-        "shortbrain.cachix.org-1:dqXcXzM0yXs3eo9ChmMfmob93eemwNyhTx7wCR4IjeQ="
-        "mic92.cachix.org-1:gi8IhgiT3CYZnJsaW7fxznzTkMUOn1RY4GmXdT/nXYQ="
-        "vdemeester.cachix.org-1:eZWNOrLR9A9szeMahn9ENaoT9DB3WgOos8va+d2CU44="
-        "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
-      ];
-    };
-
-    # Options supplémentaires
-    extraOptions = ''
-      connect-timeout = 20
-      build-cores = 0
-      keep-outputs = true
-      keep-derivations = true
-      builders-use-substitutes = true
-    '';
+    # Note: The following options won't work with nix.enable = false:
+    # - optimise.* (daemon management)
+    # - settings.* (daemon configuration)
+    # - extraOptions (daemon configuration)
+    # Configure these via Determinate Systems or /etc/nix/nix.conf instead
   };
 
   # Version système (nix-darwin attend un entier entre 1 et 6)
