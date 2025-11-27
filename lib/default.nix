@@ -96,4 +96,56 @@
         ../systems
       ];
     };
+  mkDarwinHost =
+    {
+      hostname,
+      desktop ? null,
+      hardwareType ? "",
+      system ? "aarch64-darwin",
+      pkgsInput ? inputs.nixpkgs,
+      homeInput ? inputs.home-manager,
+    }:
+    let
+      globals = import ../globals.nix {
+        inherit (pkgsInput) lib;
+        inherit hostname;
+      };
+      specialArgs = {
+        inherit
+          self
+          inputs
+          outputs
+          stateVersion
+          hostname
+          desktop
+          hardwareType
+          system
+          globals
+          ;
+        libx = import ./functions.nix { inherit (pkgsInput) lib; };
+      };
+    in
+    inputs.nix-darwin.lib.darwinSystem {
+      inherit specialArgs;
+      inherit system;
+      modules = [
+        # Modules personnalisés (TODO: à créer)
+        # self.nixosModules.exemple
+
+        # Modules externes
+        inputs.sops-nix.nixosModules.sops
+        inputs.agenix.nixosModules.default
+        homeInput.darwinModules.home-manager
+
+        # Configuration home-manager
+        {
+          home-manager = {
+            extraSpecialArgs = specialArgs;
+          };
+        }
+
+        # Point d'entrée systems/
+        ../systems-darwin
+      ];
+    };
 }

@@ -9,22 +9,16 @@
   globals,
   ...
 }:
+let
+  hostModule = ./. + "/${hostname}/default.nix";
+  hostExtra = ./. + "/${hostname}/extra.nix";
+in
 {
-  # Imports conditionnels basés sur hostname et desktop
-  imports = [
-    # Configuration spécifique machine (pattern vdemeester)
-    (./. + "/${hostname}/boot.nix")
-    (./. + "/${hostname}/hardware.nix")
+  imports =
+    lib.optional (builtins.pathExists hostModule) hostModule
+    ++ lib.optional (builtins.pathExists hostExtra) hostExtra;
 
-    # Modules système communs
-    ./common/base
-    ./common/users
-  ]
-  ++ lib.optional (builtins.pathExists (./. + "/${hostname}/extra.nix")) ./${hostname}/extra.nix
-  # Import conditionnel desktop si défini
-  ++ lib.optional (builtins.isString desktop) ./common/desktop;
-
-  # Configuration nixpkgs avec overlays (pattern vdemeester)
+  # Configuration nixpkgs avec overlays (commune Linux/Darwin)
   nixpkgs = {
     overlays = [
       # Nos overlays (système avancé)
@@ -49,7 +43,7 @@
     };
   };
 
-  # Configuration Nix avec flakes (pattern vdemeester)
+  # Configuration Nix avec flakes (compatibles nix-darwin)
   nix = {
     # Registres flake pour cohérence nix3 commands
     registry = lib.mkForce (lib.mapAttrs (_: value: { flake = value; }) inputs);
@@ -120,11 +114,6 @@
     daemonCPUSchedPolicy = "idle";
   };
 
-  # Fix stack limit pour nix-daemon
-  systemd.services.nix-daemon.serviceConfig."LimitSTACK" = "infinity";
-
   # Version système (mkDefault pour éviter conflit avec modules existants)
-  system = {
-    inherit stateVersion;
-  };
+  system.stateVersion = stateVersion;
 }

@@ -51,6 +51,13 @@
       owner = "NixOS";
       "repo" = "nixos-hardware";
     };
+
+    # NixOS Darwin support
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # SOPS pour secrets (identifié dans sources.json)
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -114,6 +121,7 @@
       supportedSystems = [
         "x86_64-linux"
         "aarch64-linux"
+        "aarch64-darwin"
       ];
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
     in
@@ -143,6 +151,13 @@
           desktop = "i3";
           hardwareType = "laptop";
           system = "x86_64-linux";
+        };
+      };
+
+      darwinConfigurations = {
+        xophe-mbp = libx.mkDarwinHost {
+          hostname = "xophe-mbp";
+          system = "aarch64-darwin";
         };
       };
 

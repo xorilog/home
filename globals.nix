@@ -112,6 +112,19 @@
       };
     };
 
+    xophe-mbp = {
+      system = "aarch64-darwin";
+      hardware = "laptop";
+
+      net = {
+        ips = [ "192.168.1.101" ]; # TODO: IP réelle
+        names = [
+          "xophe-mbp.home"
+          "xophe-mbp.local"
+        ];
+      };
+    };
+
     # NAS peer for Syncthing
     nas = {
       # Informations système
