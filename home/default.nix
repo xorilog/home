@@ -36,17 +36,21 @@
 
   home = {
     inherit username stateVersion;
-    homeDirectory = "/home/${username}";
+    homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${username}" else "/home/${username}";
   };
 
-  nix.settings = {
-    download-buffer-size = 524288000; # 500 MiB
-    experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-    use-xdg-base-directories = true;
-  };
+  nix.settings =
+    if pkgs.stdenv.isDarwin then
+      {
+        download-buffer-size = 524288000; # 500 MiB
+        experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
+        use-xdg-base-directories = true;
+      }
+    else
+      { };
 
   nixpkgs = {
     overlays = [
