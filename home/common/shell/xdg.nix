@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   desktopDirectory = config.home.homeDirectory + "/desktop";
 in
@@ -11,7 +16,9 @@ in
     dataHome = config.home.homeDirectory + "/.local/share";
     stateHome = config.home.homeDirectory + "/.local/state";
 
-    userDirs = {
+    # xdg.userDirs is not supported on all platforms (e.g. Darwin),
+    # so only enable it on Linux to avoid errors.
+    userDirs = lib.mkIf pkgs.stdenv.isLinux {
       enable = true;
       createDirectories = lib.mkDefault true;
 
