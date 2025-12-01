@@ -15,6 +15,14 @@
 {
   system.primaryUser = "xophe";
 
+  # Minimal Darwin user; avoids NixOS-only bits (systemd, Linux groups, etc.)
+  users.users.xophe = {
+    name = "xophe";
+    home = "/Users/xophe";
+    shell = pkgs.zsh;
+    # extraGroups = [ "wheel" ]; # add more if/when you define them on macOS
+  };
+
   # Configuration système spécifique
   # networking = {
   #   hostName = "xophe-mbp";
