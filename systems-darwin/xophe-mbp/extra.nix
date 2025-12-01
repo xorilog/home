@@ -4,6 +4,12 @@
   config,
   pkgs,
   lib,
+  desktop,
+  hostname,
+  outputs,
+  stateVersion,
+  globals,
+  libx,
   ...
 }:
 {
@@ -35,5 +41,21 @@
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
+  };
+
+  home-manager.users.xophe = import ../../home/default.nix {
+    inherit
+      config
+      pkgs
+      lib
+      hostname
+      desktop
+      globals
+      outputs
+      inputs
+      stateVersion
+      libx
+      ;
+    username = "xophe";
   };
 }
