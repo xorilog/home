@@ -9,6 +9,7 @@
   inputs,
   globals ? { },
   libx ? { },
+  pkg,
   ...
 }:
 {
@@ -30,7 +31,8 @@
   ) ./common/services/syncthing.nix
   ++ lib.optional (builtins.pathExists (
     ../systems/. + "/${hostname}/home.nix"
-  )) ../systems/${hostname}/home.nix;
+  )) ../systems/${hostname}/home.nix
+  ++ lib.optional pkgs.stdenv.isDarwin (../systems-darwin/${hostname}/home.nix);
 
   home = {
     inherit username stateVersion;
