@@ -9,7 +9,7 @@
   inputs,
   globals ? { },
   libx ? { },
-  pkg,
+  pkgs,
   ...
 }:
 {
