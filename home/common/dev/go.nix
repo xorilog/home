@@ -18,8 +18,6 @@
     gotools
     gotestsum
     gofumpt
-    jetbrains.goland
-    jetbrains.jcef
     # misc
     protobuf
     # not really go but still
