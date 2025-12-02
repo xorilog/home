@@ -23,3 +23,24 @@ here is the error log.
 Seems to be fixed in the next yubikey-manager release cf: https://github.com/nixos/nixpkgs/issues/442315
 
 
+2. Docker issue with networking.
+  The root issue is that your system's netfilter/iptables kernel modules aren't loaded
+
+Temporary Fix: with 2 steps (need to evaluate if all are required)
+  a. set back userland-proxy = false.
+  b. loaded the following modules: (I need to ensure they are required or not and if they where removed from a previous configuration.)
+    - sudo modprobe iptable_nat
+    - sudo modprobe iptable_filter
+    - sudo modprobe iptable_mangle
+
+Extraction of the modules: `lsmod | grep iptable`
+Here is the content of the module check before activating:
+
+Here is the content of the module check after activating:
+iptable_mangle         12288  0
+iptable_filter         12288  1
+iptable_nat            12288  1
+ip_tables              28672  3 iptable_filter,iptable_nat,iptable_mangle
+x_tables               53248  18 xt_conntrack,iptable_filter,nft_compat,xt_LOG,xt_tcpudp,xt_addrtype,xt_CHECKSUM,xt_nat,xt_comment,xt_set,ipt_REJECT,xt_CT,xt_pkttype,ip_tables,iptable_nat,xt_MASQUERADE,iptable_mangle,xt_mark
+nf_nat                 65536  4 xt_nat,nft_chain_nat,iptable_nat,xt_MASQUERADE
+
