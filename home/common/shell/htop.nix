@@ -27,4 +27,5 @@
       ]
     );
   };
+  xdg.configFile."htop".force = true;
 }

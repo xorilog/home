@@ -36,54 +36,61 @@
   };
 
   home = {
-    packages = with pkgs; [
-      google-chrome
-      # Common tools
-      htop
-      iftop
-      tmux
-      jq
-      wget
+    packages =
+      with pkgs;
+      [
+        # Common tools
+        htop
+        iftop
+        tmux
+        jq
+        wget
 
-      # Infrastructure
-      #aws-vault
-      #awscli2
-      # Authenticator is in version 0.4.0 and we need to use version 0.5 at least
-      #aws-iam-authenticator
-      kubectl
-      terragrunt
-      # terraform_0_14 <- deprecated
-      terraform
-      tfswitch
-      # TODO: https://github.com/NixOS/nixpkgs/blob/97e5d399726f2ab2d501d6c4b4cf808134e6cadc/pkgs/by-name/te/terraform-docs/package.nix#L4
-      # Wait for upstream fix.
-      # terraform-docs
+        # Infrastructure
+        #aws-vault
+        #awscli2
+        # Authenticator is in version 0.4.0 and we need to use version 0.5 at least
+        #aws-iam-authenticator
+        kubectl
+        terragrunt
+        # terraform_0_14 <- deprecated
+        terraform
+        tfswitch
+        # TODO: https://github.com/NixOS/nixpkgs/blob/97e5d399726f2ab2d501d6c4b4cf808134e6cadc/pkgs/by-name/te/terraform-docs/package.nix#L4
+        # Wait for upstream fix.
+        # terraform-docs
 
-      # Real editor
-      vscode
-      yed
+        # Real editor
+        vscode
+        yed
 
-      # languages
-      #python3
+        # languages
+        #python3
 
-      # Go
-      #gcc
-      #gopls
-      #jetbrains.goland
+        # Go
+        #gcc
+        #gopls
+        #jetbrains.goland
 
-      # Graphical
-      xclip
-      shutter
+        # Graphical
 
-      # Build
-      #neovim-unwrapped # uses an overlay to build from master (i want neovim 0.5.0 version)
-      # Gnupg
-      #gnupg
-      #pinentry # dialog
+        # Build
+        #neovim-unwrapped # uses an overlay to build from master (i want neovim 0.5.0 version)
+        # Gnupg
+        #gnupg
+        #pinentry # dialog
 
-      # System information
-      inxi
-    ];
+        # System information
+      ]
+      ++ lib.optionals pkgs.stdenv.isLinux [
+        google-chrome # Sur Mac, s'installe autrement
+        xclip
+        shutter
+        inxi
+      ]
+      ++ lib.optionals pkgs.stdenv.isDarwin [
+        # Rien de spécifique pour l'instant
+      ];
   };
 
   manual.manpages.enable = true;

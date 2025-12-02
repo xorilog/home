@@ -31,10 +31,10 @@ in
       inputs.claude-desktop.overlays.default or (_: _: { })
 
       # Packages spéciaux depuis inputs
-      (_: prev: {
-        inherit (inputs.ghostty.packages.${prev.system}) ghostty;
-        inherit (inputs.claude-desktop.packages.${prev.system}) claude-desktop-with-fhs;
-      })
+      #      (_: prev: {
+      #        inherit (inputs.ghostty.packages.${prev.system}) ghostty;
+      #        inherit (inputs.claude-desktop.packages.${prev.system}) claude-desktop-with-fhs;
+      #      })
     ];
     config = {
       allowUnfree = true;

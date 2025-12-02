@@ -48,7 +48,9 @@
         email = "christophe.boucharlat@gmail.com";
       };
 
-      aliases = {
+      # Changed from aliases to alias as it was not working on Darwin
+      # TODO: validate if it is ok on Linux as well.
+      alias = {
         co = "checkout";
         ci = "commit --signoff";
         st = "status";

@@ -13,6 +13,14 @@
   ...
 }:
 {
+  imports = [
+    # Development
+    ../../systems/common/dev
+
+    # Shell & editors
+    ../../systems/common/shell
+    ../../systems/common/editors
+  ];
   system.primaryUser = "xophe";
 
   # Minimal Darwin user; avoids NixOS-only bits (systemd, Linux groups, etc.)
@@ -45,10 +53,11 @@
   time.timeZone = "Europe/Paris";
   nixpkgs.config.allowUnfree = true;
 
-  # Configuration GPG
+  ## Configuration GPG
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
+    #    enableExtraSocket = true;
   };
 
   home-manager.users.xophe = import ../../home/default.nix {

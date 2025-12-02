@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 {
   home.packages = with pkgs; [ gnupg ];
@@ -14,7 +19,7 @@
   };
 
   services = {
-    gpg-agent = {
+    gpg-agent = lib.mkIf pkgs.stdenv.isLinux {
       enable = true;
       enableSshSupport = true;
       enableExtraSocket = true;

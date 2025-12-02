@@ -207,6 +207,7 @@
               pkgs.nodePackages.prettier
               pkgs.deadnix
               pkgs.nixfmt-rfc-style
+              pkgs.ripgrep
               inputs.agenix.packages.${system}.default
             ];
             name = "home";

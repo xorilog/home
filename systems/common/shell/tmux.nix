@@ -6,10 +6,16 @@
   ...
 }:
 {
-  programs.tmux = {
-    enable = true;
-    clock24 = true;
-    escapeTime = 0;
-    terminal = "tmux-256color";
-  };
+  programs.tmux =
+    if pkgs.stdenv.isLinux then
+      {
+        enable = true;
+        clock24 = true;
+        escapeTime = 0;
+        terminal = "tmux-256color";
+      }
+    else
+      {
+        enable = true;
+      };
 }

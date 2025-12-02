@@ -42,7 +42,9 @@ in
     envExtra = shellConfig.env;
     initContent = ''
       # c.f. https://wiki.gnupg.org/AgentForwarding
-      gpgconf --create-socketdir &!
+      # gpgconf --create-socketdir is only needed on Linux (creates /run/user/<uid>/gnupg)
+      # On macOS, sockets are in ~/.gnupg by default
+      [[ "$(uname)" == "Linux" ]] && gpgconf --create-socketdir &!
       path+="${config.programs.zsh.dotDir}/functions"
       fpath+="$HOME/.nix-profile/share/zsh/site-functions"
       fpath+="${config.programs.zsh.dotDir}/functions"
@@ -118,8 +120,8 @@ in
         src = pkgs.fetchFromGitHub {
           owner = "agkozak";
           repo = "zsh-z";
-          rev = "5b903f8f5489783ee2a4af668a941b7d9a02efc9";
-          sha256 = "07h6ksiqgqyf5m84hv5xf4jcqrl8q1cj8wd4z52cjmy82kk10fkn";
+          rev = "aaafebcd97424c570ee247e2aeb3da30444299cd";
+          sha256 = "sha256-9Wr4uZLk2CvINJilg4o72x0NEAl043lP30D3YnHk+ZA=";
         };
       }
       {
@@ -127,8 +129,8 @@ in
         src = pkgs.fetchFromGitHub {
           owner = "mafredri";
           repo = "zsh-async";
-          rev = "v1.7.0";
-          sha256 = "1jbbypgn0r4pilhv2s2p11vbkkvlnf75wrhxfcvr7bfjpzyp9wbc";
+          rev = "v1.8.5";
+          sha256 = "sha256-mpXT3Hoz0ptVOgFMBCuJa0EPkqP4wZLvr81+1uHDlCc=";
         };
       }
       {
@@ -145,8 +147,8 @@ in
         src = pkgs.fetchFromGitHub {
           owner = "romkatv";
           repo = "powerlevel10k";
-          rev = "700910cd0421a7d25d2800cefa76eb6d80dc62a8";
-          sha256 = "011ja4r3a8vbcs42js9nri4p8pi8z4ccqxl2qyf52pn3pfnidigj";
+          rev = "v1.20.0";
+          sha256 = "sha256-ES5vJXHjAKw/VHjWs8Au/3R+/aotSbY7PWnWAMzCR8E=";
         };
       }
       {
@@ -154,8 +156,8 @@ in
         src = pkgs.fetchFromGitHub {
           owner = "chisui";
           repo = "zsh-nix-shell";
-          rev = "v0.1.0";
-          sha256 = "0snhch9hfy83d4amkyxx33izvkhbwmindy0zjjk28hih1a9l2jmx";
+          rev = "v0.8.0";
+          sha256 = "sha256-Z6EYQdasvpl1P78poj9efnnLj7QQg13Me8x1Ryyw+dM=";
         };
       }
     ];
