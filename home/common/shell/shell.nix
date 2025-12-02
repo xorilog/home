@@ -1,10 +1,15 @@
-{ config, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   aliases = {
-    mkdir = ''mkdir --parents --verbose'';
-    rm = ''rm --interactive'';
-    cp = ''cp --interactive'';
-    mv = ''mv --interactive'';
+    mkdir = ''mkdir -p -v''; # options --parents --verbose Compatible Linux et macOS
+    rm = ''rm -i''; # option --interactive Compatible Linux et macOS
+    cp = ''cp -i''; # option --interactive Compatible Linux et macOS
+    mv = ''mv -i''; # option --interactive Compatible Linux et macOS
     gcd = ''cd (git root)'';
     ls = ''eza'';
     ll = ''eza --long'';
@@ -13,7 +18,9 @@
     t = ''eza --tree --level=2'';
     wget = ''wget -c'';
     map = ''xargs -n1'';
-    ip = ''ip -c'';
+  }
+  // lib.optionalAttrs pkgs.stdenv.isLinux {
+    ip = ''ip -c''; # Alias uniquement disponible sous Linux
   };
 
   env = ''
