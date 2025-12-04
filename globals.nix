@@ -123,6 +123,32 @@
           "xophe-mbp.local"
         ];
       };
+      syncthing = {
+        id = "HHQLRCA-JAVN2KH-UDKU3WH-CRJIVJB-XLHO5QJ-FRAGAXR-KIA4XWY-DQHFVQN"; # TODO: ID Syncthing réel
+        folders = {
+          "desktop/downloads" = {
+            type = "sendreceive";
+          };
+          "sync/nixos/personal" = {
+            type = "sendreceive";
+          };
+          "AGS-backup-src" = {
+            type = "sendreceive";
+          };
+          "desktop/pictures" = {
+            type = "sendreceive";
+          };
+          "sync/password-store" = {
+            type = "sendreceive";
+          };
+          "edf-sf/documents" = {
+            type = "sendreceive";
+          };
+          "sync/nixos/edf-sf" = {
+            type = "sendreceive";
+          };
+        };
+      };
     };
 
     # NAS peer for Syncthing

@@ -40,14 +40,9 @@
   # };
 
   # Services système
-  # services = {
-  #   gvfs.enable = true;
-
-  #   # Configuration directe sans modules.*
-  #   avahi.enable = true;
-  #   tailscale.enable = true;
-  #   syncthing.enable = true;
-  # };
+  services = {
+    tailscale.enable = true;
+  };
 
   # Configuration système
   time.timeZone = "Europe/Paris";
