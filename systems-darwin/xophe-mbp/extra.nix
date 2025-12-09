@@ -70,4 +70,7 @@
       ;
     username = "xophe";
   };
+  environment.variables = {
+    EDITOR = "nvim";
+  };
 }
