@@ -835,7 +835,13 @@
       if test -n "${NIX_SHELL_PACKAGES}"; then
         p10k segment -f yellow -i '🛡' -t "{ ${NIX_SHELL_PACKAGES} }"
       else
-        p10k segment -f yellow -t "🛡"
+        if [[ "$OSTYPE" == darwin* ]]; then
+          # Darwin icon
+          p10k segment -f yellow -t "🛡️"
+        else
+          # Linux nerdfont icon
+          p10k segment -f yellow -t "🛡"
+        fi
       fi
     fi
   }
