@@ -9,6 +9,7 @@
   services = {
     openssh = {
       enable = true;
+      openFirewall = false;
       startWhenNeeded = false;
       settings = {
         X11Forwarding = false;
