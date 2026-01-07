@@ -77,8 +77,11 @@
 
     # Applications externes
     ghostty = {
-      url = "git+ssh://git@github.com/ghostty-org/ghostty?ref=main";
-      inputs.nixpkgs.follows = "nixpkgs";
+      type = "github";
+      owner = "ghostty-org";
+      repo = "ghostty";
+      ref = "main";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     claude-desktop = {
