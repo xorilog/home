@@ -51,11 +51,6 @@ in
       for func (${config.programs.zsh.dotDir}/functions) autoload -U $func/*(x:t)
       autoload -Uz select-word-style; select-word-style bash
       if [ -e ''${HOME}/.nix-profile/etc/profile.d/nix.sh ]; then . ''${HOME}/.nix-profile/etc/profile.d/nix.sh; fi
-      #if [ -n "$INSIDE_EMACS" ]; then
-      #  chpwd() { print -P "\033AnSiTc %d" }
-      #  print -P "\033AnSiTu %n"
-      #  print -P "\033AnSiTc %d"
-      #fi
       if [[ "$TERM" == "dumb" || "$TERM" == "emacs" ]]
       then
         TERM=eterm-color

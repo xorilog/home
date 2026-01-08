@@ -21,6 +21,9 @@
   }
   // lib.optionalAttrs pkgs.stdenv.isLinux {
     ip = ''ip -c''; # Alias uniquement disponible sous Linux
+  }
+  // lib.optionalAttrs pkgs.stdenv.isDarwin {
+    tree = ''eza -T''; # Alias uniquement mis en place sous Darwin
   };
 
   env = ''
