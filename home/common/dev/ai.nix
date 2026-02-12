@@ -5,7 +5,7 @@
     crush
 
     # editors
-    claude-code
+    inputs.llm-agents.packages.${pkgs.system}.claude-code
     code-cursor
     cursor-cli
 
