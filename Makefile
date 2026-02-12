@@ -1,16 +1,27 @@
 # Makefile for home - Flake Architecture Migration
 # Variables
-ETCNIXOS = /etc/nixos
-SYNCDIR = /home/xophe/sync/nixos
 SRCHOME = ~/src/github.com/xorilog/home
 
+# OS Detection
+UNAME := $(shell uname)
+ifeq ($(UNAME),Darwin)
+    FLAKE_HOST ?= xophe-mbp
+    REBUILD_CMD := darwin-rebuild
+    SYNCDIR := $(HOME)/sync/nixos
+    FLAKE_TYPE := darwinConfigurations
+else
+    FLAKE_HOST ?= nixophe
+    REBUILD_CMD := nixos-rebuild
+    SYNCDIR := /home/xophe/sync/nixos
+    FLAKE_TYPE := nixosConfigurations
+endif
+
 # Flake configuration
-FLAKE_HOST := nixophe
-FLAKE := .#nixosConfigurations.$(FLAKE_HOST)
+FLAKE := .#$(FLAKE_TYPE).$(FLAKE_HOST)
 HOME_FLAKE := .#homeConfigurations."xophe@$(FLAKE_HOST)"
 
 # Build flags
-REBUILD_FLAGS := --fast --show-trace
+REBUILD_FLAGS := --show-trace
 BUILD_FLAGS := --show-trace
 
 # Targets
@@ -54,27 +65,44 @@ help:
 .PHONY: build
 build: secrets
 	@echo "🔨 Build configuration système flake..."
+ifeq ($(UNAME),Darwin)
+	nix build $(BUILD_FLAGS) .#darwinConfigurations.$(FLAKE_HOST).system
+else
 	nix build $(BUILD_FLAGS) .#nixosConfigurations.$(FLAKE_HOST).config.system.build.toplevel
+endif
 
-.PHONY: switch  
+.PHONY: switch
 switch: secrets
 	@echo "🔄 Switch vers nouvelle configuration..."
-	sudo nixos-rebuild switch $(REBUILD_FLAGS) --flake .#$(FLAKE_HOST)
+	sudo $(REBUILD_CMD) switch $(REBUILD_FLAGS) --flake .#$(FLAKE_HOST)
 
 .PHONY: test
 test: secrets
+ifeq ($(UNAME),Darwin)
+	@echo "🧪 Test: building configuration (darwin has no test mode)..."
+	$(MAKE) build
+else
 	@echo "🧪 Test configuration temporaire..."
 	sudo nixos-rebuild test $(REBUILD_FLAGS) --flake .#$(FLAKE_HOST)
+endif
 
 .PHONY: boot
-boot: secrets  
+boot: secrets
+ifeq ($(UNAME),Darwin)
+	@echo "⚠️  boot target not available on Darwin, use 'switch' instead"
+else
 	@echo "🚀 Configuration pour prochaine boot..."
 	sudo nixos-rebuild boot $(REBUILD_FLAGS) --flake .#$(FLAKE_HOST)
+endif
 
 .PHONY: dry-run
 dry-run: secrets
 	@echo "👁️  Preview changements (dry-run)..."
+ifeq ($(UNAME),Darwin)
+	nix build $(BUILD_FLAGS) .#darwinConfigurations.$(FLAKE_HOST).system --dry-run
+else
 	sudo nixos-rebuild switch $(REBUILD_FLAGS) --flake .#$(FLAKE_HOST) --dry-run
+endif
 
 # HOME MANAGER (migration flakes)
 .PHONY: home-build
@@ -148,17 +176,25 @@ info:
 .PHONY: history
 history:
 	@echo "📜 Historique configurations..."
+ifeq ($(UNAME),Darwin)
+	nix profile history --profile /nix/var/nix/profiles/system-profiles/darwin
+else
 	nix profile history --profile /nix/var/nix/profiles/system
+endif
 
 .PHONY: diff
 diff:
 	@echo "🔍 Diff dernière configuration..."
+ifeq ($(UNAME),Darwin)
+	nix profile diff-closures --profile /nix/var/nix/profiles/system-profiles/darwin | head -20
+else
 	nix profile diff-closures --profile /nix/var/nix/profiles/system | head -20
+endif
 
 .PHONY: rollback
 rollback:
 	@echo "⏪ Rollback configuration..."
-	sudo nixos-rebuild switch --rollback
+	sudo $(REBUILD_CMD) switch --rollback
 
 # LEGACY SUPPORT
 .PHONY: install-hooks
@@ -175,8 +211,11 @@ assets:
 .PHONY: doctor
 doctor:
 	@echo "🩺 Validation environnement..."
+	@echo "OS: $(UNAME)"
 	@echo "Flake: $(shell nix flake metadata --json 2>/dev/null | jq -r .description 2>/dev/null || echo 'ERROR: flake invalide')"
+	@echo "Flake type: $(FLAKE_TYPE)"
 	@echo "Host: $(FLAKE_HOST)"
+	@echo "Rebuild cmd: $(REBUILD_CMD)"
 	@echo "Syncdir: $(SYNCDIR) $(shell [ -d $(SYNCDIR) ] && echo '✅' || echo '❌')"
 
 .PHONY: setup
