@@ -1,10 +1,13 @@
-{ pkgs ? (import ../nixpkgs.nix) { } }:
+{
+  pkgs ? (import ../nixpkgs.nix) { },
+}:
 rec {
   # TODO: migrate things from nix/packages
   nixfmt-plus = pkgs.callPackage ./nixfmt-plus.nix { };
   # pre nur-packages import
   scripts = pkgs.callPackage ./my/scripts { };
   bekind = pkgs.callPackage ../tools/bekind { };
+  claude-hooks = pkgs.callPackage ../tools/claude-hooks { };
 
   # Mine
   ape = pkgs.callPackage ./ape { };

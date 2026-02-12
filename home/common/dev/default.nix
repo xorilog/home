@@ -6,6 +6,7 @@
 {
   imports = [
     ./ai.nix
+    ./claude.nix
     ./go.nix
     ./nix.nix
     ./python.nix

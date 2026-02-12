@@ -29,6 +29,12 @@
     pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
 
+    # Upstream Claude Code configuration tracking
+    vdemeester-home = {
+      url = "git+https://git.sbr.pm/home.git";
+      flake = false; # Source tracking only, not evaluated as flake
+    };
+
     # Home Manager
     home-manager = {
       type = "github";
@@ -37,13 +43,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    niri = {
-      type = "github";
-      owner = "sodiboo";
-      repo = "niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows = "nixpkgs-25_05";
-    };
+    # For now not using niri
+    # niri = {
+    #   type = "github";
+    #   owner = "sodiboo";
+    #   repo = "niri-flake";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   inputs.nixpkgs-stable.follows = "nixpkgs-25_05";
+    # };
 
     # NixOS hardware support (identifié dans sources.json)
     nixos-hardware = {
