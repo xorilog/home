@@ -104,6 +104,7 @@
       system ? "aarch64-darwin",
       pkgsInput ? inputs.nixpkgs,
       homeInput ? inputs.home-manager,
+      determinateInput ? inputs.determinate,
     }:
     let
       globals = import ../globals.nix {
@@ -134,6 +135,9 @@
 
         # Modules externes
         homeInput.darwinModules.home-manager
+
+        # Modules Determinate installer
+        determinateInput.darwinModules.default
 
         # Configuration home-manager
         {

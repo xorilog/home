@@ -29,6 +29,8 @@
     pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
 
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
+
     # Upstream Claude Code configuration tracking
     vdemeester-home = {
       url = "git+https://git.sbr.pm/home.git";

@@ -65,6 +65,28 @@ in
     # Configure these via Determinate Systems or /etc/nix/nix.conf instead
   };
 
+  launchd.daemons.limit-maxfiles = {
+    serviceConfig = {
+      Label = "limit.maxfiles";
+      ProgramArguments = [
+        "launchctl"
+        "limit"
+        "maxfiles"
+        "524288"
+        "524288"
+      ];
+      RunAtLoad = true;
+      ServiceIPC = false;
+    };
+  };
+
+  determinateNix = {
+    enable = true;
+    customSettings = {
+      extra-trusted-users = "xophe";
+    };
+  };
+
   # Version système (nix-darwin attend un entier entre 1 et 6)
   system.stateVersion = lib.mkDefault 6;
 }
