@@ -28,7 +28,7 @@
       coc-rust-analyzer
       coc-solargraph
       coc-fzf
-      fzfWrapper
+      fzf-wrapper
       fzf-vim
       gruvbox
       lightline-vim
