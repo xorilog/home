@@ -38,6 +38,7 @@
     signing = {
       #gpgPath = "/usr/bin/gpg";
       #gpgPath = "/home/xophe/.nix-profile/bin/gpg";
+      format = "openpgp";
       key = "B151572DE8FADB71";
       signByDefault = true;
     };
