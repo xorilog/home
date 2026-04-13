@@ -15,8 +15,5 @@
       git-extras
       git-crypt
     ];
-    # Default gitconfig
-    etc."gitconfig".source = ./git/config;
-    etc."gitignore".source = ./git/ignore;
   };
 }

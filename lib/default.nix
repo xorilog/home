@@ -142,6 +142,7 @@
         # Configuration home-manager
         {
           home-manager = {
+            backupFileExtension = "hm-backup";
             extraSpecialArgs = specialArgs;
           };
         }

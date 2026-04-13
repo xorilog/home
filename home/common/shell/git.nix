@@ -155,6 +155,58 @@
       };
     };
 
+    ignores = [
+      # Emacs
+      "*~"
+      "*.*~"
+      "\\#*"
+      ".\\#*"
+      # Vim
+      "*.swp"
+      ".*.sw[a-z]"
+      "*.un~"
+      "Session.vim"
+      ".netrwhist"
+      # Tags
+      "TAGS"
+      "!TAGS/"
+      "tags"
+      "!tags/"
+      # Logs
+      "*.log"
+      "*.cache"
+      # OS
+      ".DS_Store"
+      ".DS_Store?"
+      ".CFUserTextEncoding"
+      ".Trash"
+      ".Xauthority"
+      "thumbs.db"
+      "Icon?"
+      "Thumbs.db"
+      ".cache"
+      ".pid"
+      ".sock"
+      # Code
+      ".svn"
+      ".git"
+      ".swp"
+      ".idea"
+      ".*.swp"
+      ".tags"
+      ".sass-cache"
+      "tmp"
+      ".codekit-cache"
+      "config.codekit"
+      # Compiled
+      "*.class"
+      "*.exe"
+      "*.o"
+      "*.so"
+      "*.dll"
+      "*.pyc"
+    ];
+
     includes = [
       {
         path = "${config.xdg.configHome}/git/config.d/ags.gitconfig";
