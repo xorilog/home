@@ -17,6 +17,9 @@ rec {
   batzconverter = pkgs.callPackage ./batzconverter { };
   prm = pkgs.callPackage ./prm { };
 
+  # Bitwarden
+  bitwarden-cli-bio = pkgs.callPackage ./bitwarden-cli-bio { };
+
   # Upstream
   adi1090x-plymouth = pkgs.callPackage ./adi1090x-plymouth { };
 }

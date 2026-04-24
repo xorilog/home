@@ -80,6 +80,10 @@
         #gnupg
         #pinentry # dialog
 
+        # Security
+        bitwarden-cli
+        bitwarden-cli-bio
+
         # System information
       ]
       ++ lib.optionals pkgs.stdenv.isLinux [
@@ -89,7 +93,6 @@
         inxi
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
-        # Rien de spécifique pour l'instant
       ];
   };
 
