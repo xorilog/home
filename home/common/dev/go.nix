@@ -20,8 +20,6 @@
     gofumpt
     # misc
     protobuf
-    # not really go but still
-    gosmee
     # cue
   ];
 }

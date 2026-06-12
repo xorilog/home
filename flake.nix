@@ -177,12 +177,6 @@
         };
       };
 
-      nixosModules = {
-        # provided modules (to be upstreamed)
-        govanityurl = ./modules/govanityurl.nix;
-        gosmee = ./modules/gosmee.nix;
-      };
-
       overlays = import ./overlays { inherit inputs; };
 
       # TODO: Document the bellow definition to build Darwin stuff at some point.

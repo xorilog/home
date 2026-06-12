@@ -13,7 +13,6 @@ rec {
   ape = pkgs.callPackage ./ape { };
 
   # Maybe upstream
-  govanityurl = pkgs.callPackage ./govanityurl { };
   batzconverter = pkgs.callPackage ./batzconverter { };
   prm = pkgs.callPackage ./prm { };
 
