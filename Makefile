@@ -234,7 +234,7 @@ $(SYNCDIR):
 # Référence: https://github.com/drduh/YubiKey-Guide#renewing-sub-keys
 setup-gpg:
 	@echo "🔐 Setup GPG + Yubikey..."
-	gpg --import extra/gnupg/gpg-0xB151572DE8FADB71-2024-06-26.asc
+	gpg --import extra/gnupg/gpg-0xB151572DE8FADB71-2026-07-01.asc
 	gpg --card-status
 	@echo -e "\n🔑 Trust la clé importée:\ngpg -K\ngpg --edit-key 0xB151572DE8FADB71\ngpg> trust\ngpg> quit"
 
