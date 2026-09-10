@@ -4,7 +4,7 @@
   glib,
   gettext,
   bash,
-  nodePackages,
+  typescript,
   gnome,
 }:
 
@@ -22,7 +22,7 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [
     glib
     gettext
-    nodePackages.typescript
+    typescript
   ];
 
   uuid = "noannoyance@sindex.com";

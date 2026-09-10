@@ -4,7 +4,7 @@
   glib,
   gettext,
   bash,
-  nodePackages,
+  typescript,
   gnome,
   zip,
 }:
@@ -23,7 +23,7 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [
     glib
     gettext
-    nodePackages.typescript
+    typescript
     zip
   ];
 

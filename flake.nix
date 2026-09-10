@@ -214,7 +214,7 @@
             buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
             packages = [
               pkgs.git
-              pkgs.nodePackages.prettier
+              pkgs.prettier
               pkgs.deadnix
               pkgs.nixfmt-rfc-style
               pkgs.ripgrep

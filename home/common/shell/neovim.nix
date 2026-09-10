@@ -6,9 +6,9 @@
     rust-analyzer
     yaml-language-server
     solargraph # ruby language server
-    nodePackages.bash-language-server
+    bash-language-server
     dockerfile-language-server
-    nodePackages.typescript-language-server
+    typescript-language-server
     nodejs
     ctags
   ];

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -16,7 +16,8 @@
     k3d
     krew
     kind
-    minikube
+    # minikube ships its own bin/kubectl: lowPrio so the real kubectl wins in buildEnv
+    (lib.lowPrio minikube)
 
     # Operate / Dev
     kustomize
@@ -44,6 +45,6 @@
   programs.zsh.sessionVariables = {
     AWS_VAULT_BACKEND = "pass";
     AWS_VAULT_PASS_PREFIX = "vault";
-    AWS_VAULT_PASS_PASSWORD_STORE_DIR = ''''${HOME}/sync/password-store'';
+    AWS_VAULT_PASS_PASSWORD_STORE_DIR = "\${HOME}/sync/password-store";
   };
 }
