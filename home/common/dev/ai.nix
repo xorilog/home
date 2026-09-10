@@ -6,8 +6,7 @@
 
     # editors
     inputs.llm-agents.packages.${pkgs.system}.claude-code
-    code-cursor
-    cursor-cli
+    inputs.llm-agents.packages.${pkgs.system}.herdr
 
     # MCP Servers
     github-mcp-server
