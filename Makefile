@@ -119,15 +119,22 @@ home-switch: secrets
 home: home-build home-switch
 
 # UPDATES (flake-native)
+# GitHub API auth for flake input resolution.
+# Unauthenticated nix hits GitHub's 60 req/hour per-IP limit; this flake has
+# ~14 github inputs, so `nix flake update` exhausts it. The token is read from
+# the gh keyring at recipe time (never stored on disk, never a parse-time
+# $(shell ...) so it only runs for the targets that need it).
+GH_NIX_AUTH = NIX_CONFIG="access-tokens = github.com=$$(gh auth token 2>/dev/null)"
+
 .PHONY: update
 update:
 	@echo "📦 Update flake inputs..."
-	nix flake update
+	$(GH_NIX_AUTH) nix flake update
 
 .PHONY: update-input
 update-input:
 	@echo "📦 Update input: $(INPUT)..."
-	nix flake update $(INPUT)
+	$(GH_NIX_AUTH) nix flake update $(INPUT)
 
 .PHONY: upgrade
 upgrade: update switch
@@ -159,7 +166,7 @@ fmt:
 .PHONY: check
 check:
 	@echo "✅ Vérification flake..."
-	nix flake check
+	$(GH_NIX_AUTH) nix flake check
 
 # DÉVELOPPEMENT
 .PHONY: dev
