@@ -32,17 +32,18 @@
   ++ lib.optional (builtins.pathExists (
     ../systems/. + "/${hostname}/home.nix"
   )) ../systems/${hostname}/home.nix
-  ++ lib.optional pkgs.stdenv.isDarwin (../systems-darwin/${hostname}/home.nix);
+  ++ lib.optional pkgs.stdenv.hostPlatform.isDarwin (../systems-darwin/${hostname}/home.nix);
 
   home = {
     inherit username stateVersion;
-    homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${username}" else "/home/${username}";
+    homeDirectory =
+      if pkgs.stdenv.hostPlatform.isDarwin then "/Users/${username}" else "/home/${username}";
   };
 
   nix = {
     package = pkgs.nix;
     settings =
-      if pkgs.stdenv.isDarwin then
+      if pkgs.stdenv.hostPlatform.isDarwin then
         {
           download-buffer-size = 524288000; # 500 MiB
           experimental-features = [

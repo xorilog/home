@@ -21,6 +21,11 @@
     enable = true;
     vimAlias = true;
     withPython3 = true;
+    # HM's default flipped true -> false in stateVersion 26.05. We're on 24.11, so we
+    # were silently getting the legacy `true`. Pinned explicitly to keep that behaviour
+    # and silence the warning. Set to false (or drop the line once stateVersion >= 26.05)
+    # to drop neovim's ruby provider -- only needed for ruby-based plugins.
+    withRuby = true;
     extraPython3Packages = (ps: with ps; [ pkgs.python311Packages.python-lsp-server ]);
     extraPackages = with pkgs; [ git ];
     plugins = with pkgs.vimPlugins; [

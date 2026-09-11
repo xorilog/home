@@ -18,7 +18,7 @@ in
 
     # xdg.userDirs is not supported on all platforms (e.g. Darwin),
     # so only enable it on Linux to avoid errors.
-    userDirs = lib.mkIf pkgs.stdenv.isLinux {
+    userDirs = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
       enable = true;
       createDirectories = lib.mkDefault true;
 

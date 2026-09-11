@@ -86,13 +86,13 @@
 
         # System information
       ]
-      ++ lib.optionals pkgs.stdenv.isLinux [
+      ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
         google-chrome # Sur Mac, s'installe autrement
         xclip
         shutter
         inxi
       ]
-      ++ lib.optionals pkgs.stdenv.isDarwin [
+      ++ lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
       ];
   };
 

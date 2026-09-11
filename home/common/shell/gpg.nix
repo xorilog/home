@@ -19,7 +19,7 @@
   };
 
   services = {
-    gpg-agent = lib.mkIf pkgs.stdenv.isLinux {
+    gpg-agent = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
       enable = true;
       enableSshSupport = true;
       enableExtraSocket = true;

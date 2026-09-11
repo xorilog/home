@@ -7,7 +7,7 @@
 
 {
   programs.tmux =
-    if pkgs.stdenv.isLinux then
+    if pkgs.stdenv.hostPlatform.isLinux then
       {
         enable = true;
         #sensibleOnTop = true;

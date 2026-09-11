@@ -6,24 +6,24 @@
 }:
 {
   aliases = {
-    mkdir = ''mkdir -p -v''; # options --parents --verbose Compatible Linux et macOS
-    rm = ''rm -i''; # option --interactive Compatible Linux et macOS
-    cp = ''cp -i''; # option --interactive Compatible Linux et macOS
-    mv = ''mv -i''; # option --interactive Compatible Linux et macOS
-    gcd = ''cd (git root)'';
-    ls = ''eza'';
-    ll = ''eza --long'';
-    la = ''eza --all'';
-    l = ''eza --long --all --header'';
-    t = ''eza --tree --level=2'';
-    wget = ''wget -c'';
-    map = ''xargs -n1'';
+    mkdir = "mkdir -p -v"; # options --parents --verbose Compatible Linux et macOS
+    rm = "rm -i"; # option --interactive Compatible Linux et macOS
+    cp = "cp -i"; # option --interactive Compatible Linux et macOS
+    mv = "mv -i"; # option --interactive Compatible Linux et macOS
+    gcd = "cd (git root)";
+    ls = "eza";
+    ll = "eza --long";
+    la = "eza --all";
+    l = "eza --long --all --header";
+    t = "eza --tree --level=2";
+    wget = "wget -c";
+    map = "xargs -n1";
   }
-  // lib.optionalAttrs pkgs.stdenv.isLinux {
-    ip = ''ip -c''; # Alias uniquement disponible sous Linux
+  // lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
+    ip = "ip -c"; # Alias uniquement disponible sous Linux
   }
-  // lib.optionalAttrs pkgs.stdenv.isDarwin {
-    tree = ''eza -T''; # Alias uniquement mis en place sous Darwin
+  // lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
+    tree = "eza -T"; # Alias uniquement mis en place sous Darwin
   };
 
   env = ''

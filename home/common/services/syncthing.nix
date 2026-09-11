@@ -15,7 +15,7 @@
     enable = true;
     overrideFolders = false;
     # If we want to allow this from somewhere else on macOS, we need to swap this and disable the Apple Firewall (WTF)
-    # guiAddress = if pkgs.stdenv.isDarwin then "0.0.0.0:8384" else libx.syncthingGuiAddress globals.machines."${hostname}";
+    # guiAddress = if pkgs.stdenv.hostPlatform.isDarwin then "0.0.0.0:8384" else libx.syncthingGuiAddress globals.machines."${hostname}";
     guiAddress = libx.syncthingGuiAddress globals.machines."${hostname}";
     settings = {
       devices =
