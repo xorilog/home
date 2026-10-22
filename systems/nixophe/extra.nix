@@ -26,7 +26,10 @@
     # Shell & editors
     ../common/shell
     ../common/editors
-    
+
+    # Security
+    ../common/security
+
     ../edfsf
   ];
 
@@ -35,7 +38,7 @@
     hostName = "nixophe";
     useDHCP = false;
     firewall.allowPing = true;
-    firewall.extraCommands = ''iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns'';
+    firewall.extraCommands = "iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns";
   };
 
   # Services système

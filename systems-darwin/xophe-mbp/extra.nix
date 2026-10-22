@@ -20,6 +20,9 @@
     # Shell & editors
     ../../systems/common/shell
     ../../systems/common/editors
+
+    # Security
+    ../../systems/common/security
   ];
   system.primaryUser = "xophe";
 
