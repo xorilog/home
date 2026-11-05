@@ -11,11 +11,11 @@
 
   # Extra packages for Xorg
   environment.systemPackages = with pkgs; [
-    xorg.xmessage
-    xorg.xmodmap
-    xorg.xdpyinfo
-    xorg.xhost
-    xorg.xinit
+    xmessage
+    xmodmap
+    xdpyinfo
+    xhost
+    xinit
     xss-lock
   ];
 
@@ -27,7 +27,7 @@
       enableTCP = false;
       synaptics.enable = false;
       displayManager.sessionCommands = ''
-        ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 1 0
+        ${lib.getBin pkgs.xrandr}/bin/xrandr --setprovideroutputsource 1 0
       '';
       xkb = {
         layout = "us";

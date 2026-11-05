@@ -3,6 +3,8 @@
 {
   programs.firefox = {
     enable = true;
+    # keep legacy profile location (default moved to $XDG_CONFIG_HOME/mozilla/firefox)
+    configPath = ".mozilla/firefox";
     # Temporary fix
     # https://github.com/nix-community/home-manager/issues/1641
     # (https://github.com/NixOS/nixpkgs/pull/105796)

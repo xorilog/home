@@ -20,6 +20,8 @@ in
     # so only enable it on Linux to avoid errors.
     userDirs = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
       enable = true;
+      # keep exporting XDG_*_DIR (default changed to false)
+      setSessionVariables = true;
       createDirectories = lib.mkDefault true;
 
       desktop = desktopDirectory;
@@ -32,7 +34,7 @@ in
       videos = desktopDirectory + "/videos";
 
       extraConfig = {
-        XDG_SCREENSHOTS_DIR = "${desktopDirectory}/pictures/screenshots";
+        SCREENSHOTS = "${desktopDirectory}/pictures/screenshots";
       };
     };
   };
