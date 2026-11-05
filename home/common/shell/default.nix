@@ -61,7 +61,7 @@
         # terraform-docs
 
         # Real editor
-        vscode
+        #vscode
         yed
 
         # languages
