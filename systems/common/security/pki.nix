@@ -4,8 +4,9 @@
 { ... }:
 {
   # https://emudhra.we-have-a-problem.com/#macos-curl
+  # "emSign ECC Root CA - G3" was removed upstream from NSS (3.131); listing an
+  # absent cert makes the cacert build fail, so it's no longer blacklisted here.
   security.pki.caCertificateBlacklist = [
     "Comodo AAA Services root"
-    "emSign ECC Root CA - G3"
   ];
 }

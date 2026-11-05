@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [
     zoom-us
-    signal-desktop-bin
+    signal-desktop
     slack
     discord
   ];

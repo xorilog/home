@@ -3,8 +3,9 @@ _: {
   virtualisation.podman.enable = true;
   virtualisation.containers = {
     enable = true;
-    registries = {
-      search = [
+    # registries.conf V2 format (V1 `registries.search` dropped in Podman 6)
+    registries.settings = {
+      unqualified-search-registries = [
         "docker.io"
         "quay.io"
         "docker.pkg.github.com"

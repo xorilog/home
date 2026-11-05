@@ -41,7 +41,8 @@
   };
 
   nix = {
-    package = pkgs.nix;
+    # mkDefault: on NixOS home-manager now forwards the system's nix.package
+    package = lib.mkDefault pkgs.nix;
     settings =
       if pkgs.stdenv.hostPlatform.isDarwin then
         {

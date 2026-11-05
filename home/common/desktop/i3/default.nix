@@ -30,6 +30,7 @@ in
     ./xorg.nix
   ];
   home.pointerCursor = {
+    enable = true;
     gtk.enable = true;
     x11.enable = true;
     package = pkgs.vanilla-dmz;
@@ -131,9 +132,11 @@ in
         pkgs.rofi-mpd
       ];
     };
-    font = "Ubuntu Mono 14";
-    #terminal = "${pkgs.kitty}/bin/kitty";~
-    terminal = "${config.home.profileDirectory}/bin/ghostty";
+    settings = {
+      font = "Ubuntu Mono 14";
+      #terminal = "${pkgs.kitty}/bin/kitty";~
+      terminal = "${config.home.profileDirectory}/bin/ghostty";
+    };
     theme = "slate";
   };
   services = {
@@ -353,8 +356,8 @@ in
       #bindsym $mod+Shift+p exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
       # powermenu
       bindsym $mod+F12 exec ${powermenu}
-      bindsym $mod+F10 exec ${pkgs.my.scripts}/bin/shot %d
-      bindsym $mod+Shift+F10 exec ${pkgs.my.scripts}/bin/shotf %d
+      bindsym $mod+F10 exec ${pkgs.my.vde-scripts}/bin/shot %d
+      bindsym $mod+Shift+F10 exec ${pkgs.my.vde-scripts}/bin/shotf %d
 
       # screen management
       bindsym $mod+F11 exec "autorandr -c"

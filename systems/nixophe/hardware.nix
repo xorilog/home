@@ -16,7 +16,12 @@
     ../common/hardware/sane-extra-config.nixos.nix
     ../common/hardware/trusted-platform-module.nix
     ../common/hardware/yubikey.nix
+    # TODO(2026-11): drop once nixos-unstable has the fix — the displaylink module
+    # still calls `pkgs.displaylink.override { evdi = …; }` but the package now
+    # takes `linuxPackages`. Use the fixed module from nixpkgs master meanwhile.
+    "${inputs.nixpkgs-master}/nixos/modules/hardware/video/displaylink.nix"
   ];
+  disabledModules = [ "hardware/video/displaylink.nix" ];
 
   boot.initrd.availableKernelModules = [
     "xhci_pci"
