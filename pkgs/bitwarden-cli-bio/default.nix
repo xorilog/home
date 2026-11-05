@@ -14,8 +14,8 @@ buildNpmPackage {
   src = fetchFromGitHub {
     owner = "braumye";
     repo = "bitwarden-cli-bio";
-    rev = "71e600af3aaef45f022070f181fc2bc9ad7d57ab";
-    hash = "sha256-mDavFl38+lGBDJMoieY5VXtsR3E41zCQwmyBi3Da9yo=";
+    rev = "f35f5a632ba7f9d50243a2b80233d30a020eec76";
+    hash = "sha256-U7h/oT08Z9w12bWClk2cT61s+TXIGeiWGMFBAkazuGk=";
   };
   npmDepsHash = "sha256-ITJcoBaKosnhRleLp8b5+W5WJ3aI3GFYt4KPPlghsyM=";
   npmBuildScript = "build";
