@@ -216,7 +216,7 @@
               pkgs.git
               pkgs.prettier
               pkgs.deadnix
-              pkgs.nixfmt-rfc-style
+              pkgs.nixfmt
               pkgs.ripgrep
               inputs.agenix.packages.${system}.default
             ];
@@ -226,7 +226,7 @@
       });
 
       # Formatage automatique
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt);
 
       # Validation flake
       checks = forAllSystems (system: {
@@ -239,7 +239,7 @@
             # nix
             # TODO: re enable deadnix later.
             #deadnix.enable = true;
-            nixfmt-rfc-style.enable = true;
+            nixfmt.enable = true;
             # statix.enable = true;
             # python
             flake8.enable = true;
